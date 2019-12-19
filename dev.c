@@ -136,8 +136,8 @@ int	main(void)
 	params.img_tab = test;
 	params.color = color;
 
-	mlx_key_hook(window_id, &key_hook, &params);
-		
+//	mlx_key_hook(window_id, &key_hook, &params);
+	mlx_hook(window_id, 2, 0, &key_hook, &params);		
 	mlx_loop(id);
 	return (0);
 }
