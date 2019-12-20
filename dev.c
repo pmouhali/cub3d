@@ -79,6 +79,15 @@ int	key_hook(int keycode,void *params)
 		copy->planex = copy->planex * cos(-0.1) - copy->planey * sin(-0.1);
 		copy->planey = copy->oldplanex * sin(-0.1) + copy->planey * cos(-0.1);
 	}
+	if (keycode == 123)
+	{
+		copy->olddirx = copy->dirx;
+		copy->dirx = copy->dirx * cos(0.1) - copy->diry * sin(0.1);
+		copy->diry = copy->olddirx * sin(0.1) + copy->diry * (0.1);
+		copy->oldplanex = copy->planex;
+		copy->planex = copy->planex * cos(0.1) - copy->planey * sin(0.1);
+		copy->planey = copy->oldplanex * sin(0.1) + copy->planey * cos(0.1);
+	}
 	if (keycode == 53)
 		exit(1);
 
