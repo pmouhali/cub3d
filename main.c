@@ -9,10 +9,10 @@ int	main(void)
 	params.win_width = 800;
 	params.map_width = 10;
 	params.map_height = 10;
-	params.posx = 3;
-	params.posy = 3;
-	params.dirx = -1;
-	params.diry = 0;
+	params.posx = 1;
+	params.posy = 1;
+	params.dirx = 0;
+	params.diry = 1;
 	params.planex = 0;
 	params.planey = 0.66;
 
