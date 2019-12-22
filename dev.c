@@ -55,6 +55,10 @@ void	mlx_clear_img(void **img)
 	}
 }
 
+#define MOVESPEED 0.16
+
+#define ROTSPEED 0.09
+
 int	key_hook(int keycode,void *params)
 {
 	t_parameters *copy;
@@ -62,31 +66,35 @@ int	key_hook(int keycode,void *params)
 	copy = params;
 	if (keycode == 126)
 	{
-		copy->posx += copy->dirx;
-		copy->posy += copy->diry;
+		if (map[(int)(copy->posx + copy->dirx * MOVESPEED)][(int)copy->posy] == 0)
+			copy->posx += copy->dirx * MOVESPEED;
+		if (map[(int)copy->posx][(int)(copy->posy + copy->diry * MOVESPEED)] == 0)
+			copy->posy += copy->diry * MOVESPEED;
 	}
 	if (keycode == 125)
 	{
-		copy->posx -= copy->dirx;
-		copy->posy -= copy->diry;
+		if (map[(int)(copy->posx - copy->dirx * MOVESPEED)][(int)copy->posy] == 0)
+			copy->posx -= copy->dirx * MOVESPEED;
+		if (map[(int)copy->posx][(int)(copy->posy - copy->diry * MOVESPEED)] == 0)
+			copy->posy -= copy->diry * MOVESPEED;
 	}
 	if (keycode == 124)
 	{
 		copy->olddirx = copy->dirx;
-		copy->dirx = copy->dirx * cos(-0.1) - copy->diry * sin(-0.1);
-		copy->diry = copy->olddirx * sin(-0.1) + copy->diry * (-0.1);
+		copy->dirx = copy->dirx * cos(-ROTSPEED) - copy->diry * sin(-ROTSPEED);
+		copy->diry = copy->olddirx * sin(-ROTSPEED) + copy->diry * (-ROTSPEED);
 		copy->oldplanex = copy->planex;
-		copy->planex = copy->planex * cos(-0.1) - copy->planey * sin(-0.1);
-		copy->planey = copy->oldplanex * sin(-0.1) + copy->planey * cos(-0.1);
+		copy->planex = copy->planex * cos(-ROTSPEED) - copy->planey * sin(-ROTSPEED);
+		copy->planey = copy->oldplanex * sin(-ROTSPEED) + copy->planey * cos(-ROTSPEED);
 	}
 	if (keycode == 123)
 	{
 		copy->olddirx = copy->dirx;
-		copy->dirx = copy->dirx * cos(0.1) - copy->diry * sin(0.1);
-		copy->diry = copy->olddirx * sin(0.1) + copy->diry * (0.1);
+		copy->dirx = copy->dirx * cos(ROTSPEED) - copy->diry * sin(ROTSPEED);
+		copy->diry = copy->olddirx * sin(ROTSPEED) + copy->diry * cos(ROTSPEED);
 		copy->oldplanex = copy->planex;
-		copy->planex = copy->planex * cos(0.1) - copy->planey * sin(0.1);
-		copy->planey = copy->oldplanex * sin(0.1) + copy->planey * cos(0.1);
+		copy->planex = copy->planex * cos(ROTSPEED) - copy->planey * sin(ROTSPEED);
+		copy->planey = copy->oldplanex * sin(ROTSPEED) + copy->planey * cos(ROTSPEED);
 	}
 	if (keycode == 53)
 		exit(1);
@@ -162,16 +170,16 @@ void	draw_scene(t_parameters *tmp)
 		dda.lineheight = (int)(params->win_height / dda.perpwalldist);
 
 		dda.linevec.x = -dda.lineheight / 2 + params->win_height / 2;		
-		//dda.linevec.x = dda.linevec.x < 0 ? 0 : dda.linevec.x;
+		dda.linevec.x = dda.linevec.x < 0 ? 0 : dda.linevec.x;
 		dda.linevec.y = dda.lineheight / 2 + params->win_height / 2;		
-		//dda.linevec.y = dda.linevec.y >= params->win_height ? 0 : params->win_height - 1;
+		dda.linevec.y = dda.linevec.y >= params->win_height ? params->win_height - 1 : dda.linevec.y;
 
 		color.r = 0;
 		color.g = 255;
 		color.b = 0;
 		color.a = 0;
 		
-		if (dda.side == 1) { color.b = color.b / 2; }	
+		if (dda.side == 1) { color.g = 200; }	
 
 		mlx_img_draw_vertical_line(&(params->img), x, dda.linevec, color);
 
