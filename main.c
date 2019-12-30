@@ -29,6 +29,7 @@ int	main(void)
 int tex[64 * 64];
 int a = 0;
 int b = 0;
+/*
 while (a < 64)
 {
 	while (b < 64)
@@ -39,6 +40,12 @@ while (a < 64)
 	a++;
 	b = 0;
 }
+*/
+	while (a < 4096)
+	{
+		tex[a] = 16776960;
+		a++;
+	}
 	
 	params.texture = tex;	
 	draw_scene(&params);

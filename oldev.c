@@ -48,14 +48,46 @@ int     map[20][20] = {
                   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 };
 
-void	mlx_clear_img(void **img)
+
+void	mlx_img_draw_vertical_line(void **img, int x, t_vec line, t_rgba color)
 {
-	int i = -8;
+	int i;
+	int pp;
 	unsigned char *c;
 
+	i = line.x;
 	c = *img;
-	while (i++ < 1920000)
-		c[i] = 0;
+	while (i <= line.y)
+	{
+		pp = x * 4 + 4 + 3200 * i;
+		c[pp] = color.r;	
+		c[pp + 1] = color.g;	
+		c[pp + 2] = color.b;	
+		i++;
+	}
+}
+
+void	mlx_clear_img(void **img)
+{
+	int i = 0;
+	unsigned char *c;
+
+	t_rgba color;
+	color.r = 0;
+	color.g = 0;
+	color.b = 0;
+	color.a = 0;
+
+	t_vec vec;
+	vec.x = 0;
+	vec.y = 599;
+
+	c = *img;
+	while (i < 800)
+	{
+		mlx_img_draw_vertical_line(img, i, vec, color);
+		i++;
+	}
 }
 
 #define MOVESPEED 0.16
@@ -110,18 +142,6 @@ void	draw_scene(t_parameters *tmp)
 	int x = 0;
 
 	int buffer[600][800];
-	int a = 0;
-	int b;
-	while (a < 600)
-	{
-		while (b < 800)
-		{
-			buffer[a][b] = 0;
-			b++;
-		}
-		a++;
-		b = 0;
-	}
 
 	// START RAYCASTING LOOP
 	while (x < params->win_width)
@@ -220,38 +240,74 @@ void	draw_scene(t_parameters *tmp)
 			buffer[b][x] = colort;
 			b++;
 		}	
+		/*
+		color.r = 200;
+		color.g = 200;
+		color.b = 200;
+		color.a = 0;
+		if (dda.side == 1) { color.r -= 50; }	
+		if (dda.side == 1) { color.g -= 50; }	
+		if (dda.side == 1) { color.b -= 50; }	
 
+		mlx_img_draw_vertical_line(&(params->img), x, dda.linevec, color);
+		t_vec cf;
+		// start end ceiling
+		color.r = 255;
+		color.g = 255;
+		color.b = 255;
+		color.a = 0;
+		if (dda.linevec.x > 0)
+		{
+			cf.x = 0;
+			cf.y = dda.linevec.x - 1;
+			mlx_img_draw_vertical_line(&(params->img), x, cf, color);
+		}
+
+		// start end floor
+		color.r = 100;
+		color.g = 100;
+		color.b = 100;
+		color.a = 0;
+		if (dda.linevec.y < params->win_height - 1)
+		{
+			cf.x = dda.linevec.y + 1;
+			cf.y = params->win_height - 1;
+			mlx_img_draw_vertical_line(&(params->img), x, cf, color);
+		}
+		*/
 		x++;
 	}
+		// buffer_to_img();
+		// x * 4 + 4 + 3200 * y;
+		unsigned char *c = params->img;
+		int pp;
+		int a = 0;
+		int b;
 	
-	unsigned char *c = params->img;
-	int pp;
-	a = 0;
-
-	while (a < 600)
-	{
-		while (b < 800)
+		while (a < 600)
 		{
-			pp = b * 4 + 4 + 3200 * a;
-			c[pp] = buffer[a][b] / 65536;	
-			c[pp + 1] = (buffer[a][b] / 256) % 256;	
-			c[pp + 2] = buffer[a][b] % 256;
-			b++;
+			while (b < 800)
+			{
+				pp = b * 4 + 4 + 3200 * a;
+				c[pp] = buffer[a][b] / 65536;	
+				c[pp + 1] = (buffer[a][b] / 256) % 256;	
+				c[pp + 2] = buffer[a][b] % 256;
+				b++;
+			}
+			a++;
+			b = 0;
 		}
-		a++;
-		b = 0;
-	}
-	a = 0;
-	while (a < 600)
-	{
-		while (b < 800)
+		a = 0;
+		while (a < 600)
 		{
-			buffer[a][b] = 0;
-			b++;
+			while (b < 800)
+			{
+				buffer[a][b] = 0;
+				b++;
+			}
+			a++;
+			b = 0;
 		}
-		a++;
-		b = 0;
-	}
 	mlx_put_image_to_window(params->mlx_id, params->win_id, params->img_id, 0, 0);
 	mlx_clear_img(&(params->img));
 }
