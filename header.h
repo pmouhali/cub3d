@@ -24,10 +24,7 @@ typedef struct	s_parameters
 	double posy;
 	double dirx;
 	double diry;
-	double olddirx;
-	double olddiry;
 	double planex;
-	double oldplanex;
 	double planey;
 	void *mlx_id;
 	void *win_id;

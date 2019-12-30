@@ -1,4 +1,51 @@
-Etant donne une map fixe, une position x:y, une resolution x:y
+si dirx == -1 : tout fonctionne parfaitement
+si dirx == 1  : gauche et droite sont inversees
+si diry == -1 : total fucked up
+si diry == 1  : total fucked up
+
+  y y y
+x 0 1 2
+x 1
+x 2
+
+joueur regarde au NORD = do not moove
+joueur regarde au SUD = key hook left * ?
+joueur regarde a l'ouest = key hook left * ?
+joueur regarde a l'est = key hook left * ?
+
+FIX : toujours commencer avec le vecteur qui fonctionne puis call keyhook
+(sans draw scene) avec le bon moove pour correspondre :)
+
+NORD
+dx -1
+dy  0
+px  0
+py  0.66
+
+SUD
+dx  1
+dy  0
+px  0
+py -0.66
+
+EST
+dx  0
+dy  -1
+py  0
+px  -0.66
+
+OUEST
+dx  1
+dy  0
+py  0
+px  0.66
+
+
+
+
+
+
+Etant donne une map fixe, une position x:y, une resolution x:y=
 {
 	L'image s'affiche correctement sans les textures
 	Les deplacements sont ok

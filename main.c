@@ -7,14 +7,14 @@ int	main(void)
 
 	params.win_height = 600;
 	params.win_width = 800;
-	params.map_width = 10;
-	params.map_height = 10;
-	params.posx = 1;
-	params.posy = 1;
+	params.map_width = 20;
+	params.map_height = 20;
+	params.posx = 2;
+	params.posy = 3;
 	params.dirx = 0;
 	params.diry = 1;
-	params.planex = 0;
-	params.planey = 0.66;
+	params.planey = 0;
+	params.planex = 0.66;
 
 	params.mlx_id = mlx_init();
 	params.win_id = mlx_new_window(params.mlx_id, params.win_width, params.win_height, "test");
@@ -25,6 +25,8 @@ int	main(void)
 		&(params.size_line),
 		&(params.endian)
 	);
+	
+	draw_scene(&params);
 
 	mlx_hook(params.win_id, 2, 0, &key_hook, &params);		
 	mlx_loop(params.mlx_id);

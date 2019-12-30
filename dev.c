@@ -1,6 +1,6 @@
 #include "header.h"
 #include <stdio.h>
- 
+/*
 int     map[20][20] = {
                   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                   {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
@@ -23,6 +23,30 @@ int     map[20][20] = {
                   {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
                   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 };
+*/
+int     map[20][20] = {
+                  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
+};
+
 
 void	mlx_img_draw_vertical_line(void **img, int x, t_vec line, t_rgba color)
 {
@@ -72,6 +96,9 @@ void	mlx_clear_img(void **img)
 int	key_hook(int keycode,void *params)
 {
 	t_parameters *copy;
+	double olddirx;
+	double oldplanex;
+	double rotspeed;
 
 	copy = params;
 	if (keycode == 126)
@@ -88,23 +115,15 @@ int	key_hook(int keycode,void *params)
 		if (map[(int)copy->posx][(int)(copy->posy - copy->diry * MOVESPEED)] == 0)
 			copy->posy -= copy->diry * MOVESPEED;
 	}
-	if (keycode == 124)
+	if (keycode == 124 || keycode == 123) // RIGHT = 124 LEFT = 123
 	{
-		copy->olddirx = copy->dirx;
-		copy->dirx = copy->dirx * cos(-ROTSPEED) - copy->diry * sin(-ROTSPEED);
-		copy->diry = copy->olddirx * sin(-ROTSPEED) + copy->diry * cos(-ROTSPEED);
-		copy->oldplanex = copy->planex;
-		copy->planex = copy->planex * cos(-ROTSPEED) - copy->planey * sin(-ROTSPEED);
-		copy->planey = copy->oldplanex * sin(-ROTSPEED) + copy->planey * cos(-ROTSPEED);
-	}
-	if (keycode == 123)
-	{
-		copy->olddirx = copy->dirx;
-		copy->dirx = copy->dirx * cos(ROTSPEED) - copy->diry * sin(ROTSPEED);
-		copy->diry = copy->olddirx * sin(ROTSPEED) + copy->diry * cos(ROTSPEED);
-		copy->oldplanex = copy->planex;
-		copy->planex = copy->planex * cos(ROTSPEED) - copy->planey * sin(ROTSPEED);
-		copy->planey = copy->oldplanex * sin(ROTSPEED) + copy->planey * cos(ROTSPEED);
+		rotspeed = keycode == 124 ? -ROTSPEED : ROTSPEED;
+		olddirx = copy->dirx;
+		copy->dirx = copy->dirx * cos(rotspeed) - copy->diry * sin(rotspeed);
+		copy->diry = olddirx * sin(rotspeed) + copy->diry * cos(rotspeed);
+		oldplanex = copy->planex;
+		copy->planex = copy->planex * cos(rotspeed) - copy->planey * sin(rotspeed);
+		copy->planey = oldplanex * sin(rotspeed) + copy->planey * cos(rotspeed);
 	}
 	if (keycode == 53)
 		exit(1);
@@ -123,7 +142,7 @@ void	draw_scene(t_parameters *tmp)
 
 	while (x < params->win_width)
 	{
-		dda.camerax = 2 * x / (double)params->win_width - 1;	
+		dda.camerax = 2 * x / (double)params->win_width - 1;
 		dda.raydirx = params->dirx + params->planex * dda.camerax;
 		dda.raydiry = params->diry + params->planey * dda.camerax;
 		dda.mapx = (int)params->posx;
@@ -184,18 +203,18 @@ void	draw_scene(t_parameters *tmp)
 		dda.linevec.y = dda.lineheight / 2 + params->win_height / 2;		
 		dda.linevec.y = dda.linevec.y >= params->win_height ? params->win_height - 1 : dda.linevec.y;
 
-		color.r = 0;
-		color.g = 255;
+		color.r = 255;
+		color.g = 0;
 		color.b = 0;
 		color.a = 0;
 		
-		if (dda.side == 1) { color.g = 200; }	
+		if (dda.side == 1) { color.r = 200; }	
 
 		mlx_img_draw_vertical_line(&(params->img), x, dda.linevec, color);
 
 		x++;
 	}
-
+	
 	mlx_put_image_to_window(params->mlx_id, params->win_id, params->img_id, 0, 0);
 	mlx_clear_img(&(params->img));
 }
