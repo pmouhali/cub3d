@@ -50,7 +50,7 @@ int     map[20][20] = {
 
 void	mlx_clear_img(void **img)
 {
-	int i = -8;
+	int i = 0;
 	unsigned char *c;
 
 	c = *img;
@@ -107,7 +107,7 @@ void	draw_scene(t_parameters *tmp)
 	t_rgba color;
 	t_dda_parameters dda;
 	t_parameters *params = tmp;
-	int x = 0;
+	int x = -1;
 
 	int buffer[600][800];
 	int a = 0;
@@ -124,7 +124,7 @@ void	draw_scene(t_parameters *tmp)
 	}
 
 	// START RAYCASTING LOOP
-	while (x < params->win_width)
+	while (x < params->win_width - 1)
 	{
 		dda.camerax = 2 * x / (double)params->win_width - 1;
 		dda.raydirx = params->dirx + params->planex * dda.camerax;
@@ -187,7 +187,6 @@ void	draw_scene(t_parameters *tmp)
 		dda.linevec.y = dda.lineheight / 2 + params->win_height / 2;		
 		dda.linevec.y = dda.linevec.y >= params->win_height ? params->win_height - 1 : dda.linevec.y;
 
-		
 		// TEXTURE
 		int a;
 		int b;
@@ -241,17 +240,7 @@ void	draw_scene(t_parameters *tmp)
 		a++;
 		b = 0;
 	}
-	a = 0;
-	while (a < 600)
-	{
-		while (b < 800)
-		{
-			buffer[a][b] = 0;
-			b++;
-		}
-		a++;
-		b = 0;
-	}
+
 	mlx_put_image_to_window(params->mlx_id, params->win_id, params->img_id, 0, 0);
 	mlx_clear_img(&(params->img));
 }
