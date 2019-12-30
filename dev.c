@@ -218,7 +218,25 @@ void	draw_scene(t_parameters *tmp)
 				colort = (colort >> 1) & 8355711;	
 			buffer[b][x] = colort;
 			b++;
-		}	
+		}
+		if (dda.linevec.x > 0) // CEILING
+		{
+			b = 0;
+			while (b < dda.linevec.x)
+			{
+				buffer[b][x] = 16777215;
+				b++;
+			}
+		}
+		if (dda.linevec.y < params->win_height - 1) // FLOOR
+		{
+			b = dda.linevec.y;
+			while (b < params->win_height - 1)
+			{
+				buffer[b][x] = 16777110;
+				b++;
+			}
+		}
 
 		x++;
 	}
