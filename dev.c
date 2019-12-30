@@ -24,6 +24,7 @@ int     map[20][20] = {
                   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
 };
 */
+
 int     map[20][20] = {
                   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
                   {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
@@ -31,7 +32,7 @@ int     map[20][20] = {
                   {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
                   {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
                   {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
                   {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
                   {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
                   {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
@@ -56,7 +57,7 @@ void	mlx_img_draw_vertical_line(void **img, int x, t_vec line, t_rgba color)
 
 	i = line.x;
 	c = *img;
-	while (i != line.y)
+	while (i <= line.y)
 	{
 		pp = x * 4 + 4 + 3200 * i;
 		c[pp] = color.r;	
@@ -203,15 +204,40 @@ void	draw_scene(t_parameters *tmp)
 		dda.linevec.y = dda.lineheight / 2 + params->win_height / 2;		
 		dda.linevec.y = dda.linevec.y >= params->win_height ? params->win_height - 1 : dda.linevec.y;
 
-		color.r = 255;
-		color.g = 0;
-		color.b = 0;
+		color.r = 200;
+		color.g = 200;
+		color.b = 200;
 		color.a = 0;
+		if (dda.side == 1) { color.r -= 50; }	
+		if (dda.side == 1) { color.g -= 50; }	
+		if (dda.side == 1) { color.b -= 50; }	
 		
-		if (dda.side == 1) { color.r = 200; }	
-
 		mlx_img_draw_vertical_line(&(params->img), x, dda.linevec, color);
 
+		t_vec cf;
+		// start end ceiling
+		color.r = 255;
+		color.g = 255;
+		color.b = 255;
+		color.a = 0;
+		if (dda.linevec.x > 0)
+		{
+			cf.x = 0;
+			cf.y = dda.linevec.x - 1;
+			mlx_img_draw_vertical_line(&(params->img), x, cf, color);
+		}
+
+		// start end floor
+		color.r = 100;
+		color.g = 100;
+		color.b = 100;
+		color.a = 0;
+		if (dda.linevec.y < params->win_height - 1)
+		{
+			cf.x = dda.linevec.y + 1;
+			cf.y = params->win_height - 1;
+			mlx_img_draw_vertical_line(&(params->img), x, cf, color);
+		}
 		x++;
 	}
 	

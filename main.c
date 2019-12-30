@@ -9,12 +9,12 @@ int	main(void)
 	params.win_width = 800;
 	params.map_width = 20;
 	params.map_height = 20;
-	params.posx = 2;
-	params.posy = 3;
-	params.dirx = 0;
-	params.diry = 1;
-	params.planey = 0;
-	params.planex = 0.66;
+	params.posx = 2; // real position, not array style position
+	params.posy = 2; // real position, not array style position
+	params.dirx = 1;
+	params.diry = 0;
+	params.planex = 0;
+	params.planey = -0.66;
 
 	params.mlx_id = mlx_init();
 	params.win_id = mlx_new_window(params.mlx_id, params.win_width, params.win_height, "test");
