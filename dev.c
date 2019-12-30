@@ -240,42 +240,6 @@ void	draw_scene(t_parameters *tmp)
 			buffer[b][x] = colort;
 			b++;
 		}	
-		
-		// buffer_to_img();
-		// x * 4 + 4 + 3200 * y;
-		unsigned char *c = params->img;
-		int pp;
-		a = 0;
-		b = 0;
-	
-		while (a < 600)
-		{
-			while (b < 800)
-			{
-				pp = b * 4 + 4 + 3200 * a;
-				c[pp] = buffer[a][b] / 65536;	
-				c[pp + 1] = (buffer[a][b] / 256) % 256;	
-				c[pp + 2] = buffer[a][b] % 256;
-				b++;
-			}
-			a++;
-			b = 0;
-		}
-		
-		/* clear buffer
-		a = 0;
-		b = 0;
-		while (a < 600)
-		{
-			while (b < 800)
-			{
-				buffer[a][b] = 0;
-				b++;
-			}
-			a++;
-			b = 0;
-		}
-		*/
 		/*
 		color.r = 200;
 		color.g = 200;
@@ -313,7 +277,37 @@ void	draw_scene(t_parameters *tmp)
 		*/
 		x++;
 	}
+		// buffer_to_img();
+		// x * 4 + 4 + 3200 * y;
+		unsigned char *c = params->img;
+		int pp;
+		int a = 0;
+		int b;
 	
+		while (a < 600)
+		{
+			while (b < 800)
+			{
+				pp = b * 4 + 4 + 3200 * a;
+				c[pp] = buffer[a][b] / 65536;	
+				c[pp + 1] = (buffer[a][b] / 256) % 256;	
+				c[pp + 2] = buffer[a][b] % 256;
+				b++;
+			}
+			a++;
+			b = 0;
+		}
+		a = 0;
+		while (a < 600)
+		{
+			while (b < 800)
+			{
+				buffer[a][b] = 0;
+				b++;
+			}
+			a++;
+			b = 0;
+		}
 	mlx_put_image_to_window(params->mlx_id, params->win_id, params->img_id, 0, 0);
 	mlx_clear_img(&(params->img));
 }
