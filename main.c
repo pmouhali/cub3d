@@ -25,7 +25,22 @@ int	main(void)
 		&(params.size_line),
 		&(params.endian)
 	);
+
+int tex[64 * 64];
+int a = 0;
+int b = 0;
+while (a < 64)
+{
+	while (b < 64)
+	{
+		tex[64 * b + a] = 65536 * 192 * (a % 16 && b % 16);
+		b++;
+	}
+	a++;
+	b = 0;
+}
 	
+	params.texture = tex;	
 	draw_scene(&params);
 
 	mlx_hook(params.win_id, 2, 0, &key_hook, &params);		

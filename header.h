@@ -34,6 +34,7 @@ typedef struct	s_parameters
 	int endian;
 	void *img;
 	t_rgba color;
+	int *texture;
 }		t_parameters;
 
 typedef struct s_vec
@@ -60,6 +61,7 @@ typedef struct	s_dda_parameters
 	int side;
 	int lineheight;
 	t_vec linevec;
+	double wallx;
 
 }		t_dda_parameters;
 

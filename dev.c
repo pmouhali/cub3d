@@ -141,6 +141,9 @@ void	draw_scene(t_parameters *tmp)
 	t_parameters *params = tmp;
 	int x = 0;
 
+	int buffer[600][800];
+
+	// START RAYCASTING LOOP
 	while (x < params->win_width)
 	{
 		dda.camerax = 2 * x / (double)params->win_width - 1;
@@ -204,6 +207,76 @@ void	draw_scene(t_parameters *tmp)
 		dda.linevec.y = dda.lineheight / 2 + params->win_height / 2;		
 		dda.linevec.y = dda.linevec.y >= params->win_height ? params->win_height - 1 : dda.linevec.y;
 
+		
+		// TEXTURE
+		int a;
+		int b;
+		int texx;
+		int texy;
+		int colort;
+
+		if (dda.side == 0)
+			dda.wallx = params->posy + dda.perpwalldist * dda.raydiry;
+		else
+			dda.wallx = params->posx + dda.perpwalldist * dda.raydirx;
+		dda.wallx -= floor(dda.wallx);
+		
+		texx = (int)(dda.wallx * 64.0);
+		if (dda.side == 0 && dda.raydirx > 0)
+			texx = 64 - texx - 1;
+		if (dda.side == 1 && dda.raydiry < 0)
+			texx = 64 - texx - 1;
+		
+		double step = 1.0 * 64 / dda.lineheight;
+		double texpos = (dda.linevec.x - params->win_height / 2 + dda.lineheight / 2) * step;
+		b = dda.linevec.x;
+		while (b < dda.linevec.y)
+		{
+			texy = (int)texpos & (64 - 1);
+			texpos += step;
+			colort = params->texture[64 * texy + texx];
+			if (dda.side == 1)
+				colort = (colort >> 1) & 8355711;	
+			buffer[b][x] = colort;
+			b++;
+		}	
+		
+		// buffer_to_img();
+		// x * 4 + 4 + 3200 * y;
+		unsigned char *c = params->img;
+		int pp;
+		a = 0;
+		b = 0;
+	
+		while (a < 600)
+		{
+			while (b < 800)
+			{
+				pp = b * 4 + 4 + 3200 * a;
+				c[pp] = buffer[a][b] / 65536;	
+				c[pp + 1] = (buffer[a][b] / 256) % 256;	
+				c[pp + 2] = buffer[a][b] % 256;
+				b++;
+			}
+			a++;
+			b = 0;
+		}
+		
+		/* clear buffer
+		a = 0;
+		b = 0;
+		while (a < 600)
+		{
+			while (b < 800)
+			{
+				buffer[a][b] = 0;
+				b++;
+			}
+			a++;
+			b = 0;
+		}
+		*/
+		/*
 		color.r = 200;
 		color.g = 200;
 		color.b = 200;
@@ -211,9 +284,8 @@ void	draw_scene(t_parameters *tmp)
 		if (dda.side == 1) { color.r -= 50; }	
 		if (dda.side == 1) { color.g -= 50; }	
 		if (dda.side == 1) { color.b -= 50; }	
-		
-		mlx_img_draw_vertical_line(&(params->img), x, dda.linevec, color);
 
+		mlx_img_draw_vertical_line(&(params->img), x, dda.linevec, color);
 		t_vec cf;
 		// start end ceiling
 		color.r = 255;
@@ -238,6 +310,7 @@ void	draw_scene(t_parameters *tmp)
 			cf.y = params->win_height - 1;
 			mlx_img_draw_vertical_line(&(params->img), x, cf, color);
 		}
+		*/
 		x++;
 	}
 	
