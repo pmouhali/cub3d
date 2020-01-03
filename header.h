@@ -88,5 +88,7 @@ void    mlx_img_draw_pixel(void **img, int x, int y, t_rgba color);
 int     key_hook(int keycode,void *params);
 void    free_int_tab(int **tab, int array_size);
 void    print_int_tab(int **tab, int array_size);
+void    clear_2dbuffer(int h, int w, int buf[h][w]);
+void    buffer_to_image(int h, int w, int buf[h][w], void **img);
 
 #endif

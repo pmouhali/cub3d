@@ -7,20 +7,9 @@ void	draw_scene(t_parameters *tmp)
 	t_parameters *params = tmp;
 	int x = 0;
 
-	int buffer[600][800];
+	int buffer[params->win_height][params->win_width];
 	int a = 0;
 	int b = 0;
-
-	while (a < 600)
-	{
-		while (b < 800)
-		{
-			buffer[a][b] = 0;
-			b++;
-		}
-		a++;
-		b = 0;
-	}
 
 	// textures
 	int texx;
@@ -38,7 +27,8 @@ void	draw_scene(t_parameters *tmp)
 	sprites[1].x = 0;
 	sprites[1].y = 0;
 	sprites[1].distance = 0.0;
-
+	
+	clear_2dbuffer(600, 800, buffer);
 	// START RAYCASTING LOOP
 	while (x < params->win_width - 1)
 	{
@@ -257,25 +247,7 @@ void	draw_scene(t_parameters *tmp)
 	}	
 
 */
-
-	unsigned char *c = params->img;
-	int pp;
-	a = 0;
-
-	while (a < 600)
-	{
-		while (b < 800)
-		{
-			pp = b * 4 + 4 + 3200 * a;
-			c[pp + 2] = buffer[a][b] / 65536;	
-			c[pp + 1] = (buffer[a][b] / 256) % 256;	
-			c[pp] = buffer[a][b] % 256;
-			b++;
-		}
-		a++;
-		b = 0;
-	}
-
+	buffer_to_image(600, 800, buffer, &params->img);
 	mlx_put_image_to_window(params->mlx_id, params->win_id, params->img_id, 0, 0);
 	mlx_clear_img(&(params->img));
 }
