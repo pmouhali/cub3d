@@ -50,8 +50,8 @@ typedef struct s_vec
 
 typedef struct s_sprite
 {
-	int x;
-	int y;
+	double x;
+	double y;
 	double distance;
 }		t_sprite;
 

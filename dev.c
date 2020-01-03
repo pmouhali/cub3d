@@ -8,7 +8,6 @@ void	draw_scene(t_parameters *tmp)
 	int x = 0;
 
 	int buffer[params->win_height][params->win_width];
-	int a = 0;
 	int b = 0;
 
 	// textures
@@ -85,7 +84,7 @@ void	draw_scene(t_parameters *tmp)
 			if (params->map[dda.mapx][dda.mapy] == 1)
 				dda.hit = 1;
 			else if (params->map[dda.mapx][dda.mapy] == 2
-				&& si < SPRITES_QUANTITY &&
+				&& si < SPRITES_QUANTITY - 1  &&
 					(sprites[si].x != dda.mapx
 						|| sprites[si].y != dda.mapy))
 			{
@@ -194,6 +193,7 @@ void	draw_scene(t_parameters *tmp)
 	int sy;
 	int d;
 	int *stex = params->stex;
+
 	while (si < SPRITES_QUANTITY)
 	{
 		spritex = sprites[si].x - params->posx;
@@ -203,9 +203,9 @@ void	draw_scene(t_parameters *tmp)
 		transformx = invdet * (params->diry * spritex - params->dirx * spritey);
 		transformy = invdet * (-params->planey * spritex + params->planex * spritey);
 	
-		spritescreenx = (int)((params->win_width / 2) * (1 / transformx / transformy));
+		spritescreenx = (int)((params->win_width / 2) * (1 + transformx / transformy));
 	
-		spriteheight = abs((int)(params->win_height / transformy));
+		spriteheight = abs((int)(params->win_height / (transformy)));
 		dsy = -spriteheight / 2 + params->win_height / 2;	
 		if (dsy < 0)
 			dsy = 0;
@@ -213,13 +213,13 @@ void	draw_scene(t_parameters *tmp)
 		if (dey >= params->win_height)
 			dey = params->win_height - 1;
 	
-		spritewidth = abs((int)(params->win_height / transformy));
+		spritewidth = abs((int)(params->win_height / (transformy))); // Same as sprite height ?
 		dsx = -spritewidth / 2 + spritescreenx;	
 		if (dsx < 0)
 			dsx = 0;
-		dex = spritewidth / 2 + spritescreenx;	
-		if (dex >= params->win_height)
-			dex = params->win_height - 1;	
+		dex = spritewidth / 2 + spritescreenx;
+		if (dex >= params->win_width)
+			dex = params->win_width - 1;	
 		
 		while (dsx < dex)
 		{
@@ -233,7 +233,7 @@ void	draw_scene(t_parameters *tmp)
 					d = sy * 256 - params->win_height * 128 + spriteheight * 128;
 					texy = ((d * 64) / spriteheight) / 256;
 					color = stex[64 * texy * texx];
-					if ((color & 0x00FFFFFF) != 0)
+					if (color != 0)
 						buffer[sy][dsx] = color;
 					sy++;
 				}
