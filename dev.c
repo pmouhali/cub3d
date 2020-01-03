@@ -1,117 +1,16 @@
 #include "header.h"
 #include <stdio.h>
-/*
-int     map[20][20] = {
-                  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                  {1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-};
-*/
-
-int     map[20][20] = {
-                  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-};
-
-void	mlx_clear_img(void **img)
-{
-	int i = 0;
-	unsigned char *c;
-
-	c = *img;
-	while (i++ < 1920000)
-		c[i] = 0;
-}
-
-#define MOVESPEED 0.16
-
-#define ROTSPEED 0.09
-
-int	key_hook(int keycode,void *params)
-{
-	t_parameters *copy;
-	double olddirx;
-	double oldplanex;
-	double rotspeed;
-
-	copy = params;
-	if (keycode == 126)
-	{
-		if (map[(int)(copy->posx + copy->dirx * MOVESPEED)][(int)copy->posy] == 0)
-			copy->posx += copy->dirx * MOVESPEED;
-		if (map[(int)copy->posx][(int)(copy->posy + copy->diry * MOVESPEED)] == 0)
-			copy->posy += copy->diry * MOVESPEED;
-	}
-	if (keycode == 125)
-	{
-		if (map[(int)(copy->posx - copy->dirx * MOVESPEED)][(int)copy->posy] == 0)
-			copy->posx -= copy->dirx * MOVESPEED;
-		if (map[(int)copy->posx][(int)(copy->posy - copy->diry * MOVESPEED)] == 0)
-			copy->posy -= copy->diry * MOVESPEED;
-	}
-	if (keycode == 124 || keycode == 123) // RIGHT = 124 LEFT = 123
-	{
-		rotspeed = keycode == 124 ? -ROTSPEED : ROTSPEED;
-		olddirx = copy->dirx;
-		copy->dirx = copy->dirx * cos(rotspeed) - copy->diry * sin(rotspeed);
-		copy->diry = olddirx * sin(rotspeed) + copy->diry * cos(rotspeed);
-		oldplanex = copy->planex;
-		copy->planex = copy->planex * cos(rotspeed) - copy->planey * sin(rotspeed);
-		copy->planey = oldplanex * sin(rotspeed) + copy->planey * cos(rotspeed);
-	}
-	if (keycode == 53)
-		exit(1);
-
-	draw_scene(copy);
-
-	return (0);
-}
 
 void	draw_scene(t_parameters *tmp)
 {
-	t_rgba color;
 	t_dda_parameters dda;
 	t_parameters *params = tmp;
-	int x = -1;
+	int x = 0;
 
 	int buffer[600][800];
 	int a = 0;
-	int b;
+	int b = 0;
+
 	while (a < 600)
 	{
 		while (b < 800)
@@ -122,6 +21,23 @@ void	draw_scene(t_parameters *tmp)
 		a++;
 		b = 0;
 	}
+
+	// textures
+	int texx;
+	int texy;
+	int color;
+
+	// sprites
+	double zbuffer[params->win_width];
+
+	t_sprite sprites[SPRITES_QUANTITY];
+	int si = -1;
+	sprites[0].x = 0;
+	sprites[0].y = 0;
+	sprites[0].distance = 0.0;
+	sprites[1].x = 0;
+	sprites[1].y = 0;
+	sprites[1].distance = 0.0;
 
 	// START RAYCASTING LOOP
 	while (x < params->win_width - 1)
@@ -156,7 +72,6 @@ void	draw_scene(t_parameters *tmp)
 			dda.stepy = 1;
 			dda.sidedisty = (dda.mapy + 1.0 - params->posy) * dda.deltadisty;
 		}
-		
 		while (dda.hit == 0)
 		{
 			if (dda.sidedistx < dda.sidedisty)
@@ -177,14 +92,25 @@ void	draw_scene(t_parameters *tmp)
 				else
 					dda.side = 3; // EA
 			}
-			if (map[dda.mapx][dda.mapy] > 0)
+			if (params->map[dda.mapx][dda.mapy] == 1)
 				dda.hit = 1;
+			else if (params->map[dda.mapx][dda.mapy] == 2
+				&& si < SPRITES_QUANTITY &&
+					(sprites[si].x != dda.mapx
+						|| sprites[si].y != dda.mapy))
+			{
+				si++;
+				sprites[si].x = dda.mapx;
+				sprites[si].y = dda.mapy;
+			}
 		}
 
 		if (dda.side == 0 || dda.side == 1)
 			dda.perpwalldist = (dda.mapx - params->posx + (1 - dda.stepx) / 2) / dda.raydirx;	
 		else
 			dda.perpwalldist = (dda.mapy - params->posy + (1 - dda.stepy) / 2) / dda.raydiry;	
+
+//		zbuffer[x] = dda.perpwalldist; 
 
 		dda.lineheight = (int)(params->win_height / dda.perpwalldist);
 
@@ -194,11 +120,7 @@ void	draw_scene(t_parameters *tmp)
 		dda.linevec.y = dda.linevec.y >= params->win_height ? params->win_height - 1 : dda.linevec.y;
 
 		// TEXTURE
-		int a;
-		int b;
-		int texx;
-		int texy;
-		int colort;
+
 
 		if (dda.side == 0 || dda.side == 1)
 			dda.wallx = params->posy + dda.perpwalldist * dda.raydiry;
@@ -220,10 +142,10 @@ void	draw_scene(t_parameters *tmp)
 		{
 			texy = (int)texpos & (64 - 1);
 			texpos += step;
-			colort = texture[64 * texy + texx];
+			color = texture[64 * texy + texx];
 			if (dda.side == 2 || dda.side == 3)
-				colort = (colort >> 1) & 8355711;	
-			buffer[b][x] = colort;
+				color = (color >> 1) & 8355711;	
+			buffer[b][x] = color;
 			b++;
 		}
 		if (dda.linevec.x > 0) // CEILING
@@ -247,7 +169,95 @@ void	draw_scene(t_parameters *tmp)
 
 		x++;
 	}
+
+
+
+/*
+	// SPRITE HANDLING
+	if (si > 0)
+	{
+		si = 0;
+		while (si < SPRITES_QUANTITY) // set distance
+		{
+			sprites[si].distance = ((params->posx - sprites[si].x) * (params->posx - sprites[si].x) + (params->posy - sprites[si].y) * (params->posy - sprites[si].y));
+			si++;
+		}
+	}
+
+	if (si > 0) { sort_sprites(sprites, SPRITES_QUANTITY); }
 	
+	if (si > 0)
+		si = 0;
+	else
+		si = SPRITES_QUANTITY;
+
+	double spritex;
+	double spritey;
+	double invdet;
+	double transformx;
+	double transformy;
+	int spritescreenx;
+	int spriteheight;
+	int spritewidth;
+	int dsx;
+	int dsy;
+	int dey;
+	int dex;
+	int sy;
+	int d;
+	int *stex = params->stex;
+	while (si < SPRITES_QUANTITY)
+	{
+		spritex = sprites[si].x - params->posx;
+		spritex = sprites[si].y - params->posy;
+		
+		invdet = 1.0 / (params->planex * params->diry - params->dirx * params->planey);
+		transformx = invdet * (params->diry * spritex - params->dirx * spritey);
+		transformy = invdet * (-params->planey * spritex + params->planex * spritey);
+	
+		spritescreenx = (int)((params->win_width / 2) * (1 / transformx / transformy));
+	
+		spriteheight = abs((int)(params->win_height / transformy));
+		dsy = -spriteheight / 2 + params->win_height / 2;	
+		if (dsy < 0)
+			dsy = 0;
+		dey = spriteheight / 2 + params->win_height / 2;	
+		if (dey >= params->win_height)
+			dey = params->win_height - 1;
+	
+		spritewidth = abs((int)(params->win_height / transformy));
+		dsx = -spritewidth / 2 + spritescreenx;	
+		if (dsx < 0)
+			dsx = 0;
+		dex = spritewidth / 2 + spritescreenx;	
+		if (dex >= params->win_height)
+			dex = params->win_height - 1;	
+		
+		while (dsx < dex)
+		{
+			texx = (int)(256 * (dsx - (-spritewidth / 2 + spritescreenx)) * 64 / spritewidth) / 256;
+
+			if (transformy > 0 && dsx > 0 && dsx < params->win_width && transformy < zbuffer[dsx])
+			{
+				sy  = dsy;
+				while (sy < dey)
+				{
+					d = sy * 256 - params->win_height * 128 + spriteheight * 128;
+					texy = ((d * 64) / spriteheight) / 256;
+					colort = stex[64 * texy * texx];
+					if ((colort & 0x00FFFFFF) != 0)
+						buffer[sy][dsx] = colort;
+					sy++;
+				}
+			}
+			dsx++;
+		}
+
+		si++;
+	}	
+
+*/
+
 	unsigned char *c = params->img;
 	int pp;
 	a = 0;

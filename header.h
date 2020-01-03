@@ -18,6 +18,7 @@ typedef struct	s_parameters
 {
 	int win_height;
 	int win_width;
+	int **map;
 	int map_height;
 	int map_width;
 	double posx;
@@ -36,6 +37,9 @@ typedef struct	s_parameters
 	t_rgba color;
 	void *texture_id;
 	void *texture;
+	void *stex_id;
+	void *stex;
+
 }		t_parameters;
 
 typedef struct s_vec
@@ -43,6 +47,17 @@ typedef struct s_vec
 	int x;
 	int y;
 }		t_vec;
+
+typedef struct s_sprite
+{
+	int x;
+	int y;
+	double distance;
+}		t_sprite;
+
+#define SPRITES_QUANTITY 2
+#define MOVESPEED 0.16
+#define ROTSPEED 0.09
 
 typedef struct	s_dda_parameters
 {
@@ -66,8 +81,12 @@ typedef struct	s_dda_parameters
 
 }		t_dda_parameters;
 
+void	mlx_clear_img(void **img);
+void	sort_sprites(t_sprite *sprites, int array_size);
 void    draw_scene(t_parameters *tmp);
 void    mlx_img_draw_pixel(void **img, int x, int y, t_rgba color);
 int     key_hook(int keycode,void *params);
+void    free_int_tab(int **tab, int array_size);
+void    print_int_tab(int **tab, int array_size);
 
 #endif
