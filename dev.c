@@ -208,12 +208,13 @@ void	draw_scene(t_parameters *tmp)
 		
 		double step = 1.0 * 64 / dda.lineheight;
 		double texpos = (dda.linevec.x - params->win_height / 2 + dda.lineheight / 2) * step;
+		int *texture = params->texture;
 		b = dda.linevec.x;
 		while (b < dda.linevec.y)
 		{
 			texy = (int)texpos & (64 - 1);
 			texpos += step;
-			colort = params->texture[64 * texy + texx];
+			colort = texture[64 * texy + texx];
 			if (dda.side == 1)
 				colort = (colort >> 1) & 8355711;	
 			buffer[b][x] = colort;

@@ -25,7 +25,7 @@ int	main(void)
 		&(params.size_line),
 		&(params.endian)
 	);
-
+/*
 int tex[64 * 64];
 int a = 0;
 int b = 0;
@@ -39,9 +39,20 @@ while (a < 64)
 	a++;
 	b = 0;
 }
-
+*/
 	
-	params.texture = tex;	
+	int pngw;
+	int pngh;
+	void *tex;
+
+	tex = mlx_png_file_to_image(params.mlx_id, "pics/bluestone.png", &pngw, &pngh);
+	params.texture_id = tex;
+	params.texture = mlx_get_data_addr(
+		params.texture_id,
+		&(params.bpp),
+		&(params.size_line),
+		&(params.endian)
+	);
 	draw_scene(&params);
 
 	mlx_hook(params.win_id, 2, 0, &key_hook, &params);		

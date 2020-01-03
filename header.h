@@ -2,7 +2,7 @@
 # define HEADER_H
 
 #include <math.h>
-#include <mlx.h>
+#include "minilibx_opengl/mlx.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -34,7 +34,8 @@ typedef struct	s_parameters
 	int endian;
 	void *img;
 	t_rgba color;
-	int *texture;
+	void *texture_id;
+	void *texture;
 }		t_parameters;
 
 typedef struct s_vec
