@@ -100,7 +100,7 @@ void	draw_scene(t_parameters *tmp)
 		else
 			dda.perpwalldist = (dda.mapy - params->posy + (1 - dda.stepy) / 2) / dda.raydiry;	
 
-//		zbuffer[x] = dda.perpwalldist; 
+		zbuffer[x] = dda.perpwalldist; 
 
 		dda.lineheight = (int)(params->win_height / dda.perpwalldist);
 
@@ -110,7 +110,6 @@ void	draw_scene(t_parameters *tmp)
 		dda.linevec.y = dda.linevec.y >= params->win_height ? params->win_height - 1 : dda.linevec.y;
 
 		// TEXTURE
-
 
 		if (dda.side == 0 || dda.side == 1)
 			dda.wallx = params->posy + dda.perpwalldist * dda.raydiry;
@@ -160,10 +159,9 @@ void	draw_scene(t_parameters *tmp)
 		x++;
 	}
 
+	// SPRITE HANDLING \\
+	_____________________
 
-
-/*
-	// SPRITE HANDLING
 	if (si > 0)
 	{
 		si = 0;
@@ -234,9 +232,9 @@ void	draw_scene(t_parameters *tmp)
 				{
 					d = sy * 256 - params->win_height * 128 + spriteheight * 128;
 					texy = ((d * 64) / spriteheight) / 256;
-					colort = stex[64 * texy * texx];
-					if ((colort & 0x00FFFFFF) != 0)
-						buffer[sy][dsx] = colort;
+					color = stex[64 * texy * texx];
+					if ((color & 0x00FFFFFF) != 0)
+						buffer[sy][dsx] = color;
 					sy++;
 				}
 			}
@@ -246,8 +244,7 @@ void	draw_scene(t_parameters *tmp)
 		si++;
 	}	
 
-*/
-	buffer_to_image(600, 800, buffer, &params->img);
+	buffer_to_image(params->win_height, params->win_width, buffer, &params->img);
 	mlx_put_image_to_window(params->mlx_id, params->win_id, params->img_id, 0, 0);
 	mlx_clear_img(&(params->img));
 }
