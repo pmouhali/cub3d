@@ -27,12 +27,12 @@ int     map[20][20] = {
 
 int     map[20][20] = {
                   {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 1, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
+                  {1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
                   {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
                   {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
                   {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
@@ -163,19 +163,25 @@ void	draw_scene(t_parameters *tmp)
 			{
 				dda.sidedistx += dda.deltadistx;
 				dda.mapx += dda.stepx;
-				dda.side = 0;
+				if (dda.raydirx < 0) // NO
+					dda.side = 0;
+				else // SO
+					dda.side = 1;
 			}
 			else
 			{
 				dda.sidedisty += dda.deltadisty;
 				dda.mapy += dda.stepy;
-				dda.side = 1;
+				if (dda.raydiry < 0)
+					dda.side = 2; // WE
+				else
+					dda.side = 3; // EA
 			}
 			if (map[dda.mapx][dda.mapy] > 0)
 				dda.hit = 1;
 		}
 
-		if (dda.side == 0)
+		if (dda.side == 0 || dda.side == 1)
 			dda.perpwalldist = (dda.mapx - params->posx + (1 - dda.stepx) / 2) / dda.raydirx;	
 		else
 			dda.perpwalldist = (dda.mapy - params->posy + (1 - dda.stepy) / 2) / dda.raydiry;	
@@ -194,16 +200,16 @@ void	draw_scene(t_parameters *tmp)
 		int texy;
 		int colort;
 
-		if (dda.side == 0)
+		if (dda.side == 0 || dda.side == 1)
 			dda.wallx = params->posy + dda.perpwalldist * dda.raydiry;
 		else
 			dda.wallx = params->posx + dda.perpwalldist * dda.raydirx;
 		dda.wallx -= floor(dda.wallx);
 		
 		texx = (int)(dda.wallx * 64.0);
-		if (dda.side == 0 && dda.raydirx > 0)
+		if ((dda.side == 0  || dda.side == 1) && dda.raydirx > 0)
 			texx = 64 - texx - 1;
-		if (dda.side == 1 && dda.raydiry < 0)
+		if ((dda.side == 2 || dda.side == 3) && dda.raydiry < 0)
 			texx = 64 - texx - 1;
 		
 		double step = 1.0 * 64 / dda.lineheight;
@@ -215,7 +221,7 @@ void	draw_scene(t_parameters *tmp)
 			texy = (int)texpos & (64 - 1);
 			texpos += step;
 			colort = texture[64 * texy + texx];
-			if (dda.side == 1)
+			if (dda.side == 2 || dda.side == 3)
 				colort = (colort >> 1) & 8355711;	
 			buffer[b][x] = colort;
 			b++;
@@ -234,7 +240,7 @@ void	draw_scene(t_parameters *tmp)
 			b = dda.linevec.y;
 			while (b < params->win_height - 1)
 			{
-				buffer[b][x] = 16777110;
+				buffer[b][x] = 50;
 				b++;
 			}
 		}
@@ -251,9 +257,9 @@ void	draw_scene(t_parameters *tmp)
 		while (b < 800)
 		{
 			pp = b * 4 + 4 + 3200 * a;
-			c[pp] = buffer[a][b] / 65536;	
+			c[pp + 2] = buffer[a][b] / 65536;	
 			c[pp + 1] = (buffer[a][b] / 256) % 256;	
-			c[pp + 2] = buffer[a][b] % 256;
+			c[pp] = buffer[a][b] % 256;
 			b++;
 		}
 		a++;
