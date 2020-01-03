@@ -172,7 +172,8 @@ void	draw_scene(t_parameters *tmp)
 	}
 
 	if (si > 0) { sort_sprites(sprites, SPRITES_QUANTITY); }
-	
+	printf("sprite1 x%f, y%f, d%f\n", sprites[0].x, sprites[0].y, sprites[0].distance);
+	printf("sprite2 x%f, y%f, d%f\n", sprites[1].x, sprites[1].y, sprites[1].distance);
 	if (si > 0)
 		si = 0;
 	else
@@ -197,7 +198,7 @@ void	draw_scene(t_parameters *tmp)
 	while (si < SPRITES_QUANTITY)
 	{
 		spritex = sprites[si].x - params->posx;
-		spritex = sprites[si].y - params->posy;
+		spritey = sprites[si].y - params->posy;
 		
 		invdet = 1.0 / (params->planex * params->diry - params->dirx * params->planey);
 		transformx = invdet * (params->diry * spritex - params->dirx * spritey);
@@ -225,14 +226,14 @@ void	draw_scene(t_parameters *tmp)
 		{
 			texx = (int)(256 * (dsx - (-spritewidth / 2 + spritescreenx)) * 64 / spritewidth) / 256;
 
-			if (transformy > 0 && dsx > 0 && dsx < params->win_width && transformy < zbuffer[dsx])
+			if (dsx > 0 && dsx < params->win_width && transformy < zbuffer[dsx])
 			{
 				sy  = dsy;
 				while (sy < dey)
 				{
-					d = sy * 256 - params->win_height * 128 + spriteheight * 128;
+					d = (sy) * 256 - params->win_height * 128 + spriteheight * 128;
 					texy = ((d * 64) / spriteheight) / 256;
-					color = stex[64 * texy * texx];
+					color = stex[64 * texy + texx];
 					if (color != 0)
 						buffer[sy][dsx] = color;
 					sy++;

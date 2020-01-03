@@ -92,7 +92,7 @@ int	main(void)
 	stex = mlx_png_file_to_image(params.mlx_id, "pics/barrel.png", &pngw, &pngh);
 	params.stex_id = stex;
 	params.stex = mlx_get_data_addr(
-		params.texture_id,
+		params.stex_id,
 		&(params.bpp),
 		&(params.size_line),
 		&(params.endian)
