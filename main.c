@@ -89,7 +89,7 @@ int	main(void)
 	);
 	void *stex;
 
-	stex = mlx_png_file_to_image(params.mlx_id, "pics/barrel.png", &pngw, &pngh);
+	stex = mlx_png_file_to_image(params.mlx_id, "pics/doll.png", &pngw, &pngh);
 	params.stex_id = stex;
 	params.stex = mlx_get_data_addr(
 		params.stex_id,

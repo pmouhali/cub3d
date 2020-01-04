@@ -20,6 +20,7 @@ void	draw_scene(t_parameters *tmp)
 
 	t_sprite sprites[SPRITES_QUANTITY];
 	int si = -1;
+	int sprites_infov;
 	sprites[0].x = 0;
 	sprites[0].y = 0;
 	sprites[0].distance = 0.0;
@@ -85,12 +86,12 @@ void	draw_scene(t_parameters *tmp)
 				dda.hit = 1;
 			else if (params->map[dda.mapx][dda.mapy] == 2
 				&& si < SPRITES_QUANTITY - 1  &&
-					(sprites[si].x != dda.mapx
-						|| sprites[si].y != dda.mapy))
+					(sprites[si].x != dda.mapx + 0.5
+						|| sprites[si].y != dda.mapy + 0.5))
 			{
 				si++;
-				sprites[si].x = dda.mapx;
-				sprites[si].y = dda.mapy;
+				sprites[si].x = dda.mapx + 0.5;
+				sprites[si].y = dda.mapy + 0.5;
 			}
 		}
 
@@ -161,23 +162,21 @@ void	draw_scene(t_parameters *tmp)
 	// SPRITE HANDLING \\
 	_____________________
 
-	if (si > 0)
+	sprites_infov = si + 1;
+	
+	si = 0;
+	while (si < sprites_infov) // set distance
 	{
-		si = 0;
-		while (si < SPRITES_QUANTITY) // set distance
-		{
-			sprites[si].distance = ((params->posx - sprites[si].x) * (params->posx - sprites[si].x) + (params->posy - sprites[si].y) * (params->posy - sprites[si].y));
-			si++;
-		}
+		sprites[si].distance = ((params->posx - sprites[si].x) * (params->posx - sprites[si].x) + (params->posy - sprites[si].y) * (params->posy - sprites[si].y));
+		if (sprites[si].distance == 0.0)
+			sprites[si].distance = 666666.666666;
+		si++;
 	}
 
-	if (si > 0) { sort_sprites(sprites, SPRITES_QUANTITY); }
+	if (sprites_infov > 0)
+		sort_sprites(sprites, sprites_infov);
 	printf("sprite1 x%f, y%f, d%f\n", sprites[0].x, sprites[0].y, sprites[0].distance);
 	printf("sprite2 x%f, y%f, d%f\n", sprites[1].x, sprites[1].y, sprites[1].distance);
-	if (si > 0)
-		si = 0;
-	else
-		si = SPRITES_QUANTITY;
 
 	double spritex;
 	double spritey;
@@ -194,8 +193,9 @@ void	draw_scene(t_parameters *tmp)
 	int sy;
 	int d;
 	int *stex = params->stex;
-
-	while (si < SPRITES_QUANTITY)
+	
+	si = 0;
+	while (si < sprites_infov)
 	{
 		spritex = sprites[si].x - params->posx;
 		spritey = sprites[si].y - params->posy;
