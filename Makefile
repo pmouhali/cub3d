@@ -7,8 +7,10 @@ SRCS = 	get_next_line_utils.c \
 		quit_program.c \
 		init_params.c \
 		ft_putendl_fd.c \
-		ft_is_alpha.c \
+		ft_isalpha.c \
+		set_params_to_default.c \
 		set_params.c \
+		set_resolution.c \
 		ft_atoi.c \
 
 all:

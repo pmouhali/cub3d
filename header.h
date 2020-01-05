@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <math.h>
 #include "minilibx_opengl/mlx.h"
+#include "get_next_line.h"
 #include <stdlib.h>
 
 typedef struct	s_rgba
@@ -99,6 +100,9 @@ typedef struct	s_dda_parameters
 #define MOVESPEED 0.16
 #define ROTSPEED 0.09
 
+#define MAX_WINDOW_WIDTH 900 // (random, adjust to mac screen)
+#define MAX_WINDOW_HEIGHT 900
+
 void	mlx_clear_img(void **img);
 void	sort_sprites(t_sprite *sprites, int array_size);
 void    draw_scene(t_parameters *tmp);
@@ -116,7 +120,17 @@ int		ft_strcmp(const char *s1, const char *s2);
 void	init_params(t_parameters *params, const char *filepath);
 void    ft_putendl_fd(char const *s, int fd);
 int		ft_isalpha(int c);
-void	set_params(t_parameters *params, const char *line);
 int 	ft_atoi(const char *str);
+
+void	set_params_to_default(t_parameters *params);
+void	set_params(t_parameters *params, const char *line);
+void	set_resolution(t_parameters *params, const char *line);
+void	set_north_texture(t_parameters *params, const char *line);
+void	set_south_texture(t_parameters *params, const char *line);
+void	set_west_texture(t_parameters *params, const char *line);
+void	set_east_texture(t_parameters *params, const char *);
+void	set_sprite_texture(t_parameters *params, const char *line);
+void	set_floor_color(t_parameters *params, const char *line);
+void	set_ceiling_color(t_parameters *params, const char *line);
 
 #endif
