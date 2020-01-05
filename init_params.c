@@ -26,7 +26,9 @@ void    init_params(t_parameters *params, const char *filepath)
 			// call map function
 		}
 */
+		free(line);
 	}
+	free(line);
 	printf("win_w %d, win_h %d\n", params->win_w, params->win_h);
 	printf("map_w %d, map_h %d\n", params->map_w, params->map_h);
 	printf("posx %f, posy %f\n", params->posx, params->posy);
