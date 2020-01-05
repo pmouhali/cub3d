@@ -17,29 +17,46 @@ typedef struct	s_rgba
 
 typedef struct	s_parameters
 {
-	int win_height;
-	int win_width;
+	int win_h;
+	int win_w;
+	int map_h;
+	int map_w;
 	int **map;
-	int map_height;
-	int map_width;
+
 	double posx;
 	double posy;
 	double dirx;
 	double diry;
 	double planex;
 	double planey;
+
+	int endian;
+	int bpp;
+
 	void *mlx_id;
 	void *win_id;
 	void *img_id;
-	int bpp;
-	int size_line;
-	int endian;
+	int img_size_line;
+
 	void *img;
-	t_rgba color;
-	void *texture_id;
-	void *texture;
-	void *stex_id;
-	void *stex;
+
+	void *no_tex_id;
+	int no_tex_size_line;
+	void *no_tex;
+	void *so_tex_id;
+	int so_tex_size_line;
+	void *so_tex;
+	void *we_tex_id;
+	int we_tex_size_line;
+	void *we_tex;
+	void *ea_tex_id;
+	int ea_tex_size_line;
+	void *ea_tex;
+	void *s_tex_id;
+	int s_tex_size_line;
+	void *s_tex;
+	int floor_color;
+	int ceiling_color;
 
 }		t_parameters;
 
@@ -55,10 +72,6 @@ typedef struct s_sprite
 	double y;
 	double distance;
 }		t_sprite;
-
-#define SPRITES_QUANTITY 2
-#define MOVESPEED 0.16
-#define ROTSPEED 0.09
 
 typedef struct	s_dda_parameters
 {
@@ -82,6 +95,10 @@ typedef struct	s_dda_parameters
 
 }		t_dda_parameters;
 
+#define SPRITES_QUANTITY 2
+#define MOVESPEED 0.16
+#define ROTSPEED 0.09
+
 void	mlx_clear_img(void **img);
 void	sort_sprites(t_sprite *sprites, int array_size);
 void    draw_scene(t_parameters *tmp);
@@ -98,5 +115,8 @@ char    *ft_strrchr(const char *s, int c);
 int		ft_strcmp(const char *s1, const char *s2);
 void	init_params(t_parameters *params, const char *filepath);
 void    ft_putendl_fd(char const *s, int fd);
+int		ft_isalpha(int c);
+void	set_params(t_parameters *params, const char *line);
+int 	ft_atoi(const char *str);
 
 #endif
