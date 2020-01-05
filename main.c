@@ -1,70 +1,12 @@
 #include "header.h"
 #include <stdio.h> 
 
-int     mod[20][20] = {
-                  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 ,1},
-                  {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1},
-};
-
-int	**render_map(void)
-{
-	int i;
-	int j;
-	int **map;
-	if ((map = (int**)malloc(sizeof(int*) * 20)) == NULL)
-		return (map);
-	i = 0;
-	while (i < 20)
-	{
-		if ((map[i] = (int*)malloc(sizeof(int) * 20)) == NULL)
-			return (map);
-		j = 0;
-		while (j < 20)
-		{
-			map[i][j] = mod[i][j];
-			j++;
-		}	
-		i++;
-	}
-	return (map);
-}
-
-int	main(void)
+int	main(int ac, char **av)
 {
 	t_parameters params;
-	int **tmp;
-	tmp = render_map();
-	params.win_height = 600;
-	params.win_width = 800;
-	params.map = tmp;
-	print_int_tab(params.map, 20);
-	params.map_width = 20;
-	params.map_height = 20;
-	params.posx = 2; // real position, not array style position
-	params.posy = 2; // real position, not array style position
-	params.dirx = 1;
-	params.diry = 0;
-	params.planex = 0;
-	params.planey = -0.66;
+	init_params(&params, av[1]);
 
+/*
 	params.mlx_id = mlx_init();
 	params.win_id = mlx_new_window(params.mlx_id, params.win_width, params.win_height, "test");
 	params.img_id = mlx_new_image(params.mlx_id, params.win_width, params.win_height);
@@ -103,4 +45,5 @@ int	main(void)
 	mlx_hook(params.win_id, 2, 0, &key_hook, &params);		
 	mlx_loop(params.mlx_id);
 	return (0);
+*/
 }

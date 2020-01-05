@@ -12,9 +12,11 @@
 
 #include "header.h"
 
-void	quit_program(t_parameters *params)
+void	quit_program(t_parameters *params, const char *error_msg)
 {
-	free_int_tab(params->map, params->map_width);
-	print_int_tab(params->map, params->map_width);
+//	free_int_tab(params->map, params->map_width);
+//	print_int_tab(params->map, params->map_width);
+	if (error_msg)
+		ft_putendl_fd(error_msg, 2);
 	exit(1);
 }

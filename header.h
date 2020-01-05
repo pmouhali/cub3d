@@ -1,9 +1,10 @@
 #ifndef HEADER_H
 # define HEADER_H
 
+#include <unistd.h>
+#include <fcntl.h>
 #include <math.h>
 #include "minilibx_opengl/mlx.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 typedef struct	s_rgba
@@ -90,8 +91,12 @@ void    free_int_tab(int **tab, int array_size);
 void    print_int_tab(int **tab, int array_size);
 void    clear_2dbuffer(int h, int w, int buf[h][w]);
 void    buffer_to_image(int h, int w, int buf[h][w], void **img);
-void	quit_program(t_parameters *params);
+void	quit_program(t_parameters *params, const char *error_msg);
 int		ft_strlen(const char *str);
 int     ft_index(char const *s, char c);
+char    *ft_strrchr(const char *s, int c);
+int		ft_strcmp(const char *s1, const char *s2);
+void	init_params(t_parameters *params, const char *filepath);
+void    ft_putendl_fd(char const *s, int fd);
 
 #endif
