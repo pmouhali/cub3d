@@ -91,5 +91,7 @@ void    print_int_tab(int **tab, int array_size);
 void    clear_2dbuffer(int h, int w, int buf[h][w]);
 void    buffer_to_image(int h, int w, int buf[h][w], void **img);
 void	quit_program(t_parameters *params);
+int		ft_strlen(const char *str);
+int     ft_index(char const *s, char c);
 
 #endif
