@@ -19,13 +19,11 @@ void    init_params(t_parameters *params, const char *filepath)
 			i++;
 		if (line[i] && ft_isalpha(line[i]))
 			set_params(params, &line[i]);
-/*		
-		else if (line[i] && line[i] == 1)
+		else if (line[i] && line[i] == '1')
 		{
 			// check if all config is ok
-			// call map function
+			set_map(params, &line, fd);
 		}
-*/
 		free(line);
 	}
 	free(line);

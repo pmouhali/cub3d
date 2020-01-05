@@ -12,6 +12,7 @@ SRCS = 	get_next_line_utils.c \
 		ft_isalpha.c \
 		set_params_to_default.c \
 		set_params.c \
+		set_map.c \
 		set_resolution.c \
 		set_floor_color.c \
 		set_ceiling_color.c \
