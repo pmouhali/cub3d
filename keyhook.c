@@ -33,7 +33,7 @@ int	key_hook(int keycode,void *params)
 		copy->planey = oldplanex * sin(rotspeed) + copy->planey * cos(rotspeed);
 	}
 	if (keycode == 53)
-		quit_program(params);
+		quit_program(params, NULL);
 
 	draw_scene(copy);
 

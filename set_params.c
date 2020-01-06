@@ -4,8 +4,8 @@ void    set_params(t_parameters *params, const char *line)
 {
 	if (line[0] == 'R' && line[1] == ' ')		
 		set_resolution(params, &line[2]);
-	else if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')		
-		set_north_texture(params, &line[2]);
+//	else if (line[0] == 'N' && line[1] == 'O' && line[2] == ' ')		
+//		set_north_texture(params, &line[2]);
 		/*
 	else if (line[0] == 'S' && line[1] == 'O' && line[2] == ' ')		
 		set_south_texture(params, &line[2]);

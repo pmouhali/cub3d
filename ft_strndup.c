@@ -1,22 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   free_int_tab.c                                     :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/03 14:37:33 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/03 14:38:59 by pmouhali         ###   ########.fr       */
+/*   Created: 2019/11/04 15:02:19 by pmouhali          #+#    #+#             */
+/*   Updated: 2020/01/06 11:45:05 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	free_int_tab(int **tab, int array_size)
+char	*ft_strndup(const char *s, unsigned int n)
 {
-	int i;
+	unsigned int		i;
+	char	*new;
 
-	i = -1;
-	while (++i < array_size)
-		free(tab[i]);
+	i = 0;
+	while (s[i] && i < n)
+		i++;
+	if ((new = (char*)malloc(sizeof(char) * (i + 1))) == NULL)
+		return (NULL);
+	i = 0;
+	while (*s && i < n)
+	{
+		new[i] = *s;
+		i++;
+		s++;
+	}
+	new[i] = '\0';
+	return (new);
 }

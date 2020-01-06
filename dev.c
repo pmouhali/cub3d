@@ -7,7 +7,7 @@ void	draw_scene(t_parameters *tmp)
 	t_parameters *params = tmp;
 	int x = 0;
 
-	int buffer[params->win_height][params->win_width];
+	int buffer[params->win_h][params->win_w];
 	int b = 0;
 
 	// textures
@@ -16,7 +16,7 @@ void	draw_scene(t_parameters *tmp)
 	int color;
 
 	// sprites
-	double zbuffer[params->win_width];
+	double zbuffer[params->win_w];
 
 	t_sprite sprites[SPRITES_QUANTITY];
 	int si = 0;
@@ -32,9 +32,9 @@ void	draw_scene(t_parameters *tmp)
 	
 	clear_2dbuffer(600, 800, buffer);
 	// START RAYCASTING LOOP
-	while (x < params->win_width - 1)
+	while (x < params->win_w - 1)
 	{
-		dda.camerax = 2 * x / (double)params->win_width - 1;
+		dda.camerax = 2 * x / (double)params->win_w - 1;
 		dda.raydirx = params->dirx + params->planex * dda.camerax;
 		dda.raydiry = params->diry + params->planey * dda.camerax;
 		dda.mapx = (int)params->posx;
@@ -104,12 +104,12 @@ void	draw_scene(t_parameters *tmp)
 
 		zbuffer[x] = dda.perpwalldist; 
 
-		dda.lineheight = (int)(params->win_height / dda.perpwalldist);
+		dda.lineheight = (int)(params->win_h / dda.perpwalldist);
 
-		dda.linevec.x = -dda.lineheight / 2 + params->win_height / 2;		
+		dda.linevec.x = -dda.lineheight / 2 + params->win_h / 2;		
 		dda.linevec.x = dda.linevec.x < 0 ? 0 : dda.linevec.x;
-		dda.linevec.y = dda.lineheight / 2 + params->win_height / 2;		
-		dda.linevec.y = dda.linevec.y >= params->win_height ? params->win_height - 1 : dda.linevec.y;
+		dda.linevec.y = dda.lineheight / 2 + params->win_h / 2;		
+		dda.linevec.y = dda.linevec.y >= params->win_h ? params->win_h - 1 : dda.linevec.y;
 
 		// TEXTURE
 
@@ -126,7 +126,7 @@ void	draw_scene(t_parameters *tmp)
 			texx = 64 - texx - 1;
 		
 		double step = 1.0 * 64 / dda.lineheight;
-		double texpos = (dda.linevec.x - params->win_height / 2 + dda.lineheight / 2) * step;
+		double texpos = (dda.linevec.x - params->win_h / 2 + dda.lineheight / 2) * step;
 		int *texture = params->texture;
 		b = dda.linevec.x;
 		while (b < dda.linevec.y)
@@ -148,10 +148,10 @@ void	draw_scene(t_parameters *tmp)
 				b++;
 			}
 		}
-		if (dda.linevec.y < params->win_height - 1) // FLOOR
+		if (dda.linevec.y < params->win_h - 1) // FLOOR
 		{
 			b = dda.linevec.y;
-			while (b < params->win_height - 1)
+			while (b < params->win_h - 1)
 			{
 				buffer[b][x] = 5585940;
 				b++;
@@ -161,8 +161,7 @@ void	draw_scene(t_parameters *tmp)
 		x++;
 	}
 
-	// SPRITE HANDLING \\
-	_____________________
+	// SPRITE HANDLING 
 
 	sprites_infov = si + 1;
 	
@@ -196,7 +195,7 @@ void	draw_scene(t_parameters *tmp)
 	int dex;
 	int sy;
 	int d;
-	int *stex = params->stex;
+	int *stex = params->s_tex;
 	
 	si = 0;
 	while (si < sprites_infov)
@@ -208,34 +207,34 @@ void	draw_scene(t_parameters *tmp)
 		transformx = invdet * (params->diry * spritex - params->dirx * spritey);
 		transformy = invdet * (-params->planey * spritex + params->planex * spritey);
 	
-		spritescreenx = (int)((params->win_width / 2) * (1 + transformx / transformy));
+		spritescreenx = (int)((params->win_w / 2) * (1 + transformx / transformy));
 	
-		spriteheight = abs((int)(params->win_height / (transformy)));
-		dsy = -spriteheight / 2 + params->win_height / 2;	
+		spriteheight = abs((int)(params->win_h / (transformy)));
+		dsy = -spriteheight / 2 + params->win_h / 2;	
 		if (dsy < 0)
 			dsy = 0;
-		dey = spriteheight / 2 + params->win_height / 2;	
-		if (dey >= params->win_height)
-			dey = params->win_height - 1;
+		dey = spriteheight / 2 + params->win_h / 2;	
+		if (dey >= params->win_h)
+			dey = params->win_h - 1;
 	
-		spritewidth = abs((int)(params->win_height / (transformy))); // Same as sprite height ?
+		spritewidth = abs((int)(params->win_h / (transformy))); // Same as sprite height ?
 		dsx = -spritewidth / 2 + spritescreenx;	
 		if (dsx < 0)
 			dsx = 0;
 		dex = spritewidth / 2 + spritescreenx;
-		if (dex >= params->win_width)
-			dex = params->win_width - 1;	
+		if (dex >= params->win_w)
+			dex = params->win_w - 1;	
 		
 		while (dsx < dex)
 		{
 			texx = (int)(256 * (dsx - (-spritewidth / 2 + spritescreenx)) * 64 / spritewidth) / 256;
 
-			if (dsx > 0 && dsx < params->win_width && transformy < zbuffer[dsx])
+			if (dsx > 0 && dsx < params->win_w && transformy < zbuffer[dsx])
 			{
 				sy  = dsy;
 				while (sy < dey)
 				{
-					d = (sy) * 256 - params->win_height * 128 + spriteheight * 128;
+					d = (sy) * 256 - params->win_h * 128 + spriteheight * 128;
 					texy = ((d * 64) / spriteheight) / 256;
 					color = stex[64 * texy + texx];
 					if (color != 0)
@@ -249,7 +248,7 @@ void	draw_scene(t_parameters *tmp)
 		si++;
 	}	
 
-	buffer_to_image(params->win_height, params->win_width, buffer, &params->img);
+	buffer_to_image(params->win_h, params->win_w, buffer, &params->img);
 	mlx_put_image_to_window(params->mlx_id, params->win_id, params->img_id, 0, 0);
 	mlx_clear_img(&(params->img));
 }

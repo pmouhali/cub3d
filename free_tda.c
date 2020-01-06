@@ -1,22 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quit_program.c                                     :+:      :+:    :+:   */
+/*   free_int_tab.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/03 16:30:20 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/06 11:44:43 by pmouhali         ###   ########.fr       */
+/*   Created: 2020/01/03 14:37:33 by pmouhali          #+#    #+#             */
+/*   Updated: 2020/01/06 11:23:17 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-void	quit_program(t_parameters *params, const char *error_msg)
-{	
-	if (params->map_h > 0)
-		free_tda((void**)params->map, params->map_h);
-	if (error_msg)
-		ft_putendl_fd(error_msg, 2);
-	exit(1);
+void    free_tda(void **two_dimensional_array, int first_dimension_length)
+{
+	int i;
+
+	i = 0;
+	while (i < first_dimension_length)
+	{
+		free(two_dimensional_array[i]);
+		i++;
+	}
 }

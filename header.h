@@ -41,6 +41,9 @@ typedef struct	s_parameters
 
 	void *img;
 
+	void *texture_id; // tmp
+	void *texture; // tmp
+
 	void *no_tex_id;
 	int no_tex_size_line;
 	void *no_tex;
@@ -112,8 +115,9 @@ int		ft_isalpha(int c);
 int 	ft_atoi(const char *str);
 char    *ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
-void    free_int_tab(int **tab, int array_size);
+void    free_tda(void **two_dimensional_array, int first_dimension_length);
 void    print_int_tab(int **tab, int array_size);
+char    *ft_strndup(const char *s, unsigned int n);
 
 void	mlx_clear_img(void **img);
 void	sort_sprites(t_sprite *sprites, int array_size);
@@ -136,5 +140,6 @@ void	set_sprite_texture(t_parameters *params, const char *line);
 void	set_floor_color(t_parameters *params, const char *line);
 void	set_ceiling_color(t_parameters *params, const char *line);
 void	set_map(t_parameters *params, char **line, int fd);
+int	validate_map_line(t_parameters *params, char *line, int current_map_w, int current_map_h);
 
 #endif
