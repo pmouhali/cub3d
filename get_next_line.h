@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   quit_program.c                                     :+:      :+:    :+:   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/01/03 16:30:20 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/03 16:32:39 by pmouhali         ###   ########.fr       */
+/*   Created: 2019/11/07 10:38:19 by pmouhali          #+#    #+#             */
+/*   Updated: 2019/11/15 12:33:40 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.h"
+#ifndef GET_NEXT_LINE_H
+# define GET_NEXT_LINE_H
 
-void	quit_program(t_parameters *params, const char *error_msg)
-{
-//	free_int_tab(params->map, params->map_width);
-//	print_int_tab(params->map, params->map_width);
-	if (error_msg)
-		ft_putendl_fd(error_msg, 2);
-	exit(1);
-}
+# include <unistd.h>
+# include <stdlib.h>
+# include <header.h>
+
+#define BUFFER_SIZE 50
+
+int		get_next_line(int fd, char **line);
+char	*ft_strndup(const char *s, long n);
+char	*ft_strnjoin(char *s1, char const *s2, long n);
+void	*ft_memmove(void *dest, const void *src, unsigned long n);
+
+#endif
