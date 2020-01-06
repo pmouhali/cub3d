@@ -2,18 +2,17 @@
 
 void    init_params(t_parameters *params, const char *filepath)
 {
-	int fd;
 	int i;
 	char *line = NULL;
 
 	set_params_to_default(params);
 	if (ft_strcmp(ft_strrchr(filepath, '.'), ".cub"))
 		quit_program(params, "Error: not a .cub file.");
-	fd = open(filepath, O_RDONLY);
-	if (fd < 3)
+	params->fd = open(filepath, O_RDONLY);
+	if (params->fd < 3)
 		quit_program(params, "Error: can't open file.");
-	params->fd = fd;
-	while ((i = get_next_line(fd, &line)))
+	params->config_file = (char*)filepath;
+	while ((i = get_next_line(params->fd, &line)))
 	{
 		i = 0;
 		while (line[i] == 32)
@@ -26,6 +25,5 @@ void    init_params(t_parameters *params, const char *filepath)
 	}
 	set_map(params, &line);
 	free(line);
-	close(fd);
+	close(params->fd);
 }
-

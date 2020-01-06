@@ -10,17 +10,27 @@ void	set_map(t_parameters *params, char **line)
 		quit_program(params, "Error: map: not enough height.");
 	if (!(tmp = malloc(sizeof(char*) * params->map_h)))
 		quit_program(params, "Error: map: malloc failed.");
+	params->fd = open(params->config_file, O_RDONLY);
+	if (params->fd < 3)
+		quit_program(params, "Error: can't open file.");
 	h = 0;
 	while ((ret = get_next_line(params->fd, line)))
 	{
-		ret = 0;
-		while (ft_index("012NSEW", (*line)[ret]) > -1)
-			ret++;
-		tmp[h] = ft_strndup(*line, ret);
+		tmp[h] = ft_strctrim(*line, ' ');
+		printf("%s\n", tmp[h]);
 		h++;
-		free(*line);	
+		free(*line);
 	}
-	free(*line);	
+	close(params->fd);
+	//free(*line);
+/*
+	ret = 0;
+	while (ret < h)
+	{
+		printf("%s\n", tmp[ret]);
+		ret++;
+	}
+*/
 }
 
 

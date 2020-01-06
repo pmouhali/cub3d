@@ -20,6 +20,7 @@ typedef struct	s_rgba
 typedef struct	s_parameters
 {
 	int fd;
+	char *config_file;
 	int win_h;
 	int win_w;
 	int map_h;
@@ -120,6 +121,7 @@ char	*ft_substr(char const *s, unsigned int start, size_t len);
 void    free_tda(void **two_dimensional_array, int first_dimension_length);
 void    print_int_tab(int **tab, int array_size);
 char    *ft_strndup(const char *s, unsigned int n);
+char    *ft_strctrim(const char *s, int c);
 
 void	mlx_clear_img(void **img);
 void	sort_sprites(t_sprite *sprites, int array_size);

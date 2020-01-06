@@ -3,6 +3,7 @@ SRCS = 	get_next_line_utils.c \
 	ft_strlen.c \
 	ft_strrchr.c \
 	ft_strtrim.c \
+	ft_strctrim.c \
 	ft_substr.c \
 	ft_strndup.c \
 	ft_index.c \
