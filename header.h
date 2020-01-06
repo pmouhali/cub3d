@@ -7,6 +7,7 @@
 #include "minilibx_opengl/mlx.h"
 #include "get_next_line.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 typedef struct	s_rgba
 {
@@ -18,6 +19,7 @@ typedef struct	s_rgba
 
 typedef struct	s_parameters
 {
+	int fd;
 	int win_h;
 	int win_w;
 	int map_h;
@@ -139,7 +141,7 @@ void	set_east_texture(t_parameters *params, const char *);
 void	set_sprite_texture(t_parameters *params, const char *line);
 void	set_floor_color(t_parameters *params, const char *line);
 void	set_ceiling_color(t_parameters *params, const char *line);
-void	set_map(t_parameters *params, char **line, int fd);
+void	set_map(t_parameters *params, char **line);
 int	validate_map_line(t_parameters *params, char *line, int current_map_w, int current_map_h);
 
 #endif

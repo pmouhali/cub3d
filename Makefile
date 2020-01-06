@@ -22,10 +22,10 @@ SRCS = 	get_next_line_utils.c \
 	ft_atoi.c \
 	free_tda.c \
 	clear_2dbuffer.c \
-	keyhook.c \
 	mlx_clear_img.c \
 	sort_sprites.c \
 	buffer_to_image.c \
+	keyhook.c \
 
 all:
 	gcc -Wall -Wextra -Werror -I./ $(SRCS) -g -lz -L./minilibx_opengl -lmlx -framework OpenGL -framework AppKit  dev.c main.c -o cub3d
