@@ -79,7 +79,7 @@ int	main(void)
 	int pngh;
 	void *tex;
 
-	tex = mlx_png_file_to_image(params.mlx_id, "pics/bluestone.png", &pngw, &pngh);
+	tex = mlx_png_file_to_image(params.mlx_id, "pics/purplestone.png", &pngw, &pngh);
 	params.texture_id = tex;
 	params.texture = mlx_get_data_addr(
 		params.texture_id,

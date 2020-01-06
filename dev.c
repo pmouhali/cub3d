@@ -19,14 +19,16 @@ void	draw_scene(t_parameters *tmp)
 	double zbuffer[params->win_width];
 
 	t_sprite sprites[SPRITES_QUANTITY];
-	int si = -1;
+	int si = 0;
 	int sprites_infov;
-	sprites[0].x = 0;
-	sprites[0].y = 0;
-	sprites[0].distance = 0.0;
-	sprites[1].x = 0;
-	sprites[1].y = 0;
-	sprites[1].distance = 0.0;
+	while (si < SPRITES_QUANTITY)
+	{
+		sprites[si].x = 0;
+		sprites[si].y = 0;
+		sprites[si].distance = 0.0;
+		si++;
+	}
+	si = 0;
 	
 	clear_2dbuffer(600, 800, buffer);
 	// START RAYCASTING LOOP
@@ -86,12 +88,12 @@ void	draw_scene(t_parameters *tmp)
 				dda.hit = 1;
 			else if (params->map[dda.mapx][dda.mapy] == 2
 				&& si < SPRITES_QUANTITY - 1  &&
-					(sprites[si].x != dda.mapx + 0.5
-						|| sprites[si].y != dda.mapy + 0.5))
+					(sprites[si].x != dda.mapx
+						|| sprites[si].y != dda.mapy))
 			{
 				si++;
-				sprites[si].x = dda.mapx + 0.5;
-				sprites[si].y = dda.mapy + 0.5;
+				sprites[si].x = dda.mapx;
+				sprites[si].y = dda.mapy;
 			}
 		}
 
@@ -142,7 +144,7 @@ void	draw_scene(t_parameters *tmp)
 			b = 0;
 			while (b < dda.linevec.x)
 			{
-				buffer[b][x] = 16777215;
+				buffer[b][x] = 3279410;
 				b++;
 			}
 		}
@@ -151,7 +153,7 @@ void	draw_scene(t_parameters *tmp)
 			b = dda.linevec.y;
 			while (b < params->win_height - 1)
 			{
-				buffer[b][x] = 50;
+				buffer[b][x] = 5585940;
 				b++;
 			}
 		}
@@ -168,15 +170,17 @@ void	draw_scene(t_parameters *tmp)
 	while (si < sprites_infov) // set distance
 	{
 		sprites[si].distance = ((params->posx - sprites[si].x) * (params->posx - sprites[si].x) + (params->posy - sprites[si].y) * (params->posy - sprites[si].y));
-		if (sprites[si].distance == 0.0)
-			sprites[si].distance = 666666.666666;
 		si++;
 	}
 
 	if (sprites_infov > 0)
 		sort_sprites(sprites, sprites_infov);
-	printf("sprite1 x%f, y%f, d%f\n", sprites[0].x, sprites[0].y, sprites[0].distance);
-	printf("sprite2 x%f, y%f, d%f\n", sprites[1].x, sprites[1].y, sprites[1].distance);
+	si = 0;
+	while (si < sprites_infov)
+	{
+		printf("sprite%d x%f, y%f, d%f\n", si, sprites[si].x, sprites[si].y, sprites[si].distance);
+		si++;
+	}
 
 	double spritex;
 	double spritey;

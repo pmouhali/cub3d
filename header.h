@@ -55,7 +55,7 @@ typedef struct s_sprite
 	double distance;
 }		t_sprite;
 
-#define SPRITES_QUANTITY 2
+#define SPRITES_QUANTITY 12
 #define MOVESPEED 0.16
 #define ROTSPEED 0.09
 
