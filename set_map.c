@@ -4,30 +4,38 @@ void	set_map(t_parameters *params, char **line, int l)
 {
 	int h;
 	char **tmp;
-	
+
 	if (params->map_h < 3)
 		quit_program(params, "Error: map: not enough height.");
 	if (!(tmp = (char**)malloc(sizeof(char*) * params->map_h)))
 		quit_program(params, "Error: map: malloc failed.");
-	params->fd = open(params->config_file, O_RDONLY);
-	if (params->fd < 3)
+	if ((params->fd = open(params->config_file, O_RDONLY)) < 3)
 		quit_program(params, "Error: can't reopen file.");
-	h = -1;
-	while (++h < l && get_next_line(params->fd, line))
+	h = 0;
+	while (h < l && get_next_line(params->fd, line))
+	{
 		free(*line);
-	h = -1;
-	while (get_next_line(params->fd, line) && ++h < params->map_h)
+		h++;
+	}
+	h = 0;
+	while (h < params->map_h && get_next_line(params->fd, line))
 	{
 		tmp[h] = ft_strctrim(*line, ' ');
 		free(*line);
+		h++;
 	}
+	printf("b %d\n", h);
+	close(params->fd);
+//	free(*line); // <- causes the 1 byte leak && the mallocerrorbreak
+/*
 	if (validate_map(params, tmp) == 0)
 	{
 		free_tda((void**)tmp, params->map_h);
 		quit_program(params, "Error: invalid map.");
 	}
-	close(params->fd);
-	free(*line); // <- causes the 1 byte leak
+	else
+		params->map = tmp;
+*/
 }
 
 
