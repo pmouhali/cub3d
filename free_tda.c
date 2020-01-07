@@ -6,7 +6,7 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 14:37:33 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/06 11:23:17 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/07 16:06:42 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,4 +22,5 @@ void    free_tda(void **two_dimensional_array, int first_dimension_length)
 		free(two_dimensional_array[i]);
 		i++;
 	}
+	two_dimensional_array = NULL;
 }

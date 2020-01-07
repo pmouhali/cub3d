@@ -3,15 +3,12 @@
 void    init_params(t_parameters *params, const char *filepath)
 {
 	int i;
+	int l;
 	char *line = NULL;
 
 	set_params_to_default(params);
-	if (ft_strcmp(ft_strrchr(filepath, '.'), ".cub"))
-		quit_program(params, "Error: not a .cub file.");
-	params->fd = open(filepath, O_RDONLY);
-	if (params->fd < 3)
-		quit_program(params, "Error: can't open file.");
-	params->config_file = (char*)filepath;
+	validate_file(params, filepath);
+	l = 0;
 	while ((i = get_next_line(params->fd, &line)))
 	{
 		i = 0;
@@ -21,9 +18,10 @@ void    init_params(t_parameters *params, const char *filepath)
 			set_params(params, &line[i]);
 		else if (line[i] && line[i] == '1') // check if config is ok
 			params->map_h += 1;
+		l = params->map_h > 0 ? l : l + 1;
 		free(line);
 	}
-	set_map(params, &line);
+	set_map(params, &line, l);
 	free(line);
 	close(params->fd);
 }

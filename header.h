@@ -132,6 +132,7 @@ void    clear_2dbuffer(int h, int w, int buf[h][w]);
 void    buffer_to_image(int h, int w, int buf[h][w], void **img);
 void	quit_program(t_parameters *params, const char *error_msg);
 void	init_params(t_parameters *params, const char *filepath);
+void    validate_file(t_parameters *params, const char *filepath);
 
 void	set_params_to_default(t_parameters *params);
 void	set_params(t_parameters *params, const char *line);
@@ -143,7 +144,8 @@ void	set_east_texture(t_parameters *params, const char *);
 void	set_sprite_texture(t_parameters *params, const char *line);
 void	set_floor_color(t_parameters *params, const char *line);
 void	set_ceiling_color(t_parameters *params, const char *line);
-void	set_map(t_parameters *params, char **line);
-int	validate_map_line(t_parameters *params, char *line, int current_map_w, int current_map_h);
+void	set_map(t_parameters *params, char **line, int l);
+int	validate_map(t_parameters *params, char **map);
+void    set_player_position(t_parameters *params, int c, int x, int y);
 
 #endif

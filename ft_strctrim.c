@@ -6,7 +6,7 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/06 18:12:27 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/06 18:45:29 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/07 12:57:31 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,27 +18,20 @@ char	*ft_strctrim(const char *s, int c)
 	int j;
 	char *new;
 
-	i = 0;
+	i = -1;
 	j = 0;
-	while (s[i])
-	{
+	while (s[++i])
 		if (s[i] != c)
 			j++;
-		i++;
-	}
 	if (!(new = (char*)malloc(sizeof(char) * (j + 1))))
 		return (new);
 	new[j] = 0;
-	i = 0;
-	j = 0;
-	while (s[i] && new[j])
+	i = -1;
+	j = -1;
+	while (s[++i])
 	{
 		if (s[i] != c)
-		{
-			new[j] = s[i];	
-			j++;
-		}
-		i++;
+			new[++j] = s[i];	
 	}
 	return (new);
 }

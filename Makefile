@@ -10,16 +10,18 @@ SRCS = 	get_next_line_utils.c \
 	ft_strcmp.c \
 	quit_program.c \
 	init_params.c \
+	validate_file.c \
 	ft_putendl_fd.c \
 	ft_isalpha.c \
 	set_params_to_default.c \
 	set_params.c \
 	set_map.c \
-	validate_map_line.c \
+	validate_map.c \
 	set_resolution.c \
 	set_floor_color.c \
 	set_ceiling_color.c \
 	set_north_texture.c \
+	set_player_position.c \
 	ft_atoi.c \
 	free_tda.c \
 	clear_2dbuffer.c \
