@@ -7,7 +7,7 @@ int	main(int ac, char **av)
 	t_parameters params;
 	
 	init_params(&params, av[1]);
- 	printf("win_w %d, win_h %d\n", params.win_w, params.win_h);
+	printf("win_w %d, win_h %d\n", params.win_w, params.win_h);
 	printf("map_w %d, map_h %d\n", params.map_w, params.map_h);
 	printf("posx %f, posy %f\n", params.posx, params.posy);
 	printf("dirx %f, diry %f\n", params.dirx, params.diry);
@@ -18,7 +18,6 @@ int	main(int ac, char **av)
 	printf("ea_tex %p\n", params.ea_tex);
 	printf("s_tex %p\n", params.s_tex);
 	printf("floor %d, ceiling %d\n", params.floor_color, params.ceiling_color);
-
 
 /*
 	params.mlx_id = mlx_init();

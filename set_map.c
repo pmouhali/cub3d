@@ -16,18 +16,18 @@ void	set_map(t_parameters *params, char **line, int l)
 	while (++h < l && get_next_line(params->fd, line))
 		free(*line);
 	h = -1;
-	while (get_next_line(params->fd, line) && ++h < params->map_h - 1)
+	while (get_next_line(params->fd, line) && ++h < params->map_h)
 	{
 		tmp[h] = ft_strctrim(*line, ' ');
 		free(*line);
 	}
-	if (!validate_map(params, tmp))
+	if (validate_map(params, tmp) == 0)
 	{
 		free_tda((void**)tmp, params->map_h);
 		quit_program(params, "Error: invalid map.");
 	}
 	close(params->fd);
-	//free(*line);
+	free(*line); // <- causes the 1 byte leak
 }
 
 

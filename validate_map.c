@@ -12,7 +12,7 @@ int	validate_map(t_parameters *params, char **map)
 		i++;
 	if (i != params->map_w)
 		return (0);
-	h = 0;
+	h = 1;
 	while (h < params->map_h && map && map[h])
 	{
 		i = 0;
