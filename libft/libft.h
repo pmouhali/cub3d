@@ -7,6 +7,8 @@
 
 #define BUFFER_SIZE 50        
 
+#define LIBFTTEST "libft"
+
 int     ft_strlen(const char *str);
 int     ft_index(char const *s, char c);
 char    *ft_strrchr(const char *s, int c);

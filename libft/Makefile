@@ -17,6 +17,8 @@ SRCS =	ft_memmove.c \
 		ft_index.c \
 		free_tda.c \
 
+OBJS = $(SRCS:.c=.o)
+
 HEADER = libft.h
 
 
@@ -26,3 +28,6 @@ $(NAME):
 		ranlib $(NAME)
 
 all: $(NAME)
+
+clean:
+	rm -f $(OBJS) libft.a

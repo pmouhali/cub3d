@@ -110,6 +110,8 @@ typedef struct	s_dda_parameters
 #define MAX_WINDOW_WIDTH 900 // (random, adjust to mac screen)
 #define MAX_WINDOW_HEIGHT 900
 
+#define TEST "test"
+
 void	mlx_clear_img(void **img);
 void	sort_sprites(t_sprite *sprites, int array_size);
 void    draw_scene(t_parameters *tmp);
