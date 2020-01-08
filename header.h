@@ -134,7 +134,8 @@ void	set_sprite_texture(t_parameters *params, const char *line);
 void	set_floor_color(t_parameters *params, const char *line);
 void	set_ceiling_color(t_parameters *params, const char *line);
 void	set_map(t_parameters *params, char **line, int l);
-int	validate_map(t_parameters *params, char **map);
+int			validate_map(t_parameters *params);
 void    set_player_position(t_parameters *params, int c, int x, int y);
+int		validate_line_type1(char *map_line, int len);
 
 #endif

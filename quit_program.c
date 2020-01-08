@@ -13,10 +13,10 @@
 #include "header.h"
 
 void	quit_program(t_parameters *params, const char *error_msg)
-{	
+{
 	if (params->fd > 2)
 		close(params->fd);
-	if (params->map)
+	if (params->map != NULL)
 		free_tda((void**)params->map, params->map_h);
 	if (error_msg)
 		ft_putendl_fd(error_msg, 2);

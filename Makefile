@@ -11,6 +11,7 @@ SRCS =	quit_program.c \
 		set_floor_color.c \
 		set_ceiling_color.c \
 		set_player_position.c \
+		validate_line_type1.c \
 #		clear_2dbuffer.c \
 		mlx_clear_img.c \
 		sort_sprites.c \
@@ -26,6 +27,6 @@ comp_libft:
 		cd libft/ && make
 
 dev: comp_libft
-	gcc $(FLAGS) $(SRCS) main.c -L./libft -lft -o cub3d
+	gcc -g $(FLAGS) $(SRCS) main.c -L./libft -lft -o cub3d
 
 

@@ -19,6 +19,14 @@ int	main(int ac, char **av)
 	printf("s_tex %p\n", params.s_tex);
 	printf("floor %d, ceiling %d\n", params.floor_color, params.ceiling_color);
 
+	printf("map :\n");
+	int h = 0;
+	while (h < params.map_h)
+	{
+		printf("%s\n", (params.map)[h]);
+		h++;
+	}
+	free_tda((void**)params.map, params.map_h);
 /*
 	params.mlx_id = mlx_init();
 	params.win_id = mlx_new_window(params.mlx_id, params.win_width, params.win_height, "test");

@@ -21,7 +21,7 @@ void    init_params(t_parameters *params, const char *filepath)
 		l = params->map_h > 0 ? l : l + 1;
 		free(line);
 	}
-	set_map(params, &line, l);
 	free(line);
+	set_map(params, &line, l);
 	close(params->fd);
 }

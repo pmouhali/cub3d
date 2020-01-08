@@ -16,6 +16,7 @@ void	set_player_position(t_parameters *params, int c, int x, int y)
 {
 	params->posx = x;
 	params->posy = y;
+	(params->map)[x][y] = '0';
 	if (c == 3) // N
 	{
 		params->dirx = -1;
