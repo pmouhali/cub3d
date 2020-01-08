@@ -10,7 +10,33 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "libft.h"
+
+static char			*ft_strnjoin(char *s1, char const *s2, long n)
+{
+	long			j;
+	char			*new;
+	unsigned long	i;
+
+	i = s1 == ((void*)0) ? 0 : ft_strlen(s1);
+	j = ft_strlen(s2);
+	if (n == -1 || n > j)
+		n = j;
+	if (!(new = (char*)malloc(sizeof(char) * (i + n + 1))))
+		return (NULL);
+	if (s1)
+	{
+		i = -1;
+		while (s1[++i] != '\0')
+			new[i] = s1[i];
+		free(s1);
+	}
+	j = -1;
+	while (j < n && s2[++j] != '\0')
+		new[i + j] = s2[j];
+	new[i + j] = '\0';
+	return (new);
+}
 
 int	get_next_line(int fd, char **line)
 {

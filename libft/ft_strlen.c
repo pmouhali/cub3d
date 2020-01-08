@@ -1,5 +1,3 @@
-#include "header.h"
-
 int		ft_strlen(const char *str)
 {
 	int i;

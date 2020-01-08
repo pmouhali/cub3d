@@ -1,26 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/11/07 10:38:19 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/06 11:39:41 by pmouhali         ###   ########.fr       */
+/*   Created: 2019/11/04 15:02:19 by pmouhali          #+#    #+#             */
+/*   Updated: 2020/01/06 11:45:05 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef GET_NEXT_LINE_H
-# define GET_NEXT_LINE_H
+#include "libft.h"
 
-# include <unistd.h>
-# include <stdlib.h>
-# include <header.h>
+char	*ft_strndup(const char *s, unsigned int n)
+{
+	unsigned int		i;
+	char	*new;
 
-#define BUFFER_SIZE 50
-
-int		get_next_line(int fd, char **line);
-char	*ft_strnjoin(char *s1, char const *s2, long n);
-void	*ft_memmove(void *dest, const void *src, unsigned long n);
-
-#endif
+	i = 0;
+	while (s[i] && i < n)
+		i++;
+	if ((new = (char*)malloc(sizeof(char) * (i + 1))) == NULL)
+		return (NULL);
+	i = 0;
+	while (*s && i < n)
+	{
+		new[i] = *s;
+		i++;
+		s++;
+	}
+	new[i] = '\0';
+	return (new);
+}

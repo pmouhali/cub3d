@@ -1,0 +1,28 @@
+NAME = libft.a
+
+FLAGS = -Wall -Wextra -Werror
+
+SRCS =	ft_memmove.c \
+		ft_strlen.c \
+		ft_isalpha.c \
+		ft_strrchr.c \
+		ft_strcmp.c \
+		ft_atoi.c \
+		ft_strndup.c \
+		ft_substr.c \
+		ft_strtrim.c \
+		ft_strctrim.c \
+		ft_putendl_fd.c \
+		get_next_line.c \
+		ft_index.c \
+		free_tda.c \
+
+HEADER = libft.h
+
+
+$(NAME):
+		gcc $(FLAGS) -c $(SRCS) -I./ $(HEADER)
+		ar rc $(NAME) $(OBJS)
+		ranlib $(NAME)
+
+all: $(NAME)

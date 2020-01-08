@@ -4,10 +4,11 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <math.h>
-#include "minilibx_opengl/mlx.h"
-#include "get_next_line.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+#include "minilibx_opengl/mlx.h"
+#include "libft/libft.h"
 
 typedef struct	s_rgba
 {
@@ -108,20 +109,6 @@ typedef struct	s_dda_parameters
 
 #define MAX_WINDOW_WIDTH 900 // (random, adjust to mac screen)
 #define MAX_WINDOW_HEIGHT 900
-
-int		ft_strlen(const char *str);
-int     ft_index(char const *s, char c);
-char    *ft_strrchr(const char *s, int c);
-int		ft_strcmp(const char *s1, const char *s2);
-void    ft_putendl_fd(char const *s, int fd);
-int		ft_isalpha(int c);
-int 	ft_atoi(const char *str);
-char    *ft_strtrim(char const *s1, char const *set);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-void    free_tda(void **two_dimensional_array, int first_dimension_length);
-void    print_int_tab(int **tab, int array_size);
-char    *ft_strndup(const char *s, unsigned int n);
-char    *ft_strctrim(const char *s, int c);
 
 void	mlx_clear_img(void **img);
 void	sort_sprites(t_sprite *sprites, int array_size);
