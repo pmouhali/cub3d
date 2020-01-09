@@ -12,12 +12,15 @@
 
 #include "header.h"
 
-void	validate_file(t_parameters *params, const char *filepath)
+int		validate_file(t_parameters *params, const char *filepath)
 {
+	int fd;
+
 	if (ft_strcmp(ft_strrchr(filepath, '.'), ".cub"))
 		quit_program(params, "Error: not a .cub file.");
-	params->fd = open(filepath, O_RDONLY);
-	if (params->fd < 3)
+	fd = open(filepath, O_RDONLY);
+	if (fd < 3)
 		quit_program(params, "Error: can't open file.");
 	params->config_file = (char*)filepath;
+	return (fd);
 }

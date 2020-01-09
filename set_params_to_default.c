@@ -9,10 +9,10 @@ void	set_params_to_default(t_parameters *params)
 	params->map = NULL;
 	params->posx = 0;
 	params->posy = 0;
-	params->dirx = 2;
-	params->diry = 2;
-	params->planex = 2;
-	params->planey = 2;
+	params->dirx = 0;
+	params->diry = 0;
+	params->planex = 0;
+	params->planey = 0;
 	params->no_tex = NULL;
 	params->so_tex = NULL;
 	params->we_tex = NULL;

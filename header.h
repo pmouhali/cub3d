@@ -20,7 +20,6 @@ typedef struct	s_rgba
 
 typedef struct	s_parameters
 {
-	int fd;
 	char *config_file;
 	int win_h;
 	int win_w;
@@ -110,7 +109,10 @@ typedef struct	s_dda_parameters
 #define MAX_WINDOW_WIDTH 900 // (random, adjust to mac screen)
 #define MAX_WINDOW_HEIGHT 900
 
-#define TEST "test"
+#define NORTH 3
+#define SOUTH 4
+#define EAST 5
+#define WEST 6
 
 void	mlx_clear_img(void **img);
 void	sort_sprites(t_sprite *sprites, int array_size);
@@ -121,7 +123,7 @@ void    clear_2dbuffer(int h, int w, int buf[h][w]);
 void    buffer_to_image(int h, int w, int buf[h][w], void **img);
 void	quit_program(t_parameters *params, const char *error_msg);
 void	init_params(t_parameters *params, const char *filepath);
-void    validate_file(t_parameters *params, const char *filepath);
+int    validate_file(t_parameters *params, const char *filepath);
 
 void	set_params_to_default(t_parameters *params);
 void	set_params(t_parameters *params, const char *line);
@@ -137,5 +139,6 @@ void	set_map(t_parameters *params, char **line, int l);
 int			validate_map(t_parameters *params);
 void    set_player_position(t_parameters *params, int c, int x, int y);
 int		validate_line_type1(char *map_line, int len);
+int		validate_line_type2(char *map_line, int l, t_parameters *params);
 
 #endif

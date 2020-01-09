@@ -17,32 +17,24 @@ void	set_player_position(t_parameters *params, int c, int x, int y)
 	params->posx = x;
 	params->posy = y;
 	(params->map)[x][y] = '0';
-	if (c == 3) // N
+	if (c == NORTH)
 	{
 		params->dirx = -1;
-		params->diry = 0;
-		params->planex = 0;
 		params->planey = 0.66;
 	}
-	if (c == 4) // S
+	if (c == SOUTH)
 	{
 		params->dirx = 1;
-		params->diry = 0;
-		params->planex = 0;
 		params->planey = -0.66;
 	}
-	if (c == 5) // E
+	if (c == EAST)
 	{
-		params->dirx = 0;
 		params->diry = -1;
-		params->planey = 0;
 		params->planex = -0.66;
 	}
-	if (c == 6) // W
+	if (c == WEST)
 	{
 		params->dirx = 1;
-		params->diry = 0;
-		params->planey = 0;
 		params->planex = 0.66;
 	}
 }

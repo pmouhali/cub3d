@@ -12,6 +12,7 @@ SRCS =	quit_program.c \
 		set_ceiling_color.c \
 		set_player_position.c \
 		validate_line_type1.c \
+		validate_line_type2.c \
 #		clear_2dbuffer.c \
 		mlx_clear_img.c \
 		sort_sprites.c \

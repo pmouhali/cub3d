@@ -1,32 +1,28 @@
 #include "header.h"
 
+/*
+** Check if first line only contains wall's character.
+** Check if other lines are valid.
+** Check if player position was found.
+** Check if last line only contains wall's character.
+** Return 0 is the map is invalid, 1 is the map is valid.
+*/
+
 int	validate_map(t_parameters *params)
 {
-	int i;
 	int h;
-	int w;
 
 	if (validate_line_type1((params->map)[0], params->map_w) == 0)
 		return (0);
 	h = 1;
 	while (h < params->map_h && params->map && (params->map)[h])
 	{
-		i = 0;
-		while ((w = ft_index("012NSEW", (params->map)[h][i])) > -1)
-		{
-			if (w > 2 && params->posx == 0)
-				set_player_position(params, w, h, i);
-			else if (w > 2 && params->posx != 0)
-				return (0);
-			i++;
-		}
-		if (i != params->map_w)
-			return (0);
-		if ((params->map)[h][0] != '1' || (params->map)[h][i - 1] != '1')
+		if (validate_line_type2((params->map)[h], h, params) == 0)
 			return (0);
 		h++;
 	}
-	// if player position not found invalid
+	if (params->posx == 0)
+		return (0);
 	if (validate_line_type1((params->map)[h - 1], params->map_w) == 0)
 		return (0);
 	return (1);
