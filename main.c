@@ -3,7 +3,6 @@
 
 int	main(int ac, char **av)
 {
-	(void)ac;
 	t_parameters params;
 	
 	init_params(&params, av[1]);
@@ -27,6 +26,7 @@ int	main(int ac, char **av)
 		h++;
 	}
 	free_tda((void**)params.map, params.map_h);
+
 /*
 	params.mlx_id = mlx_init();
 	params.win_id = mlx_new_window(params.mlx_id, params.win_width, params.win_height, "test");
@@ -61,7 +61,13 @@ int	main(int ac, char **av)
 		&(params.endian)
 	);
 
-	draw_scene(&params);
+	if (ac == 3 && ft_strcmp("-save", av[2]) == 0)
+	{
+		draw_scene(&params, SCREENSHOT);
+		quit_program(params, "");
+	}
+	else
+		draw_scene(&params, NO_SCREENSHOT);
 
 	mlx_hook(params.win_id, 2, 0, &key_hook, &params);		
 	mlx_loop(params.mlx_id);
