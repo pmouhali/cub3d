@@ -41,8 +41,8 @@ typedef struct	s_bitmapinfoheader
 void    dint4cpy(t_dint4 n, unsigned char *dest);
 void    write_bmpinfoheader(int fd, t_bitmapinfoheader bmpih);
 void    write_bmpfileheader(int fd, t_bitmapfileheader bmpfh);
-int		write_pixeldata(int fd, t_bitmapinfoheader bmpih, const unsigned char **img);
-int		create_bmpfile(const char *filepath, int width, int height, const unsigned char **buffer);
+int		write_pixeldata(int fd, t_bitmapinfoheader bmpih, int **img);
+int		create_bmpfile(const char *filepath, int width, int height, int **buffer);
 
 /* EXEMPLE
 int		main(int ac, char **av)

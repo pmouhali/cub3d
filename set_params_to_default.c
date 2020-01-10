@@ -13,11 +13,7 @@ void	set_params_to_default(t_parameters *params)
 	params->diry = 0;
 	params->planex = 0;
 	params->planey = 0;
-	params->no_tex = NULL;
-	params->so_tex = NULL;
-	params->we_tex = NULL;
-	params->ea_tex = NULL;
-	params->s_tex = NULL;
+
 	params->floor_color = -1;
 	params->ceiling_color = -1;
 }

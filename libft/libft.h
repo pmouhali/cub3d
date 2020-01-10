@@ -10,6 +10,7 @@
 #define LIBFTTEST "libft"
 
 int     ft_strlen(const char *str);
+void    ft_bzero(void *s, size_t n);
 int     ft_index(char const *s, char c);
 char    *ft_strrchr(const char *s, int c);
 int     ft_strcmp(const char *s1, const char *s2);
@@ -23,5 +24,6 @@ char    *ft_strndup(const char *s, unsigned int n);
 char    *ft_strctrim(const char *s, int c);
 void    *ft_memmove(void *dest, const void *src, unsigned long n);
 int     get_next_line(int fd, char **line);
+void    **new_tda(int size, int height, int width);
 
 #endif

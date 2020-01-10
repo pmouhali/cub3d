@@ -15,7 +15,9 @@ SRCS =	ft_memmove.c \
 		ft_putendl_fd.c \
 		get_next_line.c \
 		ft_index.c \
+		ft_bzero.c \
 		free_tda.c \
+		new_tda.c \
 
 OBJS = $(SRCS:.c=.o)
 

@@ -26,13 +26,13 @@ static void	set_bmpfileheader(t_bitmapfileheader *bmpfh, t_bitmapinfoheader	bmpi
 	bmpfh->pixeldata_offset.i = 54;
 }
 
-int			create_bmpfile(const char *filepath, int width, int height, const unsigned char **buffer)
+int			create_bmpfile(const char *filepath, int width, int height, int **buffer)
 {
 	int fd;
 	t_bitmapfileheader	bmpfh;
 	t_bitmapinfoheader	bmpih;
 
-	if ((fd = open(filepath, O_CREAT, O_RDWR, O_APPEND)) < 3)
+	if ((fd = open(filepath, O_CREAT | O_WRONLY | O_APPEND, S_IRWXU)) < 3)
 		return (-1);
 	set_bmpinfoheader(&bmpih, width, height);
 	set_bmpfileheader(&bmpfh, bmpih);

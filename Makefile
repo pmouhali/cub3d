@@ -27,7 +27,9 @@ all: comp_libft
 comp_libft:
 		cd libft/ && make
 
-dev: comp_libft
-	gcc -g $(FLAGS) $(SRCS) main.c -L./libft -lft -o cub3d
+comp_libbitmapfile:
+		cd libbitmapfile/ && make
 
+dev: comp_libft comp_libbitmapfile
+	gcc -g $(FLAGS) $(SRCS) draw_scene_dev.c main.c -L./libft -lft -L./libbitmapfile -lbitmapfile -o cub3d -lm
 

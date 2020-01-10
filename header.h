@@ -9,14 +9,15 @@
 
 #include "minilibx_opengl/mlx.h"
 #include "libft/libft.h"
+#include "libbitmapfile/bitmapfile.h"
 
-typedef struct	s_rgba
+typedef struct	s_texture
 {
-	unsigned int	r;
-	unsigned int	g;
-	unsigned int	b;
-	unsigned int	a;
-}	t_rgba;
+	void	*id; // only used if we load image with MLX
+	int	*img;
+	int		width;
+	int		height;
+}				t_texture;
 
 typedef struct	s_parameters
 {
@@ -34,44 +35,24 @@ typedef struct	s_parameters
 	double planex;
 	double planey;
 
-	int endian;
-	int bpp;
-
 	void *mlx_id;
 	void *win_id;
 	void *img_id;
-	int img_size_line;
-
+	int endian;
+	int bpp;
+	int line_size;
 	void *img;
 
-	void *texture_id; // tmp
-	void *texture; // tmp
+	t_texture	north_texture;
+	t_texture	south_texture;
+	t_texture	west_texture;
+	t_texture	east_texture;
+	t_texture	sprite_texture;
 
-	void *no_tex_id;
-	int no_tex_size_line;
-	void *no_tex;
-	void *so_tex_id;
-	int so_tex_size_line;
-	void *so_tex;
-	void *we_tex_id;
-	int we_tex_size_line;
-	void *we_tex;
-	void *ea_tex_id;
-	int ea_tex_size_line;
-	void *ea_tex;
-	void *s_tex_id;
-	int s_tex_size_line;
-	void *s_tex;
 	int floor_color;
 	int ceiling_color;
 
 }		t_parameters;
-
-typedef struct s_vec
-{
-	int x;
-	int y;
-}		t_vec;
 
 typedef struct s_sprite
 {
@@ -97,7 +78,8 @@ typedef struct	s_dda_parameters
 	int hit;
 	int side;
 	int lineheight;
-	t_vec linevec;
+	int linex;
+	int liney;
 	double wallx;
 
 }		t_dda_parameters;
@@ -114,12 +96,11 @@ typedef struct	s_dda_parameters
 #define EAST 5
 #define WEST 6
 
-void	mlx_clear_img(void **img);
+//void	mlx_clear_img(void **img);
 void	sort_sprites(t_sprite *sprites, int array_size);
-void    draw_scene(t_parameters *tmp);
-void    mlx_img_draw_pixel(void **img, int x, int y, t_rgba color);
+int		**draw_scene(t_parameters tmp);
+//void    mlx_img_draw_pixel(void **img, int x, int y, t_rgba color);
 int     key_hook(int keycode,void *params);
-void    clear_2dbuffer(int h, int w, int buf[h][w]);
 void    buffer_to_image(int h, int w, int buf[h][w], void **img);
 void	quit_program(t_parameters *params, const char *error_msg);
 void	init_params(t_parameters *params, const char *filepath);

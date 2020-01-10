@@ -1,6 +1,6 @@
 #include "bitmapfile.h"
 
-int		write_pixeldata(int fd, t_bitmapinfoheader bih, const unsigned char **img)
+int		write_pixeldata(int fd, t_bitmapinfoheader bih, int **img)
 {
 	int x;
 	int y;
@@ -17,10 +17,10 @@ int		write_pixeldata(int fd, t_bitmapinfoheader bih, const unsigned char **img)
 		while (++y < bih.img_width.i)
 		{
 			bih.totalcolors.i = img[x][y];
-			buf[i] = bih.totalcolors.d[3];
-			buf[i + 1] = bih.totalcolors.d[2];
-			buf[i + 2] = bih.totalcolors.d[1];
-			buf[i + 3] = bih.totalcolors.d[0];
+			buf[i] = bih.totalcolors.d[0];
+			buf[i + 1] = bih.totalcolors.d[1];
+			buf[i + 2] = bih.totalcolors.d[2];
+			buf[i + 3] = bih.totalcolors.d[3];
 			i += bih.bpp.i / 8;
 		}
 	}
