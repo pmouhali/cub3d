@@ -173,21 +173,21 @@ int	**draw_scene(t_parameters p)
 			buffer[b][x] = color;
 			b++;
 		}
-		if (dda.linex > 0) // CEILING
+		if (dda.linex > 0)
 		{
 			b = 0;
 			while (b < dda.linex)
 			{
-				buffer[b][x] = p.ceiling_color;
+				buffer[b][x] = p.floor_color;
 				b++;
 			}
 		}
-		if (dda.liney < p.win_h - 1) // FLOOR
+		if (dda.liney < p.win_h - 1)
 		{
 			b = dda.liney;
 			while (b < p.win_h - 1)
 			{
-				buffer[b][x] = p.floor_color;
+				buffer[b][x] = p.ceiling_color; // SEGV si joueur entre 2 murs
 				b++;
 			}
 		}
