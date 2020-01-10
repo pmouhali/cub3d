@@ -12,11 +12,6 @@ int	main(int ac, char **av)
 	printf("posx %f, posy %f\n", params.posx, params.posy);
 	printf("dirx %f, diry %f\n", params.dirx, params.diry);
 	printf("planex %f, planey %f\n", params.planex, params.planey);
-//	printf("no_tex %p\n", params.no_tex);
-//	printf("so_tex %p\n", params.so_tex);
-//	printf("we_tex %p\n", params.we_tex);
-//	printf("ea_tex %p\n", params.ea_tex);
-//	printf("s_tex %p\n", params.s_tex);
 	printf("floor %d, ceiling %d\n", params.floor_color, params.ceiling_color);
 	printf("map :\n");
 	int h = 0;
@@ -33,10 +28,10 @@ int	main(int ac, char **av)
 	params.north_texture.width = 2;
 	params.north_texture.height = 2;
 	params.south_texture.img = malloc(sizeof(int) * 4);
-	(params.south_texture.img)[0] = 65280; // SUD == VERT
-	(params.south_texture.img)[1] = 65280;
-	(params.south_texture.img)[2] = 65280;
-	(params.south_texture.img)[3] = 65280;
+	(params.south_texture.img)[0] = 16776960; // SUD == JAUNE
+	(params.south_texture.img)[1] = 16776960;
+	(params.south_texture.img)[2] = 16776960;
+	(params.south_texture.img)[3] = 16776960;
 	params.south_texture.width = 2;
 	params.south_texture.height = 2;
 	params.west_texture.img = malloc(sizeof(int) * 4);
@@ -47,18 +42,16 @@ int	main(int ac, char **av)
 	params.west_texture.width = 2;
 	params.west_texture.height = 2;
 	params.east_texture.img = malloc(sizeof(int) * 4);
-	(params.east_texture.img)[0] = 65535;// EST == CYAN
-	(params.east_texture.img)[1] = 65535;
-	(params.east_texture.img)[2] = 65535;
-	(params.east_texture.img)[3] = 65535;
+	(params.east_texture.img)[0] = 16711680;// EST == ROUGE
+	(params.east_texture.img)[1] = 16711680;
+	(params.east_texture.img)[2] = 16711680;
+	(params.east_texture.img)[3] = 16711680;
 	params.east_texture.width = 2;
 	params.east_texture.height = 2;
 
 	int **buf;
 	
 	buf = draw_scene(params);
-	if (buf)
-		printf("buf isnt null\n");
 	create_bmpfile("screenshot.bmp", params.win_w, params.win_h, buf);
 
 	free_tda((void**)buf, params.win_h);

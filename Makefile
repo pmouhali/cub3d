@@ -33,3 +33,11 @@ comp_libbitmapfile:
 dev: comp_libft comp_libbitmapfile
 	gcc -g $(FLAGS) $(SRCS) draw_scene_dev.c main.c -L./libft -lft -L./libbitmapfile -lbitmapfile -o cub3d -lm
 
+cleanlft:
+	cd libft/ && make clean
+
+cleanlbitmapfile:
+	cd libbitmapfile/ && make clean
+
+clean: cleanlft cleanlbitmapfile
+	rm -f *.bmp

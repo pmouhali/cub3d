@@ -12,6 +12,7 @@ int		write_pixeldata(int fd, t_bitmapinfoheader bih, int **img)
 	if (!(buf = malloc(sizeof(unsigned char) * (i + 1))))
 		return (-1);
 	x = -1;
+	i = 0;
 	while (++x < bih.img_height.i && (y = -1))
 	{
 		while (++y < bih.img_width.i)

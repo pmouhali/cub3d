@@ -13,7 +13,7 @@ OBJS = $(SRCS:.c=.o)
 HEADER = bitmapfile.h
 
 
-$(NAME):
+$(NAME): $(OBJS)
 		gcc $(FLAGS) -c $(SRCS) -I./ $(HEADER)
 		ar rc $(NAME) $(OBJS)
 		ranlib $(NAME)
