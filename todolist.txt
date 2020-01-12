@@ -1,0 +1,58 @@
+TODO:
+
+[Fix le segfault du joueur entre deux murs.]
+
+Si un problème de configuration de n’importe quel type est rencontré dans
+le fichier, le programme doit quitter et renvoyer "Error\n" suivi d’un message
+d’erreur explicite de votre choix.
+[Améliorer le print de quit_program(), adapter à exactement Error\n <== tricky]
+
+[Faire une fonction qui vérifie que les paramètres ont bien été remplis et sont suffisant pour lancer le reste du programme sans crash]
+
+Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran,
+la taille de fenêtre doit être celle de l’écran.
+[Remplacer les constantes MAX et MIN w/h par les dimensions des ecrans d'iMac]
+
+Cliquer sur la croix rouge de la fenêtre doit fermer la fenêtre et quitter le
+programme proprement.
+
+Les touches flèches du gauche et droite du clavier doivent permettre de faire
+une rotation de la caméra (regarder a gauche et a droite)
+Les touches W, A, S et D doivent permettre de déplacer la caméra (déplacement
+du personnage).
+[Remplacer les keycode par des CONSTANTES, ajouter les déplacement lattéraux et remplacer flèches haut/bas par Z/S]
+
+En prévision du jour où deepthought aura des yeux pour évaluer votre projet,
+votre programme doit pouvoir sauver la première image rendue au format bmp
+lorsque le second argument est "–save".
+[Si -save, pas besoin d'init la mlx, utiliser un wrapper sur draw_scene() ?]
+
+Votre programme doit être capable d’afficher un objet (sprite) au lieu d’un mur.
+[Le bug n'est toujours pas fix]
+
+Code refactoring :
+[Norme, dégager les VLA, quit_program() doit TOUT free()]
+
+DONE :
+
+La map doit être fermée/entourée de murs, sinon le programme doit renvoyer
+une erreur.
+Mis à part la description de la map, chaque type d’élément peut être séparée
+par une ou plusieurs lignes vides.
+La description de la carte sera toujours en dernier dans le fichier, le reste des
+éléments peut être dans n’importe quel ordre.
+Les informations de chaque élément peuvent être séparées par un ou plusieurs
+espace(s).
+
+La map doit être composée d’uniquement ces 4 caractères : 0 pour les espaces
+vides, 1 pour les murs, 2 pour un objet, N,S,E ou W qui représentent la
+position de départ du joueur et son orientation.
+
+Appuyer sur la touche ESC doit fermer la fenêtre et quitter le programme
+proprement.
+
+Votre programme doit être capable d’avoir des couleurs différentes pour le sol et
+le plafond.
+
+Vous devez afficher des textures différentes (vous avez le choix) selon si les murs
+sont face nord, sud, est, ouest.

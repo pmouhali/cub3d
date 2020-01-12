@@ -182,6 +182,7 @@ int	**draw_scene(t_parameters p)
 				b++;
 			}
 		}
+// TODO: corriger le segfault en se basant sur le resultat live de la position 
 		if (dda.liney < p.win_h - 1)
 		{
 			b = dda.liney;
