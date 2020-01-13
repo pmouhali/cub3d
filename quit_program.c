@@ -14,9 +14,10 @@
 
 void	quit_program(t_parameters *params, const char *error_msg)
 {
+	// free all textures + mlx images + stop mlx
 	if (params->map != NULL)
 		free_tda((void**)params->map, params->map_h);
 	if (error_msg)
-		ft_putendl_fd(error_msg, 2);
+		ft_puterror(error_msg);
 	exit(1);
 }

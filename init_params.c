@@ -8,7 +8,7 @@ void    init_params(t_parameters *params, const char *filepath)
 	char *line = NULL;
 
 	set_params_to_default(params);
-	fd = validate_file(params, filepath);
+	fd = validate_file(params, filepath, ".cub");
 	l = 0;
 	while ((i = get_next_line(fd, &line)))
 	{
@@ -25,6 +25,6 @@ void    init_params(t_parameters *params, const char *filepath)
 	free(line);
 	close(fd);
 	set_map(params, &line, l);
-	// if (validate_config(params) == 0)
-	// 	quit_program(params, "Error: configuration incomplete.");
+	if (validate_params(params) == 0)
+		quit_program(params, "Configuration incomplete.");
 }

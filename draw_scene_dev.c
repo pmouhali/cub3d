@@ -1,11 +1,6 @@
 #include "header.h"
 #include <stdio.h>
 
-// TODO: la fonction buffer_to_image() doit s'adapter au double pointer ! 
-
-// TODO: cette fonction n'est pas autorisée à modifier les paramètres donc 
-// TODO: elle devra recevoir une simple copie et non un pointeur 
-// TODO: tout redecouper en fonctions : 
 /*
 ** init other params (sprites, buffers)
 ** init dda
@@ -16,12 +11,12 @@
 
 int	**draw_scene(t_parameters p)
 {
+	t_dda_parameters dda;
 	int **buffer;
 	int x = 0;
 	
 	if (!(buffer = (int**)new_tda(sizeof(int), p.win_h, p.win_w)))
 		return (NULL);
-	t_dda_parameters dda;
 
 	int b = 0;
 
@@ -50,74 +45,12 @@ int	**draw_scene(t_parameters p)
 */
 	
 	// START RAYCASTING LOOP
-	while (x < p.win_w - 1)
+	while (x < p.win_w)
 	{
-		dda.camerax = 2 * x / (double)p.win_w - 1;
-		dda.raydirx = p.dirx + p.planex * dda.camerax;
-		dda.raydiry = p.diry + p.planey * dda.camerax;
-		dda.mapx = (int)p.posx;
-		dda.mapy = (int)p.posy;
-		dda.hit = 0;
-	
-		dda.deltadistx = fabs(1 / dda.raydirx);
-		dda.deltadisty = fabs(1 / dda.raydiry);
+		dda_init(p, &dda, x);
+		dda_perform(&dda, p.map);
 
-		if (dda.raydirx < 0)
-		{
-			dda.stepx = -1;
-			dda.sidedistx = (p.posx - dda.mapx) * dda.deltadistx;
-		}
-		else
-		{
-			dda.stepx = 1;
-			dda.sidedistx = (dda.mapx + 1.0 - p.posx) * dda.deltadistx;
-		}
-		if (dda.raydiry < 0)
-		{
-			dda.stepy = -1;
-			dda.sidedisty = (p.posy - dda.mapy) * dda.deltadisty;
-		}
-		else
-		{
-			dda.stepy = 1;
-			dda.sidedisty = (dda.mapy + 1.0 - p.posy) * dda.deltadisty;
-		}
-		while (dda.hit == 0)
-		{
-			if (dda.sidedistx < dda.sidedisty)
-			{
-				dda.sidedistx += dda.deltadistx;
-				dda.mapx += dda.stepx;
-				if (dda.raydirx < 0)
-					dda.side = NORTH;
-				else
-					dda.side = SOUTH;
-			}
-			else
-			{
-				dda.sidedisty += dda.deltadisty;
-				dda.mapy += dda.stepy;
-				if (dda.raydiry < 0)
-					dda.side = WEST;
-				else
-					dda.side = EAST;
-			}
-			if ((p.map)[dda.mapx][dda.mapy] == '1')
-				dda.hit = 1;
-// TODO: corriger le bug, essayer de faire un truc pas trop lent
-/*
-			else if ((p.map)[dda.mapx][dda.mapy] == 2
-				&& si < SPRITES_QUANTITY - 1  &&
-					(sprites[si].x != dda.mapx
-						|| sprites[si].y != dda.mapy))
-			{
-				si++;
-				sprites[si].x = dda.mapx;
-				sprites[si].y = dda.mapy;
-			}
-	*/
-		}
-
+		// DDA SET DISTANCES AND DRAW START AND ENDS
 		if (dda.side == NORTH || dda.side == SOUTH)
 			dda.perpwalldist = (dda.mapx - p.posx + (1 - dda.stepx) / 2) / dda.raydirx;	
 		else
@@ -132,6 +65,11 @@ int	**draw_scene(t_parameters p)
 		dda.liney = dda.lineheight / 2 + p.win_h / 2;		
 		dda.liney = dda.liney >= p.win_h ? p.win_h - 1 : dda.liney;
 
+		if (dda.side == NORTH || dda.side == SOUTH)
+			dda.wallx = p.posy + dda.perpwalldist * dda.raydiry;
+		else
+			dda.wallx = p.posx + dda.perpwalldist * dda.raydirx;
+		dda.wallx -= floor(dda.wallx);
 		// TEXTURE
 // TODO: determier la texture a utiliser en fonction de 1 2 ou 3
 // TODO: on aura besoin de ses dimensions  propres
@@ -146,11 +84,7 @@ int	**draw_scene(t_parameters p)
 		if (dda.side == EAST)
 			texture = p.east_texture;
 
-		if (dda.side == NORTH || dda.side == SOUTH)
-			dda.wallx = p.posy + dda.perpwalldist * dda.raydiry;
-		else
-			dda.wallx = p.posx + dda.perpwalldist * dda.raydirx;
-		dda.wallx -= floor(dda.wallx);
+
 		
 		texx = (int)(dda.wallx * (double)texture.width);
 		if ((dda.side == NORTH  || dda.side == SOUTH) && dda.raydirx > 0)

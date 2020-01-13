@@ -1,6 +1,6 @@
 #include "header.h"
 
-void	buffer_to_image(int h, int w, int buf[h][w], void **img)
+void	buffer_to_image(int h, int w, int **buf, void **img)
 {
 	unsigned char *c;
 	int pp;
@@ -9,10 +9,10 @@ void	buffer_to_image(int h, int w, int buf[h][w], void **img)
 
 	c = *img;
 	a = 0;
-	while (a < 600)
+	while (a < h)
 	{
 		b = 0;
-		while (b < 800)
+		while (b < w)
 		{
 			pp = b * 4 + 4 + 3200 * a;
 			c[pp + 2] = buf[a][b] / 65536;	

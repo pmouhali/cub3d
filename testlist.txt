@@ -1,5 +1,6 @@
 Configuration :
 
+- La résolution est trop petite ou négative ?
 - Le fichier n'est pas un .cub
 - Un element manque
 - Un element est donné après la map

@@ -99,14 +99,18 @@ typedef struct	s_dda_parameters
 //void	mlx_clear_img(void **img);
 void	sort_sprites(t_sprite *sprites, int array_size);
 int		**draw_scene(t_parameters tmp);
+void    dda_init(t_parameters params, t_dda_parameters *dda, int screen_slice);
+void    dda_perform(t_dda_parameters *dda, char **map);
 //void    mlx_img_draw_pixel(void **img, int x, int y, t_rgba color);
 int     key_hook(int keycode,void *params);
 void    buffer_to_image(int h, int w, int buf[h][w], void **img);
 void	quit_program(t_parameters *params, const char *error_msg);
+void    ft_puterror(char const *s);
 void	init_params(t_parameters *params, const char *filepath);
-int    validate_file(t_parameters *params, const char *filepath);
-
 void	set_params_to_default(t_parameters *params);
+int		validate_params(t_parameters *params);
+int    validate_file(t_parameters *params, const char *filepath, const char *format);
+
 void	set_params(t_parameters *params, const char *line);
 void	set_resolution(t_parameters *params, const char *line);
 void	set_north_texture(t_parameters *params, const char *line);

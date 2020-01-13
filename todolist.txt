@@ -1,13 +1,8 @@
 TODO:
 
+[Vérif: buffer_to_image: calcul de position de pixel foireux ]
+
 [Fix le segfault du joueur entre deux murs.]
-
-Si un problème de configuration de n’importe quel type est rencontré dans
-le fichier, le programme doit quitter et renvoyer "Error\n" suivi d’un message
-d’erreur explicite de votre choix.
-[Améliorer le print de quit_program(), adapter à exactement Error\n <== tricky]
-
-[Faire une fonction qui vérifie que les paramètres ont bien été remplis et sont suffisant pour lancer le reste du programme sans crash]
 
 Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran,
 la taille de fenêtre doit être celle de l’écran.
@@ -56,3 +51,11 @@ le plafond.
 
 Vous devez afficher des textures différentes (vous avez le choix) selon si les murs
 sont face nord, sud, est, ouest.
+
+[Faire une fonction qui vérifie que les paramètres ont bien été remplis et sont suffisant pour lancer le reste du programme sans crash]
+
+Si un problème de configuration de n’importe quel type est rencontré dans
+le fichier, le programme doit quitter et renvoyer "Error\n" suivi d’un message
+d’erreur explicite de votre choix.
+[Améliorer le print de quit_program(), adapter à exactement Error\n <== tricky]
+

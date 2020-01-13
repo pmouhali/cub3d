@@ -12,7 +12,6 @@ SRCS =	ft_memmove.c \
 		ft_substr.c \
 		ft_strtrim.c \
 		ft_strctrim.c \
-		ft_putendl_fd.c \
 		get_next_line.c \
 		ft_index.c \
 		ft_bzero.c \

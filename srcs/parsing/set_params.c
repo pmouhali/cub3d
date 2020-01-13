@@ -21,5 +21,5 @@ void    set_params(t_parameters *params, const char *line)
 	else if (line[0] == 'C' && line[1] == ' ')		
 		set_ceiling_color(params, &line[2]);
 	else
-		quit_program(params, "Error : unknown configuration identifier.");
+		quit_program(params, "Unknown configuration identifier.");
 }

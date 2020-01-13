@@ -7,11 +7,11 @@ void	set_map(t_parameters *params, char **line, int l)
 	char **tmp;
 
 	if (params->map_h < 3)
-		quit_program(params, "Error: map: not enough height.");
+		quit_program(params, "Map: not enough height.");
 	if (!(tmp = (char**)malloc(sizeof(char*) * params->map_h)))
-		quit_program(params, "Error: map: malloc failed.");
+		quit_program(params, "Map: malloc failed.");
 	if ((fd = open(params->config_file, O_RDONLY)) < 3)
-		quit_program(params, "Error: can't reopen file.");
+		quit_program(params, "Man't reopen file.");
 	h = -1;
 	while (++h < l && get_next_line(fd, line))
 		free(*line);
@@ -25,5 +25,5 @@ void	set_map(t_parameters *params, char **line, int l)
 	params->map_w = ft_strlen(tmp[0]);
 	params->map = tmp;
 	if (validate_map(params) == 0)
-		quit_program(params, "Error: invalid map.");
+		quit_program(params, "Invalid map.");
 }
