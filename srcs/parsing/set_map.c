@@ -22,6 +22,7 @@ void	set_map(t_parameters *params, char **line, int l)
 		free(*line);
 	}
 	close(fd);
+	free(params->config_file);
 	params->map_w = ft_strlen(tmp[0]);
 	params->map = tmp;
 	if (validate_map(params) == 0)

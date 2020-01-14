@@ -5,11 +5,13 @@ SRCS =	quit_program.c \
 		init_params.c \
 		validate_params.c \
 		set_params_to_default.c \
+		save_scene.c \
 		srcs/parsing/validate_file.c \
 		srcs/parsing/set_params.c \
 		srcs/parsing/set_map.c \
 		srcs/parsing/validate_map.c \
 		srcs/parsing/set_resolution.c \
+		srcs/parsing/set_north_texture.c \
 		srcs/parsing/set_floor_color.c \
 		srcs/parsing/set_ceiling_color.c \
 		srcs/parsing/set_player_position.c \
@@ -25,14 +27,16 @@ SRCS =	quit_program.c \
 		set_north_texture.c \
 
 
-all: comp_libft
-	gcc $(FLAGS) -I./ $(SRCS) -g -lz -L./minilibx_opengl -lmlx -framework OpenGL -framework AppKit  dev.c main.c -o cub3d
+all: comp_libft comp_libbitmapfile comp_mlx
+	gcc -g $(FLAGS) $(SRCS) draw_scene_dev.c main.c -lz -L./libmlx -lmlx -framework OpenGL -framework AppKit -I./ -L./libft -lft -L./libbitmapfile -lbitmapfile -o cub3d -lm
 
 comp_libft:
 		cd libft/ && make
 
 comp_libbitmapfile:
 		cd libbitmapfile/ && make
+comp_mlx:
+	cd libmlx/ && make
 
 dev: comp_libft comp_libbitmapfile
 	gcc -g $(FLAGS) $(SRCS) draw_scene_dev.c main.c -I./ -L./libft -lft -L./libbitmapfile -lbitmapfile -o cub3d -lm

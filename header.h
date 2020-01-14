@@ -7,7 +7,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "minilibx_opengl/mlx.h"
+#include "libmlx/mlx.h"
 #include "libft/libft.h"
 #include "libbitmapfile/bitmapfile.h"
 
@@ -99,6 +99,7 @@ typedef struct	s_dda_parameters
 //void	mlx_clear_img(void **img);
 void	sort_sprites(t_sprite *sprites, int array_size);
 int		**draw_scene(t_parameters tmp);
+void    save_scene(t_parameters *params);
 void    dda_init(t_parameters params, t_dda_parameters *dda, int screen_slice);
 void    dda_perform(t_dda_parameters *dda, char **map);
 //void    mlx_img_draw_pixel(void **img, int x, int y, t_rgba color);
@@ -113,11 +114,7 @@ int    validate_file(t_parameters *params, const char *filepath, const char *for
 
 void	set_params(t_parameters *params, const char *line);
 void	set_resolution(t_parameters *params, const char *line);
-void	set_north_texture(t_parameters *params, const char *line);
-void	set_south_texture(t_parameters *params, const char *line);
-void	set_west_texture(t_parameters *params, const char *line);
-void	set_east_texture(t_parameters *params, const char *);
-void	set_sprite_texture(t_parameters *params, const char *line);
+void	set_texture(t_parameters *params, t_texture *t, const char *line);
 void	set_floor_color(t_parameters *params, const char *line);
 void	set_ceiling_color(t_parameters *params, const char *line);
 void	set_map(t_parameters *params, char **line, int l);

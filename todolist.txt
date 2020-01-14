@@ -1,5 +1,7 @@
 TODO:
 
+[Set Textures functions]
+
 [Vérif: buffer_to_image: calcul de position de pixel foireux ]
 
 [Fix le segfault du joueur entre deux murs.]

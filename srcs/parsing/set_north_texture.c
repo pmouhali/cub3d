@@ -1,13 +1,20 @@
 #include "header.h"
 
-void	set_north_texture(t_parameters *params, const char *line)
+void    set_texture(t_parameters *params, t_texture *t, const char *line)
 {
-	(void)params;
-	// get path without spaces around
 	char *path;
+	int i[3];
 
 	path = ft_strtrim(line, " ");
+	if (path == NULL || path[0] == 0)
+		quit_program(params, "Submitted path invalid.");
+	t->id = mlx_png_file_to_image(
+		params->mlx_id, path, &(t->width), &(t->height)
+	);
 	free(path);
-	// mlx_png if no_tex_id == NULL quit_program "Error: can't load north texture file, it must be a png if you want it to work as expected."
-	// get_data_address if no_tex == NULL quit_program "Error: an error as occured after loading north texture."
+	if (t->id == NULL)
+		quit_program(params, "Can't load texture file.");
+	t->img = (int*)mlx_get_data_addr(t->id, &i[0], &i[1], &i[2]);
+	if (t->img == NULL)
+		quit_program(params, "Can't load texture file.");
 }

@@ -1,4 +1,9 @@
 R 800 600
+NO ./pics/bluestone.png  
+SO ./pics/colorstone.png  
+WE ./pics/purplestone.png  
+EA ./pics/eagle.png  
+S  ./pics/doll.png  
 F 0,255,0
 C 0,255,255
 

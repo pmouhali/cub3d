@@ -7,7 +7,6 @@ void    init_params(t_parameters *params, const char *filepath)
 	int l;
 	char *line = NULL;
 
-	set_params_to_default(params);
 	fd = validate_file(params, filepath, ".cub");
 	l = 0;
 	while ((i = get_next_line(fd, &line)))

@@ -100,7 +100,7 @@ int	**draw_scene(t_parameters p)
 		{
 			texy = (int)texpos & (texture.height - 1);
 			texpos += step;
-			color = (texture.img)[texture.height * texy + texx];
+			color = (int)((texture.img)[texture.height * texy + texx]);
 // TODO: le sujet demande pas d'assombrir les murs.. 
 	//		if (dda.side == WEST || dda.side == EAST)
 	//			color = (color >> 1) & 8355711;	
