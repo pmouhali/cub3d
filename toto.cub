@@ -4,8 +4,8 @@ SO ./pics/colorstone.png
 WE ./pics/purplestone.png  
 EA ./pics/eagle.png  
 S  ./pics/doll.png  
-F 0,255,0
-C 0,255,255
+F 0,0,0
+C 50,50,50
 
 11111111111111111111111111111111111111111
 11001000000000101200000000001112000000001

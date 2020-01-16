@@ -96,6 +96,21 @@ typedef struct	s_dda_parameters
 #define EAST 5
 #define WEST 6
 
+#define DK_LEFT 123
+#define DK_RIGHT 124
+#define K_W 13 
+#define K_A 0
+#define K_S 1
+#define K_D 2
+#define K_ESC 53
+
+
+void	camera_left(t_parameters *p);
+void	camera_right(t_parameters *p);
+void    move_forward(t_parameters *p);
+void    move_backward(t_parameters *p);
+void    move_left(t_parameters *p);
+void    move_right(t_parameters *p);
 void	mlx_clear_img(void **img);
 void    initialize_mlx_window(t_parameters *p);
 void    initialize_cub3d(t_parameters *params, const char *arg1);

@@ -1,7 +1,5 @@
 TODO:
 
-[Vérif: buffer_to_image: calcul de position de pixel foireux ]
-
 [Fix le segfault du joueur entre deux murs.]
 
 Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran,

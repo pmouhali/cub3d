@@ -25,7 +25,13 @@ SRCS =	quit_program.c \
 		mlx_clear_img.c \
 		sort_sprites.c \
 		buffer_to_image.c \
-		keyhook.c \
+		srcs/events/keyhook.c \
+		srcs/events/camera_left.c \
+		srcs/events/camera_right.c \
+		srcs/events/move_forward.c \
+		srcs/events/move_backward.c \
+		srcs/events/move_left.c \
+		srcs/events/move_right.c \
 
 all: comp_libft comp_libbitmapfile comp_mlx
 	gcc -g $(FLAGS) $(SRCS) draw_scene_dev.c main.c -lz -L./libmlx -lmlx -framework OpenGL -framework AppKit -I./ -L./libft -lft -L./libbitmapfile -lbitmapfile -o cub3d -lm
