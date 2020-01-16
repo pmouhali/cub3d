@@ -1,6 +1,6 @@
 #include "header.h"
 #include <stdio.h> 
-/*
+
 static void	print_params(t_parameters p)
 {
 	printf("resolution: %d x %d\n", p.win_w, p.win_h);
@@ -8,7 +8,7 @@ static void	print_params(t_parameters p)
 	int i = -1;
 	while (++i < p.map_h && p.map && (p.map)[i])
 		printf("%s\n", (p.map)[i]);
-	printf("start position: x%f y%f\n", p.posx, p.posy);
+	printf("\nstart position: x%f y%f\n", p.posx, p.posy);
 	printf("direction vector: x%f y%f\n", p.dirx, p.diry);
 	printf("camera plane: x%f y%f\n\n", p.planex, p.planey);
 	printf("mlx_init(): %p\n", p.mlx_id);
@@ -33,34 +33,22 @@ static void	print_params(t_parameters p)
 	printf("floor color: %d\n", p.floor_color);
 	printf("ceiling color: %d\n", p.ceiling_color);
 }
-*/
 
 int	main(int ac, char **av)
 {
 	t_parameters params;
-	
-	set_params_to_default(&params);	
-	params.mlx_id = mlx_init(); // without mlx init, texture setting won't work
-	if (!params.mlx_id)
-		quit_program(&params, "Minilibx initilization failed.");
-	init_params(&params, av[1]);
 
+	initialize_cub3d(&params, av[1]);
+	print_params(params);
 	if (ac > 2 && ft_strcmp(av[2], "-save") == 0)
+	{
 		save_scene(&params);
-
-/*
-	params.win_id = mlx_new_window(params.mlx_id, params.win_width, params.win_height, "test");
-	params.img_id = mlx_new_image(params.mlx_id, params.win_width, params.win_height);
-	params.img = mlx_get_data_addr(
-		params.img_id,
-		&(params.bpp),
-		&(params.size_line),
-		&(params.endian)
-	);
-
-	
+		quit_program(&params, NULL);
+	}
+	initialize_mlx_window(&params);
+	display_scene(params);
 	mlx_hook(params.win_id, 2, 0, &key_hook, &params);		
 	mlx_loop(params.mlx_id);
-*/
-//	quit_program(&params, "");
+	printf("Never getting here huh ?\n");
+	quit_program(&params, NULL);
 }

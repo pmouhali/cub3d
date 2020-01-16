@@ -2,10 +2,13 @@ FLAGS = -Wall -Wextra -Werror
 
 SRCS =	quit_program.c \
 		ft_puterror.c \
+		initialize_cub3d.c \
+		initialize_mlx_window.c \
 		init_params.c \
 		validate_params.c \
 		set_params_to_default.c \
 		save_scene.c \
+		display_scene.c \
 		srcs/parsing/validate_file.c \
 		srcs/parsing/set_params.c \
 		srcs/parsing/set_map.c \
@@ -19,13 +22,10 @@ SRCS =	quit_program.c \
 		srcs/parsing/validate_line_type2.c \
 		srcs/raycasting/dda_init.c \
 		srcs/raycasting/dda_perform.c \
-#		clear_2dbuffer.c \
 		mlx_clear_img.c \
 		sort_sprites.c \
 		buffer_to_image.c \
 		keyhook.c \
-		set_north_texture.c \
-
 
 all: comp_libft comp_libbitmapfile comp_mlx
 	gcc -g $(FLAGS) $(SRCS) draw_scene_dev.c main.c -lz -L./libmlx -lmlx -framework OpenGL -framework AppKit -I./ -L./libft -lft -L./libbitmapfile -lbitmapfile -o cub3d -lm

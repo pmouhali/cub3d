@@ -96,14 +96,17 @@ typedef struct	s_dda_parameters
 #define EAST 5
 #define WEST 6
 
-//void	mlx_clear_img(void **img);
+void	mlx_clear_img(void **img);
+void    initialize_mlx_window(t_parameters *p);
+void    initialize_cub3d(t_parameters *params, const char *arg1);
 void	sort_sprites(t_sprite *sprites, int array_size);
 int		**draw_scene(t_parameters tmp);
 void    save_scene(t_parameters *params);
+void    display_scene(t_parameters params);
 void    dda_init(t_parameters params, t_dda_parameters *dda, int screen_slice);
 void    dda_perform(t_dda_parameters *dda, char **map);
 int     key_hook(int keycode,void *params);
-void    buffer_to_image(int h, int w, int buf[h][w], void **img);
+void    buffer_to_image(int h, int w, int **buf, void **img);
 void	quit_program(t_parameters *params, const char *error_msg);
 void    ft_puterror(char const *s);
 void	init_params(t_parameters *params, const char *filepath);

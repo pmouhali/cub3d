@@ -17,11 +17,6 @@ Les touches W, A, S et D doivent permettre de déplacer la caméra (déplacement
 du personnage).
 [Remplacer les keycode par des CONSTANTES, ajouter les déplacement lattéraux et remplacer flèches haut/bas par Z/S]
 
-En prévision du jour où deepthought aura des yeux pour évaluer votre projet,
-votre programme doit pouvoir sauver la première image rendue au format bmp
-lorsque le second argument est "–save".
-[Si -save, pas besoin d'init la mlx, utiliser un wrapper sur draw_scene() ?]
-
 Votre programme doit être capable d’afficher un objet (sprite) au lieu d’un mur.
 [Le bug n'est toujours pas fix]
 
@@ -60,3 +55,9 @@ d’erreur explicite de votre choix.
 [Améliorer le print de quit_program(), adapter à exactement Error\n <== tricky]
 
 [Set Textures functions]
+
+En prévision du jour où deepthought aura des yeux pour évaluer votre projet,
+votre programme doit pouvoir sauver la première image rendue au format bmp
+lorsque le second argument est "–save".
+[Si -save, pas besoin d'init la mlx, utiliser un wrapper sur draw_scene() ?]
+
