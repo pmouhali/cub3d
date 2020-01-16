@@ -1,7 +1,5 @@
 TODO:
 
-[Set Textures functions]
-
 [Vérif: buffer_to_image: calcul de position de pixel foireux ]
 
 [Fix le segfault du joueur entre deux murs.]
@@ -61,3 +59,4 @@ le fichier, le programme doit quitter et renvoyer "Error\n" suivi d’un message
 d’erreur explicite de votre choix.
 [Améliorer le print de quit_program(), adapter à exactement Error\n <== tricky]
 
+[Set Textures functions]

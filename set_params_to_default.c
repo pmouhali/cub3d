@@ -1,14 +1,36 @@
 #include "header.h"
 
-void	set_params_to_default(t_parameters *params)
+static void	textures_params(t_parameters *params)
+{
+	params->north_texture.id = NULL;
+	params->north_texture.img = NULL;
+	params->north_texture.width = 0;
+	params->north_texture.height = 0;
+	params->south_texture.id = NULL;
+	params->south_texture.img = NULL;
+	params->south_texture.width = 0;
+	params->south_texture.height = 0;
+	params->east_texture.id = NULL;
+	params->east_texture.img = NULL;
+	params->east_texture.width = 0;
+	params->east_texture.height = 0;
+	params->west_texture.id = NULL;
+	params->west_texture.img = NULL;
+	params->west_texture.width = 0;
+	params->west_texture.height = 0;
+	params->sprite_texture.id = NULL;
+	params->sprite_texture.img = NULL;
+	params->sprite_texture.width = 0;
+	params->sprite_texture.height = 0;
+}
+
+void		set_params_to_default(t_parameters *params)
 {
 	params->win_id = NULL;
 	params->img_id = NULL;
 	params->img = NULL;
 	params->win_h = 0;
 	params->win_w = 0;
-	params->map_h = 0; // surely uneeded
-	params->map_w = 0; // same
 	params->map = NULL;
 	params->posx = 0;
 	params->posy = 0;
@@ -16,16 +38,7 @@ void	set_params_to_default(t_parameters *params)
 	params->diry = 0;
 	params->planex = 0;
 	params->planey = 0;
-	params->north_texture.id = NULL;
-	params->north_texture.img = NULL;
-	params->south_texture.id = NULL;
-	params->south_texture.img = NULL;
-	params->east_texture.id = NULL;
-	params->east_texture.img = NULL;
-	params->west_texture.id = NULL;
-	params->west_texture.img = NULL;
-	params->sprite_texture.id = NULL;
-	params->sprite_texture.img = NULL;
+	textures_params(params);
 	params->floor_color = -1;
 	params->ceiling_color = -1;
 }

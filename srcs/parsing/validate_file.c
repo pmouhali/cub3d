@@ -6,17 +6,17 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/07 13:06:20 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/07 13:10:04 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/16 09:15:58 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
 
-int		validate_file(t_parameters *params, const char *filepath, const char *format)
+int		validate_file(t_parameters *params, const char *filepath)
 {
 	int fd;
 
-	if (ft_strcmp(ft_strrchr(filepath, '.'), format))
+	if (ft_strcmp(ft_strrchr(filepath, '.'), ".cub"))
 		quit_program(params, "Configuration file: not a .cub file.");
 	fd = open(filepath, O_RDONLY);
 	if (fd < 3)

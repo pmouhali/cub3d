@@ -5,7 +5,7 @@ void	set_map(t_parameters *params, char **line, int l)
 	int h;
 	int fd;
 	char **tmp;
-
+	
 	if (params->map_h < 3)
 		quit_program(params, "Map: not enough height.");
 	if (!(tmp = (char**)malloc(sizeof(char*) * params->map_h)))
@@ -22,7 +22,6 @@ void	set_map(t_parameters *params, char **line, int l)
 		free(*line);
 	}
 	close(fd);
-	free(params->config_file);
 	params->map_w = ft_strlen(tmp[0]);
 	params->map = tmp;
 	if (validate_map(params) == 0)

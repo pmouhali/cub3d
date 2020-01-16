@@ -11,7 +11,7 @@ SRCS =	quit_program.c \
 		srcs/parsing/set_map.c \
 		srcs/parsing/validate_map.c \
 		srcs/parsing/set_resolution.c \
-		srcs/parsing/set_north_texture.c \
+		srcs/parsing/set_texture.c \
 		srcs/parsing/set_floor_color.c \
 		srcs/parsing/set_ceiling_color.c \
 		srcs/parsing/set_player_position.c \

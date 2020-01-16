@@ -6,8 +6,8 @@ void    set_texture(t_parameters *params, t_texture *t, const char *line)
 	int i[3];
 
 	path = ft_strtrim(line, " ");
-	if (path == NULL || path[0] == 0)
-		quit_program(params, "Submitted path invalid.");
+	if (path == NULL)
+		quit_program(params, "set_texture: allocation failed.");
 	t->id = mlx_png_file_to_image(
 		params->mlx_id, path, &(t->width), &(t->height)
 	);
