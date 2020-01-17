@@ -20,6 +20,7 @@ SRCS =	quit_program.c \
 		srcs/parsing/set_player_position.c \
 		srcs/parsing/validate_line_type1.c \
 		srcs/parsing/validate_line_type2.c \
+		srcs/parsing/set_sprites.c \
 		srcs/raycasting/dda_init.c \
 		srcs/raycasting/dda_perform.c \
 		mlx_clear_img.c \

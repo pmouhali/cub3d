@@ -32,6 +32,7 @@ void		set_params_to_default(t_parameters *params)
 	params->win_h = 0;
 	params->win_w = 0;
 	params->map = NULL;
+	params->sprites = NULL;
 	params->posx = 0;
 	params->posy = 0;
 	params->dirx = 0;

@@ -6,7 +6,7 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:30:20 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/16 09:12:11 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/17 15:20:53 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ void	quit_program(t_parameters *params, const char *error_msg)
 	free_texture(&(params->sprite_texture));
 	if (params->map)
 		free_tda((void**)params->map, params->map_h);
+	if (params->sprites)
+		free(params->sprites);
 	if (error_msg)
 		ft_puterror(error_msg);
 	exit(1);

@@ -9,23 +9,15 @@ void	dda_perform(t_dda_parameters *dda, char **map)
 		{                                   
 			dda->sidedistx += dda->deltadistx;
 			dda->mapx += dda->stepx;
-			if (dda->raydirx < 0) 
-				dda->side = NORTH;
-			else                 
-				dda->side = SOUTH;
+			dda->side = dda->raydirx < 0 ? NORTH : SOUTH;
 		}   
 		else                                
 		{                                   
 			dda->sidedisty += dda->deltadisty;
 			dda->mapy += dda->stepy;
-			if (dda->raydiry < 0)
-				dda->side = WEST;
-			else                
-				dda->side = EAST;               
+			dda->side = dda->raydiry < 0 ? WEST : EAST;
 		}                                      
 		if (map[dda->mapx][dda->mapy] == '1')             
 			dda->hit = 1; 
-	//	else if (map[dda->mapx][dda->mapy] == '2')             
-	//		sprite();
 	}
 }

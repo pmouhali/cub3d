@@ -2,10 +2,6 @@ TODO:
 
 [Fix le segfault du joueur entre deux murs.]
 
-Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran,
-la taille de fenêtre doit être celle de l’écran.
-[Remplacer les constantes MAX et MIN w/h par les dimensions des ecrans d'iMac]
-
 Cliquer sur la croix rouge de la fenêtre doit fermer la fenêtre et quitter le
 programme proprement.
 
@@ -58,4 +54,8 @@ une rotation de la caméra (regarder a gauche et a droite)
 Les touches W, A, S et D doivent permettre de déplacer la caméra (déplacement
 du personnage).
 [Remplacer les keycode par des CONSTANTES, ajouter les déplacement lattéraux et remplacer flèches haut/bas par Z/S]
+
+Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran,
+la taille de fenêtre doit être celle de l’écran.
+[Remplacer les constantes MAX et MIN w/h par les dimensions des ecrans d'iMac]
 

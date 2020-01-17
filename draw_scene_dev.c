@@ -2,11 +2,11 @@
 #include <stdio.h>
 
 /*
-** init other params (sprites, buffers)
+** init other params ((p.sprites), buffers)
 ** init dda
 ** perform dda
 ** apply texture to buffer with dda infos
-** apply sprites
+** apply (p.sprites)
 */
 
 int	**draw_scene(t_parameters p)
@@ -24,26 +24,11 @@ int	**draw_scene(t_parameters p)
 	int texx;
 	int texy;
 	int color;
-/*
-	// sprites
+
+	// (p.sprites)
 // TODO: VLA interdit, utiliser un double pointeur alloué
 	double zbuffer[p.win_w];
 
-// TODO: VLA interdit, utiliser un double pointeur alloué
-	t_sprite sprites[SPRITES_QUANTITY];
-	int si = 0;
-	int sprites_infov;
-// TODO: faire une fonction
-	while (si < SPRITES_QUANTITY)
-	{
-		sprites[si].x = 0;
-		sprites[si].y = 0;
-		sprites[si].distance = 0.0;
-		si++;
-	}
-	si = 0;
-*/
-	
 	// START RAYCASTING LOOP
 	while (x < p.win_w)
 	{
@@ -56,7 +41,7 @@ int	**draw_scene(t_parameters p)
 		else
 			dda.perpwalldist = (dda.mapy - p.posy + (1 - dda.stepy) / 2) / dda.raydiry;	
 
-//		zbuffer[x] = dda.perpwalldist; 
+		zbuffer[x] = dda.perpwalldist; 
 
 		dda.lineheight = (int)(p.win_h / dda.perpwalldist);
 
@@ -129,26 +114,17 @@ int	**draw_scene(t_parameters p)
 
 		x++;
 	}
-/*
+
 	// SPRITE HANDLING after raycasting loop 
 
-	sprites_infov = si + 1;
-	
-	si = 0;
-	while (si < sprites_infov) // set distance
-	{
-		sprites[si].distance = ((p.posx - sprites[si].x) * (p.posx - sprites[si].x) + (p.posy - sprites[si].y) * (p.posy - sprites[si].y));
-		si++;
-	}
+	// set distance
 
-	if (sprites_infov > 0)
-		sort_sprites(sprites, sprites_infov);
-	si = 0;
-	while (si < sprites_infov)
-	{
-		printf("sprite%d x%f, y%f, d%f\n", si, sprites[si].x, sprites[si].y, sprites[si].distance);
-		si++;
+	b = 0;
+	while (b < p.nsprite)	{
+		(p.sprites)[b].distance = ((p.posx - (p.sprites)[b].x) * (p.posx - (p.sprites)[b].x) + (p.posy - (p.sprites)[b].y) * (p.posy - (p.sprites)[b].y));
+		b++;
 	}
+	sort_sprites(p.sprites, p.nsprite);
 
 	double spritex;
 	double spritey;
@@ -164,13 +140,14 @@ int	**draw_scene(t_parameters p)
 	int dex;
 	int sy;
 	int d;
-	int *stex = p.sprite_texture;
+	int *stex = p.sprite_texture.img;
+	int si;
 	
 	si = 0;
-	while (si < sprites_infov)
+	while (si < p.nsprite)
 	{
-		spritex = sprites[si].x - params->posx;
-		spritey = sprites[si].y - params->posy;
+		spritex = (p.sprites)[si].x - p.posx;
+		spritey = (p.sprites)[si].y - p.posy;
 		
 		invdet = 1.0 / (p.planex * p.diry - p.dirx * p.planey);
 		transformx = invdet * (p.diry * spritex - p.dirx * spritey);
@@ -198,7 +175,7 @@ int	**draw_scene(t_parameters p)
 		{
 			texx = (int)(256 * (dsx - (-spritewidth / 2 + spritescreenx)) * 64 / spritewidth) / 256;
 
-			if (dsx > 0 && dsx < p.win_w && transformy < zbuffer[dsx])
+			if (transformy > 0 && dsx > 0 && dsx < p.win_w && transformy < zbuffer[dsx])
 			{
 				sy  = dsy;
 				while (sy < dey)
@@ -216,7 +193,6 @@ int	**draw_scene(t_parameters p)
 
 		si++;
 	}
-	*/
 
 // TODO: free tout les elements alloués !! 
 	return (buffer);

@@ -49,6 +49,5 @@ int	main(int ac, char **av)
 	display_scene(params);
 	mlx_hook(params.win_id, 2, 0, &key_hook, &params);		
 	mlx_loop(params.mlx_id);
-	printf("Never getting here huh ?\n");
 	quit_program(&params, NULL);
 }

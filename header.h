@@ -13,11 +13,18 @@
 
 typedef struct	s_texture
 {
-	void	*id; // only used if we load image with MLX
+	void	*id;
 	int	*img;
 	int		width;
 	int		height;
-}				t_texture;
+}		t_texture;
+
+typedef struct s_sprite
+{
+	double x;
+	double y;
+	double distance;
+}		t_sprite;
 
 typedef struct	s_parameters
 {
@@ -27,6 +34,9 @@ typedef struct	s_parameters
 	int map_h;
 	int map_w;
 	char **map;
+
+	int nsprite;
+	t_sprite *sprites;	
 
 	double posx;
 	double posy;
@@ -54,12 +64,7 @@ typedef struct	s_parameters
 
 }		t_parameters;
 
-typedef struct s_sprite
-{
-	double x;
-	double y;
-	double distance;
-}		t_sprite;
+
 
 typedef struct	s_dda_parameters
 {
@@ -84,12 +89,11 @@ typedef struct	s_dda_parameters
 
 }		t_dda_parameters;
 
-#define SPRITES_QUANTITY 2
 #define MOVESPEED 0.16
 #define ROTSPEED 0.09
 
-#define MAX_WINDOW_WIDTH 900 // (random, adjust to mac screen)
-#define MAX_WINDOW_HEIGHT 900
+#define MAX_WINDOW_WIDTH 2560
+#define MAX_WINDOW_HEIGHT 1440
 
 #define NORTH 3
 #define SOUTH 4
@@ -115,6 +119,7 @@ void	mlx_clear_img(void **img);
 void    initialize_mlx_window(t_parameters *p);
 void    initialize_cub3d(t_parameters *params, const char *arg1);
 void	sort_sprites(t_sprite *sprites, int array_size);
+void    set_sprites(t_parameters *p);
 int		**draw_scene(t_parameters tmp);
 void    save_scene(t_parameters *params);
 void    display_scene(t_parameters params);

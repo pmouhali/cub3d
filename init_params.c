@@ -9,7 +9,7 @@ void    init_params(t_parameters *params, const char *filepath)
 
 	fd = validate_file(params, filepath);
 	l = 0;
-	while ((i = get_next_line(fd, &line)))
+	while (get_next_line(fd, &line))
 	{
 		i = 0;
 		while (line[i] == 32)
@@ -24,6 +24,7 @@ void    init_params(t_parameters *params, const char *filepath)
 	free(line);
 	close(fd);
 	set_map(params, &line, l);
+	set_sprites(params);
 	if (validate_params(params) == 0)
 		quit_program(params, "Configuration incomplete.");
 }
