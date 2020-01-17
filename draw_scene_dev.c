@@ -146,8 +146,8 @@ int	**draw_scene(t_parameters p)
 	si = 0;
 	while (si < p.nsprite)
 	{
-		spritex = (p.sprites)[si].x - p.posx;
-		spritey = (p.sprites)[si].y - p.posy;
+		spritex = (p.sprites)[si].x - p.posx + 0.5;
+		spritey = (p.sprites)[si].y - p.posy + 0.5;
 		
 		invdet = 1.0 / (p.planex * p.diry - p.dirx * p.planey);
 		transformx = invdet * (p.diry * spritex - p.dirx * spritey);
@@ -174,7 +174,6 @@ int	**draw_scene(t_parameters p)
 		while (dsx < dex)
 		{
 			texx = (int)(256 * (dsx - (-spritewidth / 2 + spritescreenx)) * 64 / spritewidth) / 256;
-
 			if (transformy > 0 && dsx > 0 && dsx < p.win_w && transformy < zbuffer[dsx])
 			{
 				sy  = dsy;
