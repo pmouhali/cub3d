@@ -5,9 +5,6 @@ TODO:
 Cliquer sur la croix rouge de la fenêtre doit fermer la fenêtre et quitter le
 programme proprement.
 
-Votre programme doit être capable d’afficher un objet (sprite) au lieu d’un mur.
-[Le bug n'est toujours pas fix]
-
 Code refactoring :
 [Norme, dégager les VLA, quit_program() doit TOUT free()]
 
@@ -58,4 +55,7 @@ du personnage).
 Si la taille de fenêtre demandée dans la map est plus grande que celle de l’écran,
 la taille de fenêtre doit être celle de l’écran.
 [Remplacer les constantes MAX et MIN w/h par les dimensions des ecrans d'iMac]
+
+Votre programme doit être capable d’afficher un objet (sprite) au lieu d’un mur.
+[Le bug n'est toujours pas fix]
 

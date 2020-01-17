@@ -25,83 +25,18 @@ int	**draw_scene(t_parameters p)
 	int texy;
 	int color;
 
-	// (p.sprites)
-// TODO: VLA interdit, utiliser un double pointeur alloué
-	double zbuffer[p.win_w];
+	double *zbuffer;
+
+	if (!(zbuffer = (double*)malloc(sizeof(double) * p.win_w)))
+		return (NULL);
 
 	// START RAYCASTING LOOP
 	while (x < p.win_w)
 	{
 		dda_init(p, &dda, x);
 		dda_perform(&dda, p.map);
-
-		// DDA SET DISTANCES AND DRAW START AND ENDS
-		if (dda.side == NORTH || dda.side == SOUTH)
-			dda.perpwalldist = (dda.mapx - p.posx + (1 - dda.stepx) / 2) / dda.raydirx;	
-		else
-			dda.perpwalldist = (dda.mapy - p.posy + (1 - dda.stepy) / 2) / dda.raydiry;	
-
-		zbuffer[x] = dda.perpwalldist; 
-
-		dda.lineheight = (int)(p.win_h / dda.perpwalldist);
-
-		dda.linex = -dda.lineheight / 2 + p.win_h / 2;		
-		dda.linex = dda.linex < 0 ? 0 : dda.linex;
-		dda.liney = dda.lineheight / 2 + p.win_h / 2;		
-		dda.liney = dda.liney >= p.win_h ? p.win_h - 1 : dda.liney;
-
-		if (dda.side == NORTH || dda.side == SOUTH)
-			dda.wallx = p.posy + dda.perpwalldist * dda.raydiry;
-		else
-			dda.wallx = p.posx + dda.perpwalldist * dda.raydirx;
-		dda.wallx -= floor(dda.wallx);
-		// TEXTURE
-// TODO: determier la texture a utiliser en fonction de 1 2 ou 3
-// TODO: on aura besoin de ses dimensions  propres
-		t_texture	texture;
-
-		if (dda.side == NORTH)
-			texture = p.north_texture;
-		if (dda.side == SOUTH)
-			texture = p.south_texture;
-		if (dda.side == WEST)
-			texture = p.west_texture;
-		if (dda.side == EAST)
-			texture = p.east_texture;
-
-
-		
-		texx = (int)(dda.wallx * (double)texture.width);
-		if ((dda.side == NORTH  || dda.side == SOUTH) && dda.raydirx > 0)
-			texx = (double)texture.width - texx - 1;
-		if ((dda.side == WEST || dda.side == EAST) && dda.raydiry < 0)
-			texx = (double)texture.width - texx - 1;
-		
-		double step = 1.0 * texture.height / dda.lineheight;
-		double texpos = (dda.linex - p.win_h / 2 + dda.lineheight / 2) * step;
-		b = dda.linex;
-// TODO: decouper en trois fonctions (print wall, floor, and ceiling)
-		while (b < dda.liney)
-		{
-			texy = (int)texpos & (texture.height - 1);
-			texpos += step;
-			color = (int)((texture.img)[texture.height * texy + texx]);
-// TODO: le sujet demande pas d'assombrir les murs.. 
-	//		if (dda.side == WEST || dda.side == EAST)
-	//			color = (color >> 1) & 8355711;	
-			buffer[b][x] = color;
-			b++;
-		}
-		if (dda.linex > 0)
-		{
-			b = 0;
-			while (b < dda.linex)
-			{
-				buffer[b][x] = p.floor_color;
-				b++;
-			}
-		}
-// TODO: corriger le segfault en se basant sur le resultat live de la position 
+		dda_data(&dda, p, &zbuffer[x]);
+		draw_textured_stripe(buffer, x, dda, p);
 		if (dda.liney < p.win_h - 1)
 		{
 			b = dda.liney;
@@ -192,7 +127,7 @@ int	**draw_scene(t_parameters p)
 
 		si++;
 	}
-
+	free(zbuffer);
 // TODO: free tout les elements alloués !! 
 	return (buffer);
 }

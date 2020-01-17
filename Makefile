@@ -23,6 +23,8 @@ SRCS =	quit_program.c \
 		srcs/parsing/set_sprites.c \
 		srcs/raycasting/dda_init.c \
 		srcs/raycasting/dda_perform.c \
+		srcs/raycasting/dda_data.c \
+		srcs/raycasting/draw_textured_stripe.c \
 		mlx_clear_img.c \
 		sort_sprites.c \
 		buffer_to_image.c \

@@ -125,6 +125,8 @@ void    save_scene(t_parameters *params);
 void    display_scene(t_parameters params);
 void    dda_init(t_parameters params, t_dda_parameters *dda, int screen_slice);
 void    dda_perform(t_dda_parameters *dda, char **map);
+void    dda_data(t_dda_parameters *dda, t_parameters p, double *z);
+void    draw_textured_stripe(int **buf, int s, t_dda_parameters dda, t_parameters p);
 int     key_hook(int keycode,void *params);
 void    buffer_to_image(int h, int w, int **buf, void **img);
 void	quit_program(t_parameters *params, const char *error_msg);
