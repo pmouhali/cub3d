@@ -19,9 +19,6 @@ int	key_hook(int keycode,void *params)
 		camera_right(p);
 	if (keycode == K_ESC)
 		quit_program(params, NULL);
-
 	display_scene(*p);
-	printf("dx %f, dy %f\n", p->dirx, p->diry);
-	printf("px %f, py %f\n", p->posx, p->posy);
 	return (0);
 }

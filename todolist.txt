@@ -9,12 +9,6 @@ la taille de fenêtre doit être celle de l’écran.
 Cliquer sur la croix rouge de la fenêtre doit fermer la fenêtre et quitter le
 programme proprement.
 
-Les touches flèches du gauche et droite du clavier doivent permettre de faire
-une rotation de la caméra (regarder a gauche et a droite)
-Les touches W, A, S et D doivent permettre de déplacer la caméra (déplacement
-du personnage).
-[Remplacer les keycode par des CONSTANTES, ajouter les déplacement lattéraux et remplacer flèches haut/bas par Z/S]
-
 Votre programme doit être capable d’afficher un objet (sprite) au lieu d’un mur.
 [Le bug n'est toujours pas fix]
 
@@ -58,4 +52,10 @@ En prévision du jour où deepthought aura des yeux pour évaluer votre projet,
 votre programme doit pouvoir sauver la première image rendue au format bmp
 lorsque le second argument est "–save".
 [Si -save, pas besoin d'init la mlx, utiliser un wrapper sur draw_scene() ?]
+
+Les touches flèches du gauche et droite du clavier doivent permettre de faire
+une rotation de la caméra (regarder a gauche et a droite)
+Les touches W, A, S et D doivent permettre de déplacer la caméra (déplacement
+du personnage).
+[Remplacer les keycode par des CONSTANTES, ajouter les déplacement lattéraux et remplacer flèches haut/bas par Z/S]
 
