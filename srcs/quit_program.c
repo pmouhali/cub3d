@@ -6,11 +6,24 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:30:20 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/17 15:20:53 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/18 12:58:15 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "header.h"
+
+static void	ft_puterror(char const *s)
+{
+	int i;
+
+	if (!s)
+		return ;
+	i = 0;
+	while (s[i])
+		i++;
+	write(2, "Error\n", 6);
+	write(2, s, i);
+}
 
 static void	free_texture(t_texture *t)
 {

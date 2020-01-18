@@ -7,9 +7,9 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "libmlx/mlx.h"
-#include "libft/libft.h"
-#include "libbitmapfile/bitmapfile.h"
+#include "../libmlx/mlx.h"
+#include "../libft/libft.h"
+#include "../libbitmapfile/bitmapfile.h"
 
 typedef struct	s_texture
 {
@@ -145,7 +145,6 @@ void    draw_textured_stripe(int **buf, int s, t_dda_parameters dda, t_parameter
 int     key_hook(int keycode,void *params);
 void    buffer_to_image(int h, int w, int **buf, void **img);
 void	quit_program(t_parameters *params, const char *error_msg);
-void    ft_puterror(char const *s);
 void	init_params(t_parameters *params, const char *filepath);
 void	set_params_to_default(t_parameters *params);
 int		validate_params(t_parameters *params);

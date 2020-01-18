@@ -29,7 +29,10 @@ static int	set_tex_x(t_sprites_parameters s, int texw)
 
 static int	get_tex_y(t_sprites_parameters s, int pxl, t_parameters p)
 {
-	return (((((pxl) * 256 - p.win_h * 128 + s.h * 128) * p.sprite_texture.height) / s.h) / 256);
+	return (
+		((((pxl) * 256 - p.win_h * 128 + s.h * 128)
+			* p.sprite_texture.height) / s.h) / 256
+	);
 }
 
 static void	draw_sprite(int **buf, t_sprites_parameters s, t_parameters p, double *zbuffer)
@@ -41,10 +44,14 @@ static void	draw_sprite(int **buf, t_sprites_parameters s, t_parameters p, doubl
 	{
 		s.tex_x = set_tex_x(s, p.sprite_texture.width);
 		j = s.dstart_y - 1;
-		if (s.transformy > 0 && s.dstart_x > 0 && s.dstart_x < p.win_w && s.transformy < zbuffer[s.dstart_x])
+		if (s.transformy > 0 && s.dstart_x > 0 && s.dstart_x < p.win_w
+			&& s.transformy < zbuffer[s.dstart_x])
 			while (++j < s.dend_y)
 			{
-				pixel_color = p.sprite_texture.img[p.sprite_texture.width * get_tex_y(s, j, p) + s.tex_x];
+				pixel_color = p.sprite_texture.img[
+					p.sprite_texture.width
+					* get_tex_y(s, j, p) + s.tex_x
+				];
 				if (pixel_color != 0)
 					buf[j][s.dstart_x] = pixel_color;
 			}
