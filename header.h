@@ -26,6 +26,21 @@ typedef struct s_sprite
 	double distance;
 }		t_sprite;
 
+typedef struct	s_sprites_parameters
+{
+	double invdet;
+	double transformx;
+	double transformy;
+	int screenx;
+	int h;
+	int w;
+	int dstart_x;
+	int dstart_y;
+	int dend_x;
+	int dend_y;
+	int tex_x;
+}		t_sprites_parameters;
+
 typedef struct	s_parameters
 {
 	char *config_file;
@@ -63,8 +78,6 @@ typedef struct	s_parameters
 	int ceiling_color;
 
 }		t_parameters;
-
-
 
 typedef struct	s_dda_parameters
 {
@@ -120,6 +133,8 @@ void    initialize_mlx_window(t_parameters *p);
 void    initialize_cub3d(t_parameters *params, const char *arg1);
 void	sort_sprites(t_sprite *sprites, int array_size);
 void    set_sprites(t_parameters *p);
+void    sprites_distance(t_sprite *sprites, int size, int posx, int posy);
+void    draw_sprites(int **buf, t_parameters p, double *zbuffer);
 int		**draw_scene(t_parameters tmp);
 void    save_scene(t_parameters *params);
 void    display_scene(t_parameters params);

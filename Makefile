@@ -1,6 +1,8 @@
 FLAGS = -Wall -Wextra -Werror
 
 SRCS =	quit_program.c \
+		mlx_clear_img.c \
+		buffer_to_image.c \
 		ft_puterror.c \
 		initialize_cub3d.c \
 		initialize_mlx_window.c \
@@ -25,9 +27,9 @@ SRCS =	quit_program.c \
 		srcs/raycasting/dda_perform.c \
 		srcs/raycasting/dda_data.c \
 		srcs/raycasting/draw_textured_stripe.c \
-		mlx_clear_img.c \
-		sort_sprites.c \
-		buffer_to_image.c \
+		srcs/raycasting/sort_sprites.c \
+		srcs/raycasting/sprites_distance.c \
+		srcs/raycasting/draw_sprites.c \
 		srcs/events/keyhook.c \
 		srcs/events/camera_left.c \
 		srcs/events/camera_right.c \
@@ -46,9 +48,6 @@ comp_libbitmapfile:
 		cd libbitmapfile/ && make
 comp_mlx:
 	cd libmlx/ && make
-
-dev: comp_libft comp_libbitmapfile
-	gcc -g $(FLAGS) $(SRCS) draw_scene_dev.c main.c -I./ -L./libft -lft -L./libbitmapfile -lbitmapfile -o cub3d -lm
 
 cleanlft:
 	cd libft/ && make clean

@@ -21,21 +21,20 @@ static void	draw_ceiling(int **buffer, int s, int ds, int color)
 	while (i < ds)
 	{
 		buffer[i][s] = color;
-		i++;	
+		i++;
 	}
 }
 
-
-static void	draw_floor(int **buffer, int s, int de, int color)
+void	draw_floor(int **buffer, int s, t_dda_parameters dda, t_parameters p)
 {
 	int i;
-
-	i = de;
-	while (i < ds)
+	
+	i = dda.liney;
+	while (i < p.win_h)
 	{
-		buffer[i][s] = color;
-		i++;	
-	}	
+		buffer[i][s] = p.floor_color;
+		i++;
+	}
 }
 
 void	draw_textured_stripe(int **buf, int s, t_dda_parameters dda, t_parameters p)
@@ -52,7 +51,8 @@ void	draw_textured_stripe(int **buf, int s, t_dda_parameters dda, t_parameters p
 		tex_x = (double)texture.width - tex_x - 1;
 	else if ((dda.side == WEST || dda.side == EAST) && dda.raydiry < 0)
 		tex_x = (double)texture.width - tex_x - 1;
-	tex_pos = (dda.linex - p.win_h / 2 + dda.lineheight / 2) * 1.0 * texture.height / dda.lineheight;
+	tex_pos = (dda.linex - p.win_h / 2 + dda.lineheight / 2)
+			* 1.0 * texture.height / dda.lineheight;
 	i = dda.linex - 1;
 	while (++i < dda.liney)
 	{
@@ -61,5 +61,5 @@ void	draw_textured_stripe(int **buf, int s, t_dda_parameters dda, t_parameters p
 		buf[i][s] = (int)(texture.img[texture.height * tex_y + tex_x]);
 	}
 	draw_ceiling(buf, s, dda.linex, p.ceiling_color);
-	draw_floor(buf, s, dda.liney, p.floor_color);
+	draw_floor(buf, s, dda, p);
 }
