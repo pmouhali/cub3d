@@ -1,44 +1,56 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_bmpfile.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/18 14:06:31 by pmouhali          #+#    #+#             */
+/*   Updated: 2020/01/18 15:13:37 by pmouhali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "bitmapfile.h"
 
-static void	set_bmpinfoheader(t_bitmapinfoheader *bmpih, int bwidth, int bheight)
+static void	set_bmpinfoheader(t_bitmapinfoheader *ih, int w, int h)
 {
-	bmpih->headersize.i = 40;
-	bmpih->img_width.i = bwidth;
-	bmpih->img_height.i = bheight;
-	bmpih->planes.i = 1;
-	bmpih->bpp.i = 32;
-	bmpih->compression.i = 0;
-	bmpih->img_size.i = 0;
-	bmpih->xpixelspermeter.i = 0;
-	bmpih->ypixelspermeter.i = 0;
-	bmpih->totalcolors.i = 0;
-	bmpih->importantcolors.i = 0;
+	ih->headersize.i = 40;
+	ih->img_width.i = w;
+	ih->img_height.i = h;
+	ih->planes.i = 1;
+	ih->bpp.i = 32;
+	ih->compression.i = 0;
+	ih->img_size.i = 0;
+	ih->xpixelspermeter.i = 0;
+	ih->ypixelspermeter.i = 0;
+	ih->totalcolors.i = 0;
+	ih->importantcolors.i = 0;
 }
 
-static void	set_bmpfileheader(t_bitmapfileheader *bmpfh, t_bitmapinfoheader	bmpih)
+static void	set_bmpfileheader(t_bitmapfileheader *fh, t_bitmapinfoheader ih)
 {
 	unsigned int bpp;
 
-	bpp = bmpih.bpp.i / 8;
-	bmpfh->filetype.i = 19778;
-	bmpfh->filesize.i = 54 + ((bpp * bmpih.img_width.i) * (bpp * bmpih.img_height.i));
-	bmpfh->reserved.i = 0;
-	bmpfh->pixeldata_offset.i = 54;
+	bpp = ih.bpp.i / 8;
+	fh->filetype.i = 19778;
+	fh->filesize.i = 54 + ((bpp * ih.img_width.i) * (bpp * ih.img_height.i));
+	fh->reserved.i = 0;
+	fh->pixeldata_offset.i = 54;
 }
 
-int			create_bmpfile(const char *filepath, int width, int height, int **buffer)
+int			create_bmpfile(const char *path, int width, int height, int **buf)
 {
-	int fd;
+	int					fd;
 	t_bitmapfileheader	bmpfh;
 	t_bitmapinfoheader	bmpih;
 
-	if ((fd = open(filepath, O_CREAT | O_WRONLY | O_APPEND, S_IRWXU)) < 3)
+	if ((fd = open(path, O_CREAT | O_WRONLY | O_APPEND, S_IRWXU)) < 3)
 		return (-1);
 	set_bmpinfoheader(&bmpih, width, height);
 	set_bmpfileheader(&bmpfh, bmpih);
 	write_bmpfileheader(fd, bmpfh);
 	write_bmpinfoheader(fd, bmpih);
-	if (write_pixeldata(fd, bmpih, buffer) == -1)
+	if (write_pixeldata(fd, bmpih, buf) == -1)
 		return (-1);
 	close(fd);
 	return (0);

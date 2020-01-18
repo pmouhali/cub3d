@@ -1,9 +1,9 @@
 R 800 600
 NO ./pics/bluestone.png  
-SO ./pics/redbrick.png  
+SO ./pics/doll.png  
 WE ./pics/wood.png  
 EA ./pics/wood.png  
-S  ./pics/doll.png  
+S  ./pics/redbrick.png  
 F 32,70,74
 C 33,32,74
 

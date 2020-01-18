@@ -1,4 +1,5 @@
 TODO:
+[pourquoi les touches sont inversee]
 
 [Fix le segfault du joueur entre deux murs.]
 

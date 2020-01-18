@@ -1,13 +1,23 @@
-#include "bitmapfile.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   write_pixeldata.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/18 14:06:50 by pmouhali          #+#    #+#             */
+/*   Updated: 2020/01/18 14:11:15 by pmouhali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-#include <stdio.h>
+#include "bitmapfile.h"
 
 int		write_pixeldata(int fd, t_bitmapinfoheader bih, int **img)
 {
-	int x;
-	int y;
-	int i;
-	unsigned char *buf;
+	int				x;
+	int				y;
+	int				i;
+	unsigned char	*buf;
 
 	bih.img_size.i = (bih.img_width.i * bih.img_height.i) * 4;
 	if (!(buf = malloc(sizeof(unsigned char) * (bih.img_size.i + 1))))
