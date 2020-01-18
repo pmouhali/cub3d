@@ -6,13 +6,13 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 10:40:24 by pmouhali          #+#    #+#             */
-/*   Updated: 2019/11/15 19:23:08 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/18 13:39:04 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char			*ft_strnjoin(char *s1, char const *s2, long n)
+static char	*ft_strnjoin(char *s1, char const *s2, long n)
 {
 	long			j;
 	char			*new;
@@ -38,7 +38,7 @@ static char			*ft_strnjoin(char *s1, char const *s2, long n)
 	return (new);
 }
 
-int	get_next_line(int fd, char **line)
+int			get_next_line(int fd, char **line)
 {
 	static char	buf[BUFFER_SIZE + 1];
 	int			ret;
@@ -64,7 +64,3 @@ int	get_next_line(int fd, char **line)
 	}
 	return (ret);
 }
-
-/*
-** If BUFFER_SIZE == 0 this GNL code returns 0
-*/

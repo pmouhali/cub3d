@@ -31,4 +31,9 @@ $(NAME):
 all: $(NAME)
 
 clean:
-	rm -f $(OBJS) libft.a
+	rm -f $(OBJS)
+
+fclean: clean
+	rm -f $(NAME)
+
+re: fclean all
