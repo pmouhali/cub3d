@@ -1,14 +1,12 @@
 TODO:
 
-[Le screenshot est printe en mirroir inverse, fix it]
-
 [Fix le segfault du joueur entre deux murs.]
 
 Cliquer sur la croix rouge de la fenêtre doit fermer la fenêtre et quitter le
 programme proprement.
 
 Code refactoring :
-[Norme, dégager les VLA, quit_program() doit TOUT free()]
+[Norme]
 
 DONE :
 

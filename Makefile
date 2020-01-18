@@ -38,15 +38,15 @@ SRCS =	srcs/init/initialize_cub3d.c \
 	srcs/display_scene.c \
 	srcs/quit_program.c \
 
-all: comp_libft comp_libbitmapfile comp_mlx
+all: mk_lft mk_lbitmapfile mk_lmlx
 	gcc -g $(FLAGS) $(SRCS) main.c -lz -L./libmlx -lmlx -framework OpenGL -framework AppKit -I./srcs/ -L./libft -lft -L./libbitmapfile -lbitmapfile -o cub3d -lm
 
-comp_libft:
+mk_lft:
 		cd libft/ && make
 
-comp_libbitmapfile:
+mk_lbitmapfile:
 		cd libbitmapfile/ && make
-comp_mlx:
+mk_lmlx:
 	cd libmlx/ && make
 
 cleanlft:
