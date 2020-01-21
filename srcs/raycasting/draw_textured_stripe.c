@@ -28,9 +28,8 @@ static void	draw_ceiling(int **buffer, int s, int ds, int color)
 void	draw_floor(int **buffer, int s, t_dda_parameters dda, t_parameters p)
 {
 	int i;
-	
 	i = dda.liney;
-	while (i < p.win_h)
+	while (i < p.win_h && i >= 0)
 	{
 		buffer[i][s] = p.floor_color;
 		i++;

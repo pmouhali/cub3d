@@ -1,6 +1,9 @@
 TODO:
 
-[Fix le segfault du joueur entre deux murs.]
+[Bug d'affichage si spawn dans espace tres restreint, ne dessine pas le mur sur
+le cote]
+
+[LEAKS]
 
 Code refactoring :
 [Norme]
@@ -60,3 +63,5 @@ Votre programme doit être capable d’afficher un objet (sprite) au lieu d’un
 
 Cliquer sur la croix rouge de la fenêtre doit fermer la fenêtre et quitter le
 programme proprement.
+
+[Fix le segfault du joueur entre deux murs.]
