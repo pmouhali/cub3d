@@ -6,7 +6,7 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:30:20 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/21 14:41:05 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/21 18:11:34 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static void	ft_puterror(char const *s)
 	write(2, s, i);
 }
 
-void	quit_program(t_parameters *params, const char *error_msg)
+void		quit_program(t_parameters *params, const char *error_msg)
 {
 	if (params->img_id)
 		mlx_destroy_image(params->mlx_id, params->img_id);
