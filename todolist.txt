@@ -1,10 +1,6 @@
 TODO:
 
-
 [Fix le segfault du joueur entre deux murs.]
-
-Cliquer sur la croix rouge de la fenêtre doit fermer la fenêtre et quitter le
-programme proprement.
 
 Code refactoring :
 [Norme]
@@ -60,5 +56,7 @@ la taille de fenêtre doit être celle de l’écran.
 Votre programme doit être capable d’afficher un objet (sprite) au lieu d’un mur.
 [Le bug n'est toujours pas fix]
 
-
 [Fix: les directions sont inversee si start position EAST / WEST]
+
+Cliquer sur la croix rouge de la fenêtre doit fermer la fenêtre et quitter le
+programme proprement.

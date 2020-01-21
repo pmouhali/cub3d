@@ -48,6 +48,7 @@ int	main(int ac, char **av)
 	initialize_mlx_window(&params);
 	display_scene(params);
 	mlx_hook(params.win_id, 2, 0, &key_hook, &params);		
+	mlx_hook(params.win_id, 17, 0, &close_button, &params);		
 	mlx_loop(params.mlx_id);
 	quit_program(&params, NULL);
 }

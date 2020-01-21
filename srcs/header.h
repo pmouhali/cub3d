@@ -121,7 +121,7 @@ typedef struct	s_dda_parameters
 #define K_D 2
 #define K_ESC 53
 
-
+int     close_button(t_parameters *p);
 void	camera_left(t_parameters *p);
 void	camera_right(t_parameters *p);
 void    move_forward(t_parameters *p);

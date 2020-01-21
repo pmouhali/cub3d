@@ -28,6 +28,7 @@ SRCS =	srcs/init/initialize_cub3d.c \
 	srcs/utils/mlx_clear_img.c \
 	srcs/utils/buffer_to_image.c \
 	srcs/events/keyhook.c \
+	srcs/events/close_button.c \
 	srcs/events/camera_left.c \
 	srcs/events/camera_right.c \
 	srcs/events/move_forward.c \
