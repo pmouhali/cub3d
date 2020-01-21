@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_params.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/21 18:19:12 by pmouhali          #+#    #+#             */
+/*   Updated: 2020/01/21 18:20:41 by pmouhali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
 static int	validate_map_params(t_parameters *p)
@@ -42,14 +54,14 @@ static int	validate_textures(t_parameters *p)
 	return (1);
 }
 
-int		validate_params(t_parameters *params)
+int			validate_params(t_parameters *params)
 {
 	if (params->win_h <= 0 || params->win_w <= 0)
 		return (0);
 	if (!validate_map_params(params))
 		return (0);
 	if (!validate_start_position(params))
-		return (0);	
+		return (0);
 	if (!validate_textures(params))
 		return (0);
 	return (1);

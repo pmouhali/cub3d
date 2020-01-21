@@ -1,11 +1,23 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_params.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/21 18:17:21 by pmouhali          #+#    #+#             */
+/*   Updated: 2020/01/21 18:18:13 by pmouhali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
-void    init_params(t_parameters *params, const char *filepath)
+void	init_params(t_parameters *params, const char *filepath)
 {
-	int fd;
-	int i;
-	int l;
-	char *line = NULL;
+	int		fd;
+	int		i;
+	int		l;
+	char	*line;
 
 	fd = validate_file(params, filepath);
 	l = 0;

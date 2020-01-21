@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   initialize_mlx_window.c                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/21 18:19:05 by pmouhali          #+#    #+#             */
+/*   Updated: 2020/01/21 18:21:09 by pmouhali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
 void	initialize_mlx_window(t_parameters *p)
@@ -9,9 +21,9 @@ void	initialize_mlx_window(t_parameters *p)
 	if (!p->img_id)
 		quit_program(p, "Mlx failed to return an image identifier.");
 	p->img = mlx_get_data_addr(
-		p->img_id, 
+		p->img_id,
 		&(p->bpp),
 		&(p->line_size),
 		&(p->endian)
-	);
+);
 }
