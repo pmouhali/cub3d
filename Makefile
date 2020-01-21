@@ -58,3 +58,6 @@ cleanlbitmapfile:
 
 clean: cleanlft cleanlbitmapfile
 	rm -f *.bmp cub3d
+
+norme:
+	cd libft/ && norminette *.c *.h && cd ../ && cd libbitmapfile && norminette *.c *.h && cd ../ && norminette main.c srcs/
