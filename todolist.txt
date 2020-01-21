@@ -1,5 +1,5 @@
 TODO:
-[pourquoi les touches sont inversee]
+
 
 [Fix le segfault du joueur entre deux murs.]
 
@@ -60,3 +60,5 @@ la taille de fenêtre doit être celle de l’écran.
 Votre programme doit être capable d’afficher un objet (sprite) au lieu d’un mur.
 [Le bug n'est toujours pas fix]
 
+
+[Fix: les directions sont inversee si start position EAST / WEST]

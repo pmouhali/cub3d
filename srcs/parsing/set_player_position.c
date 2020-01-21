@@ -30,11 +30,11 @@ void	set_player_position(t_parameters *params, int c, int x, int y)
 	if (c == EAST)
 	{
 		params->diry = 1;
-		params->planex = -0.66;
+		params->planex = 0.66;
 	}
 	if (c == WEST)
 	{
 		params->diry = -1;
-		params->planex = 0.66;
+		params->planex = -0.66;
 	}
 }
