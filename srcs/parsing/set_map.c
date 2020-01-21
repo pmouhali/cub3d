@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_map.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/21 18:40:20 by pmouhali          #+#    #+#             */
+/*   Updated: 2020/01/21 18:44:57 by pmouhali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
 void	set_map(t_parameters *params, char **line, int l)
 {
-	int h;
-	int fd;
-	char **tmp;
+	int		h;
+	int		fd;
+	char	**tmp;
 
 	if (params->map_h < 3)
 		quit_program(params, "Map: not enough height.");

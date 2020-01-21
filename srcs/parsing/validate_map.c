@@ -1,12 +1,16 @@
-#include "header.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/21 18:39:58 by pmouhali          #+#    #+#             */
+/*   Updated: 2020/01/21 18:40:03 by pmouhali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-/*
-** Check if first line only contains wall's character.
-** Check if other lines are valid.
-** Check if player position was found.
-** Check if last line only contains wall's character.
-** Return 0 is the map is invalid, 1 is the map is valid.
-*/
+#include "header.h"
 
 int	validate_map(t_parameters *params)
 {

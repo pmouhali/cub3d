@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_floor_color.c                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/21 18:40:14 by pmouhali          #+#    #+#             */
+/*   Updated: 2020/01/21 18:45:47 by pmouhali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
-void    set_floor_color(t_parameters *params, const char *line)
+void	set_floor_color(t_parameters *params, const char *line)
 {
-	t_dint4 color;
-	int i;
+	t_dint4	color;
+	int		i;
 
 	if (params->floor_color != -1)
 		quit_program(params, "Floor color has already been set.");
@@ -20,4 +32,3 @@ void    set_floor_color(t_parameters *params, const char *line)
 	color.d[3] = 0;
 	params->floor_color = color.i;
 }
-

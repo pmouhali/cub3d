@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_ceiling_color.c                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/21 18:40:08 by pmouhali          #+#    #+#             */
+/*   Updated: 2020/01/21 18:47:09 by pmouhali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
-void    set_ceiling_color(t_parameters *params, const char *line)
+void	set_ceiling_color(t_parameters *params, const char *line)
 {
-	t_dint4 color;
-	int i;
+	t_dint4	color;
+	int		i;
 
 	if (params->ceiling_color != -1)
 		quit_program(params, "Ceiling color has already been set.");
@@ -20,4 +32,3 @@ void    set_ceiling_color(t_parameters *params, const char *line)
 	color.d[3] = 0;
 	params->ceiling_color = color.i;
 }
-
