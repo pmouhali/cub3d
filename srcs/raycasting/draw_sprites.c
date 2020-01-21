@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw_sprites.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/21 18:31:58 by pmouhali          #+#    #+#             */
+/*   Updated: 2020/01/21 18:35:09 by pmouhali         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "header.h"
 
-static void	init_calculations(double x, double y, t_sprites_parameters *s, t_parameters p)
+static void	init_calculations(
+			double x, double y, t_sprites_parameters *s, t_parameters p)
 {
 	x = x - p.posx + 0.5;
 	y = y - p.posy + 0.5;
@@ -24,7 +37,7 @@ static int	set_tex_x(t_sprites_parameters s, int texw)
 {
 	return (
 		(256 * (s.dstart_x - (-s.w / 2 + s.screenx)) * texw / s.w) / 256
-	);
+);
 }
 
 static int	get_tex_y(t_sprites_parameters s, int pxl, t_parameters p)
@@ -32,10 +45,11 @@ static int	get_tex_y(t_sprites_parameters s, int pxl, t_parameters p)
 	return (
 		((((pxl) * 256 - p.win_h * 128 + s.h * 128)
 			* p.sprite_texture.height) / s.h) / 256
-	);
+);
 }
 
-static void	draw_sprite(int **buf, t_sprites_parameters s, t_parameters p, double *zbuffer)
+static void	draw_sprite(
+			int **buf, t_sprites_parameters s, t_parameters p, double *zbuffer)
 {
 	int j;
 	int pixel_color;
@@ -59,10 +73,10 @@ static void	draw_sprite(int **buf, t_sprites_parameters s, t_parameters p, doubl
 	}
 }
 
-void	draw_sprites(int **buf, t_parameters p, double *zbuffer)
+void		draw_sprites(int **buf, t_parameters p, double *zbuffer)
 {
-	t_sprites_parameters s;
-	int i;
+	t_sprites_parameters	s;
+	int						i;
 
 	sprites_distance(p.sprites, p.nsprite, p.posx, p.posy);
 	sort_sprites(p.sprites, p.nsprite);

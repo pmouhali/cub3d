@@ -6,7 +6,7 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 11:12:46 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/03 12:26:15 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/21 18:38:44 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	sort_sprites(t_sprite *sprites, int array_size)
 {
-	int i;
-	t_sprite tmp;
+	int			i;
+	t_sprite	tmp;
 
 	i = 0;
 	while (i < array_size - 1)
@@ -24,7 +24,7 @@ void	sort_sprites(t_sprite *sprites, int array_size)
 		{
 			tmp = sprites[i];
 			sprites[i] = sprites[i + 1];
-			sprites[i + 1] = tmp;	
+			sprites[i + 1] = tmp;
 			i = 0;
 		}
 		else
