@@ -6,7 +6,7 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 15:47:43 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/21 15:47:54 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/22 17:33:23 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,5 +27,4 @@ int	main(int ac, char **av)
 	mlx_hook(params.win_id, 2, 0, &key_hook, &params);
 	mlx_hook(params.win_id, 17, 0, &close_button, &params);
 	mlx_loop(params.mlx_id);
-	quit_program(&params, NULL);
 }

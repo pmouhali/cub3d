@@ -6,7 +6,7 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:30:20 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/21 18:11:34 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/22 19:10:30 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,6 @@ void		quit_program(t_parameters *params, const char *error_msg)
 		mlx_destroy_image(params->mlx_id, params->sprite_texture.id);
 	if (params->win_id)
 		mlx_destroy_window(params->mlx_id, params->win_id);
-	if (params->mlx_id)
-		free(params->mlx_id);
 	if (params->map)
 		free_tda((void**)params->map, params->map_h);
 	if (params->sprites)

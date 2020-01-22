@@ -1,9 +1,7 @@
 TODO:
 
+[TESTS]
 [LEAKS]
-
-Code refactoring :
-[Norme]
 
 DONE :
 
@@ -66,3 +64,4 @@ programme proprement.
 [Bug d'affichage si spawn dans espace tres restreint, ne dessine pas le mur sur
 le cote]
 
+[NORME]
