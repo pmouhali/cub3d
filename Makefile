@@ -1,3 +1,5 @@
+NAME = cub3d
+
 FLAGS = -Wall -Wextra -Werror
 
 SRCS =	srcs/init/initialize_cub3d.c \
@@ -25,7 +27,6 @@ SRCS =	srcs/init/initialize_cub3d.c \
 	srcs/raycasting/sprites_distance.c \
 	srcs/raycasting/draw_sprites.c \
 	srcs/utils/draw_scene.c \
-	srcs/utils/mlx_clear_img.c \
 	srcs/utils/buffer_to_image.c \
 	srcs/events/keyhook.c \
 	srcs/events/close_button.c \
@@ -39,8 +40,10 @@ SRCS =	srcs/init/initialize_cub3d.c \
 	srcs/display_scene.c \
 	srcs/quit_program.c \
 
-all: mk_lft mk_lbitmapfile mk_lmlx
+$(NAME): mk_lft mk_lbitmapfile mk_lmlx
 	gcc -g $(FLAGS) $(SRCS) main.c -lz -L./libmlx -lmlx -framework OpenGL -framework AppKit -I./srcs/ -L./libft -lft -L./libbitmapfile -lbitmapfile -o cub3d -lm
+
+all: $(NAME)
 
 mk_lft:
 		cd libft/ && make
@@ -57,7 +60,11 @@ cleanlbitmapfile:
 	cd libbitmapfile/ && make clean
 
 clean: cleanlft cleanlbitmapfile
-	rm -f *.bmp cub3d
+
+fclean: clean
+	rm -f cub3d *.bmp
+
+re: fclean all
 
 norme:
 	norminette main.c libft/ libbitmapfile/ srcs/

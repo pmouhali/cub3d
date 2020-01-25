@@ -49,6 +49,7 @@ int	main(int ac, char **av)
 	if (ac > 2 && ft_strcmp(av[2], "-save") == 0)
 	{
 		save_scene(&params);
+		system("leaks cub3d");
 		quit_program(&params, NULL);
 	}
 	initialize_mlx_window(&params);

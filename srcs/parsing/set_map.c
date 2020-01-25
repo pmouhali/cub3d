@@ -6,7 +6,7 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 18:40:20 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/21 18:44:57 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/25 13:37:56 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	set_map(t_parameters *params, char **line, int l)
 	char	**tmp;
 
 	if (params->map_h < 3)
-		quit_program(params, "Map: not enough height.");
+		quit_program(params, "invalid map.");
 	if (!(tmp = (char**)malloc(sizeof(char*) * params->map_h)))
 		quit_program(params, "Map: malloc failed.");
 	if ((fd = open(params->config_file, O_RDONLY)) < 3)

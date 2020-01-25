@@ -6,7 +6,7 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 15:48:56 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/21 18:10:19 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/25 12:58:49 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,6 @@ void			sprites_distance(
 				t_sprite *sprites, int size, int posx, int posy);
 void			draw_sprites(int **buf, t_parameters p, double *zbuffer);
 
-void			mlx_clear_img(void **img);
 int				**draw_scene(t_parameters tmp);
 void			buffer_to_image(int h, int w, int **buf, void **img);
 

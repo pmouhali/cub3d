@@ -6,7 +6,7 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 18:19:12 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/21 18:20:41 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/23 13:09:49 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,8 @@ int			validate_params(t_parameters *params)
 	if (!validate_start_position(params))
 		return (0);
 	if (!validate_textures(params))
+		return (0);
+	if (params->floor_color == -1 || params->ceiling_color == -1)
 		return (0);
 	return (1);
 }
