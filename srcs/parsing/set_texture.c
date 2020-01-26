@@ -6,7 +6,7 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/21 18:40:51 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/22 17:39:20 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/25 14:14:34 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,12 @@ void	set_texture(t_parameters *params, t_texture *t, const char *line)
 	char	*path;
 	int		i[3];
 
+	if (t->id)
+		quit_program(params, "texture already set.");
 	path = ft_strtrim(line, " ");
 	if (path == NULL)
 		quit_program(params, "set_texture: allocation failed.");
-	t->id = mlx_png_file_to_image(
+	t->id = mlx_xpm_file_to_image(
 		params->mlx_id, path, &(t->width), &(t->height)
 );
 	free(path);

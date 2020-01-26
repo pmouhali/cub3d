@@ -53,15 +53,24 @@ mk_lbitmapfile:
 mk_lmlx:
 	cd libmlx/ && make
 
+cleanlmlx:
+	cd libmlx/ && make clean
+
 cleanlft:
 	cd libft/ && make clean
 
 cleanlbitmapfile:
 	cd libbitmapfile/ && make clean
 
-clean: cleanlft cleanlbitmapfile
+clean: cleanlmlx cleanlft cleanlbitmapfile
 
-fclean: clean
+fcleanlft:
+	cd libft/ && make fclean
+
+fcleanlbitmapfile:
+	cd libbitmapfile/ && make fclean
+
+fclean: fcleanlft fcleanlbitmapfile clean
 	rm -f cub3d *.bmp
 
 re: fclean all

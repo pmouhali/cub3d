@@ -6,7 +6,7 @@
 /*   By: pmouhali <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/03 16:30:20 by pmouhali          #+#    #+#             */
-/*   Updated: 2020/01/23 12:49:50 by pmouhali         ###   ########.fr       */
+/*   Updated: 2020/01/25 15:19:55 by pmouhali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ void		quit_program(t_parameters *params, const char *error_msg)
 		free(params->sprites);
 	if (error_msg)
 		ft_puterror(error_msg);
-	system("leaks cub3d");
 	exit(1);
 }
